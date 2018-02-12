@@ -1,4 +1,4 @@
-package interfaces;
+package EntityClasses;
 import java.util.List;
 
 /**

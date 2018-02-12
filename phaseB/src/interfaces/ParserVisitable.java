@@ -1,5 +1,7 @@
 package interfaces;
 
+import EntityClasses.ASTClass;
+
 /**
  *  This is an interface which has method(s) to provide functionality to
  *  generate language specific tokens and AST.
