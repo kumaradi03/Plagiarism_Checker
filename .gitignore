@@ -1,3 +1,7 @@
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
 # Compiled class file
 *.class
 
@@ -6,6 +10,8 @@
 
 # Output directory
 out/
+.idea/
+target/
 
 # BlueJ files
 *.ctxt
