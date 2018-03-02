@@ -41,7 +41,6 @@ public class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        System.out.println(result.getResponse());
         String expected = "{id:1,name:adi,username:adi,password:adi}";
         JSONAssert.assertEquals(expected, result.getResponse()
                 .getContentAsString(), false);

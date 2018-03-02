@@ -12,7 +12,7 @@
                 .login(user)
                 .then(function (loginUser) {
                     if(loginUser) {
-                        console.log("Mayuri Kadam");
+                        console.log("Login Successfull !");
                         // $location.url('/profile/');
                     }
                     else
