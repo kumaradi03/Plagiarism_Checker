@@ -12,7 +12,6 @@
                 .login(user)
                 .then(function (loginUser) {
                     if(loginUser) {
-                        console.log("Done !");
                     }
                     else
                         vm.error = 'User not found.';
