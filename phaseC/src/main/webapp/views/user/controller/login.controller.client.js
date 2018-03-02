@@ -12,8 +12,7 @@
                 .login(user)
                 .then(function (loginUser) {
                     if(loginUser) {
-                        console.log("Mayuri Kadam");
-                        // $location.url('/profile/');
+                        console.log("Done !");
                     }
                     else
                         vm.error = 'User not found.';
