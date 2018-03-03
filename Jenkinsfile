@@ -25,14 +25,14 @@ pipeline {
                sh 'mvn -f phaseC/pom.xml test'
            }
        }
-//       stage('SonarQube') {
-//           steps {
-//                withSonarQubeEnv('SonarQube') {
-//                    sh 'mvn -f phaseC/pom.xml clean install'
-//                    sh 'mvn -f phaseC/pom.xml sonar:sonar'
-//                }
-//           }
-//       }
+       stage('SonarQube') {
+           steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn -f phaseC/pom.xml clean install'
+                    sh 'mvn -f phaseC/pom.xml sonar:sonar'
+                }
+           }
+       }
        //stage('Quality') {
            //steps {
                  //sh 'sleep 30'

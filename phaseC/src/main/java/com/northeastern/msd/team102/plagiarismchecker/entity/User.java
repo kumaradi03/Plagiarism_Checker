@@ -1,15 +1,13 @@
 package com.northeastern.msd.team102.plagiarismchecker.entity;
 
-import org.springframework.data.annotation.PersistenceConstructor;
-
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
+//@Table(name = "User")
 public class User {
     @Id
     @Column(name = "id")
-    private String id;
+    private long id;
     @Column(name = "name")
     private String name;
     @Column(name = "username")
@@ -17,22 +15,22 @@ public class User {
     @Column(name = "password")
     private String password;
 
-
-    public User(){
-        this.id= UUID.randomUUID().toString();
-    }
-
-    public User(String name, String username, String password) {
+    public User(long id, String name, String username, String password) {
+        this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
     }
-    
-    public String getId() {
-        return this.id;
+
+    public User() {
+
     }
 
-    public void setId(String id) {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
         this.id = id;
     }
 
