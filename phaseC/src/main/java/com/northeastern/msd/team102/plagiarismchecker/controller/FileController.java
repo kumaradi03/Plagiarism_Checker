@@ -2,26 +2,17 @@ package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Iterator;
-
 import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
 import com.northeastern.msd.team102.plagiarismchecker.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.ASTPrinter;
 import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.PythonParser;
 import com.northeastern.msd.team102.plagiarismchecker.antlr.grammer.grammerParser.File_inputContext;
-<<<<<<< Updated upstream
-=======
-import com.northeastern.msd.team102.plagiarismchecker.antlr.parser.ASTPrinter;
-import com.northeastern.msd.team102.plagiarismchecker.antlr.parser.PythonParser;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
->>>>>>> Stashed changes
 
 @RestController
 @RequestMapping("/rest/file")
