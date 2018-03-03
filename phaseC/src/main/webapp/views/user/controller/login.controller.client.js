@@ -12,6 +12,7 @@
                 .login(user)
                 .then(function (loginUser) {
                     if(loginUser) {
+                        $location.url('/profile/');
                     }
                     else
                         vm.error = 'User not found.';
