@@ -1,9 +1,6 @@
 package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import static org.junit.Assert.assertEquals;
-
-import java.io.File;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -22,22 +19,21 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @WebMvcTest(value = FileController.class, secure = false)
 public class FileControllerTest {
 
-	@Autowired
+    @Autowired
     private MockMvc mockMvc;
-	
-	@MockBean
+
+    @MockBean
     private FileController fileController;
-	
-	@Test
+
+
+    @Test
     public void parse() throws Exception {
-    	String mockParsedFile = "file_input funcdef  parameters  suite   simple_stmt    atom_expr     atom     trailer\"\r\n" + 
-    			"               + \"      atom if_stmt  comparison   atom   comp_op   atom  atom_expr   atom   trailer";
-    	
-    	Mockito.when(fileController.parsePythonFile()).thenReturn(mockParsedFile);
-    	RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/rest/file/parse").accept(MediaType.APPLICATION_JSON);
-    	
-    	MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String mockParsedFile = "file_input funcdef  parameters  suite   simple_stmt    atom_expr     atom     trailer\"\r\n" +
+                "               + \"      atom if_stmt  comparison   atom   comp_op   atom  atom_expr   atom   trailer";
+        Mockito.when(fileController.parsePythonFile()).thenReturn(mockParsedFile);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/rest/file/parse").accept(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         assertEquals(mockParsedFile, result.getResponse().getContentAsString());
     }
-	
 }

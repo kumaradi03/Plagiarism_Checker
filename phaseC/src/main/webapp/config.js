@@ -10,5 +10,10 @@
                 controller: 'LoginController',
                 controllerAs: 'model',
             })
+            .when("/profile",{
+                templateUrl: 'views/user/template/profile.client.html',
+                controller: 'ProfileController',
+                controllerAs: 'model',
+            })
         }
 })();

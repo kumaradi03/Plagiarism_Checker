@@ -6,11 +6,11 @@ pipeline {
        }
    }
    stages {
-        stage('Start') {
-             steps {
-               slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-             }
-        }
+//        stage('Start') {
+//             steps {
+//               slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+//             }
+//        }
 
        stage('Build') {
            steps {
@@ -25,14 +25,14 @@ pipeline {
                sh 'mvn -f phaseC/pom.xml test'
            }
        }
-       stage('SonarQube') {
-           steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn -f phaseC/pom.xml clean install'
-                    sh 'mvn -f phaseC/pom.xml sonar:sonar'
-                }
-           }
-       }
+//       stage('SonarQube') {
+//           steps {
+//                withSonarQubeEnv('SonarQube') {
+//                    sh 'mvn -f phaseC/pom.xml clean install'
+//                    sh 'mvn -f phaseC/pom.xml sonar:sonar'
+//                }
+//           }
+//       }
        //stage('Quality') {
            //steps {
                  //sh 'sleep 30'
@@ -49,12 +49,12 @@ pipeline {
            //}
        //}
    }
-   post {
-       success {
-          slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-       }
-       failure {
-          slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-       }
-   }
+//   post {
+//       success {
+//          slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+//       }
+//       failure {
+//          slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+//       }
+//   }
 }
