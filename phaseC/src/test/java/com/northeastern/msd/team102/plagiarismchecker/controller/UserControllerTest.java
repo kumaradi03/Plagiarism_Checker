@@ -32,16 +32,16 @@ public class UserControllerTest {
 
     @Test
     public void login() throws Exception {
-        User mockUser = new User(1, "adi","adi", "adi");
+        User mockUser = new User("test102","test102", "test102");
         Mockito.when(
                 userService.findUserByCredentials(Mockito.any(User.class))).thenReturn(mockUser);
-        String testJson = "{\"id\":\"1\",\"name\":\"adi\",\"username\":\"adi\",\"password\":\"adi\"}";
+        String testJson = "{\"id\":\"123\",\"name\":\"test102\",\"username\":\"test102\",\"password\":\"test102\"}";
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
                 "/rest/user/login").accept(MediaType.APPLICATION_JSON).content(testJson)
                 .contentType(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        String expected = "{id:1,name:adi,username:adi,password:adi}";
+        String expected = "{name:test102,username:test102,password:test102}";
         JSONAssert.assertEquals(expected, result.getResponse()
                 .getContentAsString(), false);
     }
