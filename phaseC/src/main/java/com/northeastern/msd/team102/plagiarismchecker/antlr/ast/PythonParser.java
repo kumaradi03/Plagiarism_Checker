@@ -1,4 +1,4 @@
-package com.northeastern.msd.team102.plagiarismchecker.antlr.parser;
+package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;

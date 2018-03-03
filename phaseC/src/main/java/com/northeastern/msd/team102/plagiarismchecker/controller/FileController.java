@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.ASTPrinter;
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.PythonParser;
 import com.northeastern.msd.team102.plagiarismchecker.antlr.grammer.grammerParser.File_inputContext;
-import com.northeastern.msd.team102.plagiarismchecker.antlr.parser.ASTPrinter;
-import com.northeastern.msd.team102.plagiarismchecker.antlr.parser.PythonParser;
 
 @RestController
 @RequestMapping("/rest/file")
@@ -18,9 +18,8 @@ public class FileController {
 	@GetMapping("/parse")
     public String parsePythonFile() throws IOException {
 		PythonParser parserFacade = new PythonParser();
-        ASTPrinter astPrinter = new ASTPrinter();
-        File_inputContext ruleCtx = parserFacade.parse(new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py"));
-        String s = astPrinter.print(ruleCtx);
-        return s;
+		File_inputContext ruleCtx = parserFacade.parse(new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py"));
+        ASTPrinter astPrinter = new ASTPrinter(ruleCtx);
+        return astPrinter.print();
 	}
 }
