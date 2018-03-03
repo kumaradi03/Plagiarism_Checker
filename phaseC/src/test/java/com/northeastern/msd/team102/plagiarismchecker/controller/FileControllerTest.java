@@ -2,6 +2,8 @@ package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -26,27 +28,10 @@ public class FileControllerTest {
 	@MockBean
     private FileController fileController;
 	
-    @Test
+	@Test
     public void parse() throws Exception {
-    	FileController f = new FileController();
-    	String mockParsedFile = "ruleName = file_input\r\n" + 
-        		"  funcdef\r\n" + 
-        		"    parameters\r\n" + 
-        		"    suite\r\n" + 
-        		"      simple_stmt\r\n" + 
-        		"        atom_expr\r\n" + 
-        		"          atom\r\n" + 
-        		"          trailer\r\n" + 
-        		"            atom\r\n" + 
-        		"  if_stmt\r\n" + 
-        		"    comparison\r\n" + 
-        		"      atom\r\n" + 
-        		"      comp_op\r\n" + 
-        		"      atom\r\n" + 
-        		"    atom_expr\r\n" + 
-        		"      atom\r\n" + 
-        		"      trailer\r\n" + 
-        		"file_input\r\n";
+    	String mockParsedFile = "file_input funcdef  parameters  suite   simple_stmt    atom_expr     atom     trailer\"\r\n" + 
+    			"               + \"      atom if_stmt  comparison   atom   comp_op   atom  atom_expr   atom   trailer";
     	
     	Mockito.when(fileController.parsePythonFile()).thenReturn(mockParsedFile);
     	RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/rest/file/parse").accept(MediaType.APPLICATION_JSON);
@@ -54,4 +39,5 @@ public class FileControllerTest {
     	MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         assertEquals(mockParsedFile, result.getResponse().getContentAsString());
     }
+	
 }

@@ -1,4 +1,9 @@
-package com.northeastern.msd.team102.plagiarismchecker.antlr.parser;
+package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RuleContext;
@@ -13,8 +18,21 @@ import com.northeastern.msd.team102.plagiarismchecker.antlr.grammer.grammerParse
  */
 public class ASTPrinter {
 
-    private boolean ignoringWrappers = true;
-
+    private boolean ignoringWrappers;
+    private StringBuilder str;
+    private Map<String, List<Integer>> nodes;
+    private RuleContext ctx = null;
+    
+    /**
+     * @param ctx : RuleContext reference
+     */
+    public ASTPrinter(RuleContext ctx) {
+    	this.ctx = ctx;
+    	str = new StringBuilder();
+    	nodes = new TreeMap<>();
+    	ignoringWrappers = true;
+    }
+    
     /**
 	 * @param ignoringWrappers : boolean; to decide whether to ignore wrappers
 	 */
@@ -25,60 +43,49 @@ public class ASTPrinter {
     /**
 	 * @param ctx : RuleContext reference
 	 */
-    public String print(RuleContext ctx) {
+    public String print() {
         return exploreString(ctx,0);
-    }
-
-    /**
-	 * @param ctx : RuleContext reference
-	 * @param indentation : int; defines no of spaces to show indentation for tree view, root node has '0'
-	 */
-    private void explore(RuleContext ctx, int indentation) {
-        boolean toBeIgnored = ignoringWrappers
-                && ctx.getChildCount() == 1
-                && ctx.getChild(0) instanceof ParserRuleContext;
-        if (!toBeIgnored) {
-            String ruleName = grammerParser.ruleNames[ctx.getRuleIndex()];
-            for (int i = 0; i < indentation; i++) {
-                System.out.print("  ");
-            }
-            System.out.println(ruleName);
-        }
-        for (int i=0;i<ctx.getChildCount();i++) {
-            ParseTree element = ctx.getChild(i);
-            if (element instanceof RuleContext) {
-                explore((RuleContext)element, indentation + (toBeIgnored ? 0 : 1));
-            }
-        }
     }
     
     /**
 	 * @param ctx : RuleContext reference
-	 * @param indentation : int; defines no of spaces to show indentation for tree view, root node has '0'
+	 * @param indentation : int - defines no of spaces to show indentation for tree view, root node has '0'
+	 * @return String representation of AST
 	 */
     private String exploreString(RuleContext ctx, int indentation) {
     	boolean toBeIgnored = false;
     	if (ignoringWrappers && (ctx.getChildCount() == 1) && (ctx.getChild(0) instanceof ParserRuleContext)) {
     		toBeIgnored = true;
     	}
-        StringBuilder str = new StringBuilder();
         if (!toBeIgnored) {
         	if (grammerParser.ruleNames[ctx.getRuleIndex()] != null) {
         		String ruleName = grammerParser.ruleNames[ctx.getRuleIndex()];
-                System.out.println("ruleName = "+ruleName);
                 for (int i = 0; i < indentation; i++) {
-                	str.append("  ");
+                	str.append(" ");
                 }
                 str.append(ruleName);
+                List<Integer> level = new ArrayList<>();
+                if (nodes.containsKey(ruleName)) {
+                	level.addAll(nodes.get(ruleName));
+                }
+                level.add(indentation);
+                nodes.put(ruleName, level);
         	}
         }
         for (int i=0;i<ctx.getChildCount();i++) {
             ParseTree element = ctx.getChild(i);
             if (element instanceof RuleContext) {
-                explore((RuleContext)element, indentation + (toBeIgnored ? 0 : 1));
+            	exploreString((RuleContext)element, indentation + (toBeIgnored ? 0 : 1));
             }
         }
 		return str.toString();
+    }
+    
+    /**
+     * @return nodes : Map that maintains the ruleName of the AST as key, and list of various depths at which it is found as list
+     */
+    public Map<String, List<Integer>> getNodes() {
+    	return nodes;
     }
 
 }
