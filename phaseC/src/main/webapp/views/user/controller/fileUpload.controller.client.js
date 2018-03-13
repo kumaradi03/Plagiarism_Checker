@@ -1,17 +1,28 @@
 (function(){
     angular
         .module("PlagiarismChecker")
-        .controller("ProfileController", ProfileController);
+        .controller("FileUploadController", FileUploadController);
 
-    function ProfileController(UserService, $location, $routeParams) {
+    function FileUploadController(FileUploader, UserService, $location, $routeParams) {
         var vm = this;
         var userId = $routeParams['uid'];
-        vm.update = update;
-        vm.deleteUser = deleteUser;
+        vm.pressFileUploadButton = pressFileUploadButton();
+        vm.pressFolderUploadButton = pressFolderUploadButton();
         vm.openNav = openNav;
         vm.closeNav = closeNav;
-        vm.goToHome = goToHome;
-        vm.logout = logout;
+        vm.uploader = new FileUploader({url:"/rest/file/upload"});
+
+        function pressFileUploadButton() {
+            $('#fileUploadButton').click(function(event) {
+                $('#fileDialog').click();
+            });
+        }
+
+        function pressFolderUploadButton() {
+            $('#folderUploadbutton').click(function(event) {
+                $('#folderDialog').click();
+            });
+        }
 
         function openNav(type) {
             if(type === "Student"){
@@ -55,45 +66,5 @@
                 openNav(vm.user.userType);
             });
 
-        function logout() {
-            UserService
-                .logout()
-                .then(function (res) {
-                    $location.url("/login");
-                },function (err) {
-                    $location.url("/login");
-                });
-        }
-
-        function update(newUser) {
-            if(newUser.password === newUser.verifypassword) {
-                UserService
-                    .updateUser(vm.userId, newUser)
-                    .then(function (user) {
-                        if (user) {
-                            vm.message = "User Successfully Updated!";
-                            vm.error= null;
-                        } else {
-                            vm.error = "Unable to update user";
-                            vm.message= null;
-                        }
-                    })
-            }
-            else{
-                vm.error = "Password doesnt match.";
-                vm.message= null;
-            }
-
-        }
-
-        function deleteUser() {
-            UserService
-                .deleteUser(vm.userId);
-        }
-
-        function goToHome(){
-            console.log(vm.userId);
-            $location.url("/home")
-        }
     }
 })();

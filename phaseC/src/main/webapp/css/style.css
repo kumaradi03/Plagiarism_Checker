@@ -244,3 +244,7 @@ form.submitted .ng-invalid
     font-family: "Comic Sans MS";
     font-size: medium;
 }
+
+.my-drop-zone { border: dotted 3px lightgray; }
+.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+.another-file-over-class { border: dotted 3px green; }

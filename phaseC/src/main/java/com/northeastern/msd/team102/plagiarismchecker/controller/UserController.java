@@ -19,4 +19,19 @@ public class UserController {
     public User Login(@RequestBody User user) {
         return userService.findUserByCredentials(user);
     }
+
+    @GetMapping("/findUserByUsername")
+    public User findUserByUsername(@RequestParam String username) {
+        return userService.findUserByUsername(username);
+    }
+
+    @GetMapping("/findUserByUserId")
+    public User findUserByUserId(@RequestParam long userId) {
+        return userService.findUserByUserId(userId);
+    }
+
+    @PostMapping("/registerUser")
+    public User registerUser(@RequestBody User user) {
+        return userService.createUser(user);
+    }
 }

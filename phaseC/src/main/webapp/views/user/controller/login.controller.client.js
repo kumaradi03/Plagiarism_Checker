@@ -3,22 +3,23 @@
         .module("PlagiarismChecker")
         .controller("LoginController", LoginController);
 
-    function LoginController(UserService, $location,$scope) {
+    function LoginController(UserService, $location) {
         var vm = this;
         vm.login = login;
 
         function login(user) {
             UserService
-                .login(user)
+                .findUserByUsername(user.username)
                 .then(function (loginUser) {
-                    if(loginUser) {
-                        $location.url('/profile/');
+                    if(loginUser != "") {
+                        if(loginUser.password == user.password)
+                            $location.url('/profile/'+ loginUser.id);
+                        else
+                            vm.error = "Username and Password doesnt match"
                     }
                     else
                         vm.error = 'User not found.';
-                    },(function (err) {
-                        vm.error = "Username and Password doesn't match."
-                    }));
-            }
+                });
+        }
     }
 })();
