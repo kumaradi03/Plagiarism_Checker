@@ -26,4 +26,5 @@
                 controllerAs: 'model',
             })
         }
+
 })();
