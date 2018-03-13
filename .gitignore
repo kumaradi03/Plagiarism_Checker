@@ -11,6 +11,7 @@ Desktop.ini
 # Output directory
 out/
 .idea/
+.project/
 target/
 
 # BlueJ files
