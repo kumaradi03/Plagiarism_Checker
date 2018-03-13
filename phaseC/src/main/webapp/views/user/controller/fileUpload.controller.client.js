@@ -6,8 +6,8 @@
     function FileUploadController(FileUploader, UserService, $location, $routeParams) {
         var vm = this;
         var userId = $routeParams['uid'];
-        vm.pressFileUploadButton = pressFileUploadButton();
-        vm.pressFolderUploadButton = pressFolderUploadButton();
+        vm.pressFileUploadButton = pressFileUploadButton;
+        vm.pressFolderUploadButton = pressFolderUploadButton;
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.uploader = new FileUploader({url:"/rest/file/upload"});
