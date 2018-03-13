@@ -3,23 +3,35 @@ package com.northeastern.msd.team102.plagiarismchecker.entity;
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "User")
 public class User {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     private long id;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "firstName")
+    private String firstName;
+    @Column(name = "lastName")
+    private String lastName;
+    @Column(name = "userType")
+    private String userType;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
     private String password;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "phone")
+    private String phone;
 
-    public User(long id, String name, String username, String password) {
+    public User(long id, String firstName, String lastName, String userType, String username, String password, String email, String phone) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userType = userType;
         this.username = username;
         this.password = password;
+        this.email = email;
+        this.phone = phone;
     }
 
     public User() {
@@ -34,12 +46,28 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public String getUsername() {
@@ -57,4 +85,21 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
 }

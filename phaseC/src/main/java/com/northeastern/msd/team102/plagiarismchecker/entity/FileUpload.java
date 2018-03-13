@@ -1,14 +1,23 @@
 package com.northeastern.msd.team102.plagiarismchecker.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
 @Entity
 public class FileUpload {
 
-    public FileUpload (String filename, byte[] file, String mimeType) {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id")
+    private long id;
+    @Column(name = "filename")
+    private String filename;
+    @Column(name = "file")
+    @Lob
+    private byte[] file;
+    @Column(name = "mimeType")
+    private String mimeType;
 
+    public FileUpload (String filename, byte[] file, String mimeType) {
         this.file = file;
         this.filename = filename;
         this.mimeType = mimeType;
@@ -18,14 +27,13 @@ public class FileUpload {
         // Default Constructor
     }
 
-    @Id
-    private String filename;
+    public long getId() {
+        return id;
+    }
 
-    @Lob
-    private byte[] file;
-
-    private String mimeType;
-
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getFilename() {
         return filename;
