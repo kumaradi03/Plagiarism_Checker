@@ -17,6 +17,10 @@ public class FileUpload {
     @Column(name = "mimeType")
     private String mimeType;
 
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fileupload_submission_association"))
+    private Submission submission;
+
     public FileUpload (String filename, byte[] file, String mimeType) {
         this.file = file;
         this.filename = filename;

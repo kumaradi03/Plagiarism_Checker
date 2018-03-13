@@ -30,6 +30,11 @@ public class UserController {
         return userService.findUserByUserId(userId);
     }
 
+    @GetMapping("/findProfessor")
+    public User findProfessor() {
+        return userService.findByUserType("Professor");
+    }
+
     @PostMapping("/registerUser")
     public User registerUser(@RequestBody User user) {
         return userService.createUser(user);
