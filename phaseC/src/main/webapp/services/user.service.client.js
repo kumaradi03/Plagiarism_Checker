@@ -9,7 +9,8 @@
             "login": login,
             "findUserByUsername": findUserByUsername,
             "register": register,
-            "findUserById": findUserById
+            "findUserById": findUserById,
+            "findProfessor": findProfessor
         };
         return api;
 
@@ -36,6 +37,13 @@
 
         function register(user) {
             return $http.post("/rest/user/registerUser", user)
+                .then(function(res){
+                    return res.data;
+                });
+        }
+
+        function findProfessor() {
+            return $http.get("/rest/user/findProfessor")
                 .then(function(res){
                     return res.data;
                 });

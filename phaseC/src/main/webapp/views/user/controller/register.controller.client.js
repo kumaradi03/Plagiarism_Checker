@@ -35,7 +35,7 @@
                 .register(user)
                 .then(function (usr) {
                     if(usr)
-                        $location.url("/profile");
+                        $location.url('/profile/'+ usr.id);
                     else
                         vm.error = "Sorry Could not register";
                 });

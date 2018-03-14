@@ -12,18 +12,22 @@ public class UserService {
     private UserRepository userRepository;
 
     public User findUserByCredentials(User user) {
-        return userRepository.findUserByCredentials(user.getUsername(), user.getPassword());
+        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
     }
 
     public User findUserByUsername(String username) {
-        return userRepository.findUserByUsername(username);
+        return userRepository.findByUsername(username);
     }
 
     public User findUserByUserId(long userId) {
-        return userRepository.findUserByUserId(userId);
+        return userRepository.findById(userId);
     }
 
     public User createUser(User user) {
         return userRepository.save(user);
+    }
+
+    public User findByUserType(String userType) {
+        return userRepository.findByUserType(userType);
     }
 }

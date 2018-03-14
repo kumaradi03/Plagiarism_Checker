@@ -10,7 +10,7 @@
                 controller: 'LoginController',
                 controllerAs: 'model',
             })
-            .when("/fileUpload/:uid",{
+            .when("/profile/:uid/homework/:hid/fileupload",{
                 templateUrl: 'views/user/template/fileUpload.client.html',
                 controller: 'FileUploadController',
                 controllerAs: 'model',
@@ -25,6 +25,15 @@
                 controller: 'ProfileController',
                 controllerAs: 'model',
             })
+            .when("/profile/:uid/homework/",{
+                templateUrl: 'views/user/template/homework.client.html',
+                controller: 'HomeWorkController',
+                controllerAs: 'model',
+            })
+            .when("/profile/:uid/homework/new",{
+                templateUrl: 'views/user/template/homework-new.client.html',
+                controller: 'HomeWorkController',
+                controllerAs: 'model',
+            })
         }
-
 })();
