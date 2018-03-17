@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface HomeworkRepository extends JpaRepository<Homework, Long>{
     List<Homework> findAllByUserId(long userId);
+
+    Homework findById(long id);
 }

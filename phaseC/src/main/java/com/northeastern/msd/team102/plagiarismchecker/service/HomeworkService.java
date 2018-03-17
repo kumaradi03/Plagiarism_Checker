@@ -27,4 +27,8 @@ public class HomeworkService {
     public List<Homework> findAllByUserId(long userId) {
         return homeworkRepository.findAllByUserId(userId);
     }
+
+    public Homework findById(long id) {
+        return homeworkRepository.findById(id);
+    }
 }

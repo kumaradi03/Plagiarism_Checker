@@ -23,7 +23,6 @@
                 .then(function(res){
                     return res.data;
                 });
-
         }
     }
 })();

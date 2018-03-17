@@ -30,7 +30,7 @@ public class FileController {
 	}
 
     @PostMapping("/upload")
-    public void uploadFile(MultipartHttpServletRequest request) throws IOException {
+    public void uploadFile(MultipartHttpServletRequest request,  @RequestParam long userId,  @RequestParam long hwId) throws IOException {
         Iterator<String> itr = request.getFileNames();
         while (itr.hasNext()) {
             String uploadedFile = itr.next();
@@ -39,7 +39,7 @@ public class FileController {
             String filename = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
             FileUpload newFile = new FileUpload(filename, bytes, mimeType);
-            fileUploadService.uploadFile(newFile);
+            fileUploadService.uploadFile(newFile, userId, hwId);
         }
     }
 }
