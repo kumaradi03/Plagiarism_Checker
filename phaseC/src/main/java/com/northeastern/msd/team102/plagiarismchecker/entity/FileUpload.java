@@ -18,8 +18,13 @@ public class FileUpload {
     private String mimeType;
 
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "fileupload_submission_association"))
-    private Submission submission;
+    @JoinColumn(foreignKey = @ForeignKey(name = "fileUpload_homework_association"))
+    private Homework homework;
+
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "user_homework_association"))
+    private User user;
+
 
     public FileUpload (String filename, byte[] file, String mimeType) {
         this.file = file;
@@ -29,6 +34,22 @@ public class FileUpload {
 
     public FileUpload() {
         // Default Constructor
+    }
+
+    public Homework getHomework() {
+        return homework;
+    }
+
+    public void setHomework(Homework homework) {
+        this.homework = homework;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {
