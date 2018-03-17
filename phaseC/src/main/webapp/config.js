@@ -15,6 +15,11 @@
                 controller: 'FileUploadController',
                 controllerAs: 'model',
             })
+            .when("/profile/:uid/homework/:hid/submission",{
+                templateUrl: 'views/user/template/submission.client.html',
+                controller: 'SubmissionController',
+                controllerAs: 'model',
+            })
             .when("/register",{
                 templateUrl: 'views/user/template/register.client.html',
                 controller: 'RegisterController',

@@ -10,7 +10,8 @@
             "findUserByUsername": findUserByUsername,
             "register": register,
             "findUserById": findUserById,
-            "findProfessor": findProfessor
+            "findProfessor": findProfessor,
+            "getDistinctUsersForHw":getDistinctUsersForHw
         };
         return api;
 
@@ -44,6 +45,13 @@
 
         function findProfessor() {
             return $http.get("/rest/user/findProfessor")
+                .then(function(res){
+                    return res.data;
+                });
+        }
+
+        function getDistinctUsersForHw(hwId) {
+            return $http.get("/rest/file/getUser/?hwId="+hwId)
                 .then(function(res){
                     return res.data;
                 });

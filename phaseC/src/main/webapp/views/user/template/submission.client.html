@@ -22,6 +22,22 @@
     <a href="#/profile/{{model.user.id}}">Profile</a>
     <a href="#/profile/{{model.user.id}}/homework">Homework</a>
 </div>
+<div id="main" class="container-fluid row">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Button</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in model.users">
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td><button type="button" class="btn btn-primary btn-s navbar-btn" id="checkPlagiarism">CheckPlagiarism</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="row navbar-text text-capitalize">
