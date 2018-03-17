@@ -7,6 +7,10 @@ import com.northeastern.msd.team102.plagiarismchecker.repository.FileUploadRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class FileUploadService {
 
@@ -31,5 +35,9 @@ public class FileUploadService {
         doc.setUser(user);
         doc.setHomework(homework);
         fileUploadRepository.saveAndFlush(doc);
+    }
+
+    public List<FileUpload> findAllByHomeworkId(long hwId) {
+        return fileUploadRepository.findAllByHomeworkId(hwId);
     }
 }

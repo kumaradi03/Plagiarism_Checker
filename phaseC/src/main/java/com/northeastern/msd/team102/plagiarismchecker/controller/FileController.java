@@ -2,8 +2,11 @@ package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.*;
+
 import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
+import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
+import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +31,19 @@ public class FileController {
         ASTPrinter astPrinter = new ASTPrinter(ruleCtx);
         return astPrinter.print();
 	}
+
+    @GetMapping("/getUser")
+    public Set<User> getDistinctUsersForHw(@RequestParam long hwId) {
+        Set<User> set = new HashSet<>();
+        Map<Long, User> map = new HashMap<>();
+        for (FileUpload file: fileUploadService.findAllByHomeworkId(hwId)) {
+            if(!map.containsKey(file.getUser().getId())) {
+                map.put(file.getUser().getId(), file.getUser());
+                set.add(file.getUser());
+            }
+        }
+        return set;
+    }
 
     @PostMapping("/upload")
     public void uploadFile(MultipartHttpServletRequest request,  @RequestParam long userId,  @RequestParam long hwId) throws IOException {

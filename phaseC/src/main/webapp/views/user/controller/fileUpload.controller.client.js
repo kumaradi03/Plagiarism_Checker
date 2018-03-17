@@ -7,23 +7,18 @@
         var vm = this;
         var userId = $routeParams['uid'];
         var hwId = $routeParams['hid'];
-        vm.pressFileUploadButton = pressFileUploadButton;
         vm.pressFolderUploadButton = pressFolderUploadButton;
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.uploader = new FileUploader({url:"/rest/file/upload/?userId="+userId+"&hwId="+hwId});
 
-        function pressFileUploadButton() {
-            $('#fileUploadButton').click(function(event) {
-                $('#fileDialog').click();
-            });
-        }
+        $('#fileUploadButton').click(function(event) {
+            $('#fileDialog').click();
+        });
 
-        function pressFolderUploadButton() {
-            $('#folderUploadbutton').click(function(event) {
-                $('#folderDialog').click();
-            });
-        }
+        $('#folderUploadbutton').click(function(event) {
+            $('#folderDialog').click();
+        });
 
         function openNav(type) {
             if(type === "Student"){
