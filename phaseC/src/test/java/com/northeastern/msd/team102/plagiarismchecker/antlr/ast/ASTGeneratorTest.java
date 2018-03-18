@@ -1,14 +1,11 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.junit.Test;
-import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.ASTPrinter;
-import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.PythonParser;
-import com.northeastern.msd.team102.plagiarismchecker.antlr.grammer.grammerParser;
 
 /**
  * 
@@ -17,18 +14,16 @@ import com.northeastern.msd.team102.plagiarismchecker.antlr.grammer.grammerParse
  *
  */
 
-public class ASTPrinterTest {
+public class ASTGeneratorTest {
 
 	/**
 	 * Test1 : Parsed input of SamplepythonFile1.py
 	 * @throws IOException
 	 */
 	@Test
-	public void test_parseSamplepythonFile1() throws IOException {
-		PythonParser pyparser = new  PythonParser();
-	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
-	     grammerParser.File_inputContext f=pyparser.parse(file1);
-	     ASTPrinter astPrinter = new ASTPrinter(f);
+	public void test_parseSamplepythonFile1() throws IOException { 
+	     File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
+	     ASTGenerator astPrinter = new ASTGenerator(file1);
 	     String mockParsedFile = "file_input funcdef  parameters  suite   simple_stmt    atom_expr"
 	     		+ "     atom     trailer      atom if_stmt  comparison   atom   comp_op   atom"
 	     		+ "  atom_expr   atom   trailer";
@@ -42,16 +37,14 @@ public class ASTPrinterTest {
 	 */
 	@Test
 	public void test_parseSamplepythonFile2() throws IOException {
-		 PythonParser pyparser = new  PythonParser();
 		 File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile2.py");
-	     grammerParser.File_inputContext f=pyparser.parse(file1);
-	     ASTPrinter astPrinter = new ASTPrinter(f);
+	     ASTGenerator astPrinter = new ASTGenerator(file1);
 	     String mockParsedFile = "file_input funcdef  parameters  suite   simple_stmt"
 	     		+ "    atom_expr     atom     trailer      atom   simple_stmt    atom_expr"
 	     		+ "     atom     trailer      atom if_stmt  comparison   atom   comp_op   atom"
 	     		+ "  atom_expr   atom   trailer";
 	     
-	   assertEquals(mockParsedFile, astPrinter.print());
+	     assertEquals(mockParsedFile, astPrinter.print());
 	}
 	
 	/**
@@ -60,10 +53,8 @@ public class ASTPrinterTest {
 	 */
 	@Test
 	public void test_parseNewPython() throws IOException {
-		 PythonParser pyparser = new  PythonParser();
-	    
-	     grammerParser.File_inputContext f=pyparser.parse(new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/newpython.py"));
-	     ASTPrinter astPrinter = new ASTPrinter(f);
+		 File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/newpython.py");
+	     ASTGenerator astPrinter = new ASTGenerator(file1);
 	     String mockParsedFile = "file_input simple_stmt  expr_stmt   atom   atom    dictorsetmaker"
 	     		+ "     atom     atom     atom     atom simple_stmt  expr_stmt   atom   atom"
 	     		+ "    dictorsetmaker     atom     atom     atom     atom simple_stmt  expr_stmt"
@@ -71,7 +62,7 @@ public class ASTPrinterTest {
 	     		+ "        atom        trailer         atom       atom_expr        atom        trailer"
 	     		+ "         atom      comp_for       atom       atom atom term  atom  atom";
       
-	  assertEquals(mockParsedFile, astPrinter.print());
+	     assertEquals(mockParsedFile, astPrinter.print());
 	}
 	
 	/**
@@ -80,10 +71,8 @@ public class ASTPrinterTest {
 	 */
 	@Test
 	public void test_parseCalc() throws IOException {
-		 PythonParser pyparser = new  PythonParser();
-	    
-	     grammerParser.File_inputContext f=pyparser.parse(new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/calc.py"));
-	     ASTPrinter astPrinter = new ASTPrinter(f);
+	     File file1 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/calc.py");
+	     ASTGenerator astPrinter = new ASTGenerator(file1);
 	     String mockParsedFile = "file_input simple_stmt  atom funcdef  parameters   typedargslist"
 	     		+ "    tfpdef    tfpdef  suite   simple_stmt    return_stmt     arith_expr      atom"
 	     		+ "      atom funcdef  parameters   typedargslist    tfpdef    tfpdef  suite   simple_stmt"
@@ -111,7 +100,7 @@ public class ASTPrinterTest {
 	     		+ "          atom          atom  suite   simple_stmt    atom_expr     atom     trailer"
 	     		+ "      atom";
       
-	    assertEquals(mockParsedFile, astPrinter.print());
+	     assertEquals(mockParsedFile, astPrinter.print());
 	}
 
 }
