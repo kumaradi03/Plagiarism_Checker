@@ -41,11 +41,7 @@ public class ASTGenerator {
     	str = new StringBuilder();
     	nodes = new TreeMap<>();
     	setIgnoringWrappers(true);
-    	try {
-			parse();
-		} catch (IOException e) {
-			logger.log(Level.INFO, "IO Exception: {0}",e);
-		}
+    	parse();
     	exploreString(ctx,0);
     }
     
