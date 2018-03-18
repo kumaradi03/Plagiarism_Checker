@@ -1,9 +1,7 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,14 +28,14 @@ public class ASTGenerator {
     private boolean ignoringWrappers;
     private StringBuilder str;
     private Map<String, List<Integer>> nodes;
-    private File f;
+    private byte[] f;
     private RuleContext ctx = null;
     private Logger logger;
     
     /**
-     * @param f : File whose AST is to be generated
+     * @param f : byte[] of File whose AST is to be generated
      */
-    public ASTGenerator(File f) {
+    public ASTGenerator(byte[] f) {
     	this.f = f;
     	logger = Logger.getLogger(ASTGenerator.class.getName());
     	str = new StringBuilder();
@@ -59,7 +57,7 @@ public class ASTGenerator {
     }
 
     /**
-	 * @param ctx : RuleContext reference
+	 * @return String representation of AST
 	 */
     public String print() {
     	return str.toString();
@@ -106,17 +104,14 @@ public class ASTGenerator {
     }
 
 	/**
-	 * @param file : python file
 	 * @return parsed python file of type 'RuleContext'
 	 * @throws IOException
 	 */
-    private void parse() throws IOException {        
-        byte[] encoded = Files.readAllBytes(f.toPath());
-        String code = new String(encoded, Charset.forName("UTF-8"));        
+    private void parse() throws IOException {
+        String code = new String(f, Charset.forName("UTF-8"));
         grammerLexer lexer = new grammerLexer(new ANTLRInputStream(code));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         grammerParser parser = new grammerParser(tokens);
         this.ctx = parser.file_input();
     }
-
 }

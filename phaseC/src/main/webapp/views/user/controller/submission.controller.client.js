@@ -9,6 +9,7 @@
         var hwId = $routeParams['hid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
+        vm.checkPlagiarism = checkPlagiarism
 
         function openNav(type) {
             if(type === "Professor"){
@@ -25,6 +26,10 @@
             }
         }
 
+        function checkPlagiarism() {
+
+        }
+
         UserService
             .findUserById(userId)
             .then(function (user) {
@@ -39,5 +44,6 @@
                         });
                 openNav(vm.user.userType);
             });
-    }
+        }
+
 })();

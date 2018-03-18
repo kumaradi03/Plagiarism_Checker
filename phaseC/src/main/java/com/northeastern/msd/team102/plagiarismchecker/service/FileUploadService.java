@@ -40,4 +40,5 @@ public class FileUploadService {
     public List<FileUpload> findAllByHomeworkId(long hwId) {
         return fileUploadRepository.findAllByHomeworkId(hwId);
     }
+
 }

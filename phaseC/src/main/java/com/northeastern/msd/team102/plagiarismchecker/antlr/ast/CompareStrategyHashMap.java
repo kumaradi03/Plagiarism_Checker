@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class CompareStrategyHashMap implements CompareStrategy {
 
 	private Logger logger;
-	CompareStrategyHashMap () {
+	public CompareStrategyHashMap () {
 		logger = Logger.getLogger(CompareStrategyHashMap.class.getName());
 	}
 	
@@ -24,11 +24,11 @@ public class CompareStrategyHashMap implements CompareStrategy {
 	 * @param file2: File
 	 * @return percent similarity with keeping file1 as base, maps how similar is file2 with file1
 	 */
-	public double compareFiles(File file1, File file2) {
+	public double compareFiles(byte[] file1, byte[] file2) {
 		ASTGenerator astPrinter1 = new ASTGenerator(file1);
 		ASTGenerator astPrinter2 = new ASTGenerator(file2);	    
-	    Map<String, List<Integer>> node1=astPrinter1.getNodes();
-	    Map<String, List<Integer>> node2=astPrinter2.getNodes();
+	    Map<String, List<Integer>> node1 = astPrinter1.getNodes();
+	    Map<String, List<Integer>> node2 = astPrinter2.getNodes();
 		return compareAST1withAST2(node1, node2);
 	}
 	
