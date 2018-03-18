@@ -7,5 +7,5 @@ import java.io.File;
  * @description Interface for comparing files using Strategy design pattern
  */
 public interface CompareStrategy {
-	public double compareFiles(File file1, File file2);
+	double compareFiles(byte[] file1, byte[] file2);
 }

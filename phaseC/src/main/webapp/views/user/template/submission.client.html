@@ -33,7 +33,7 @@
         <tbody>
             <tr ng-repeat="user in model.users">
                 <td>{{user.firstName}} {{user.lastName}}</td>
-                <td><button type="button" class="btn btn-primary btn-s navbar-btn" id="checkPlagiarism">CheckPlagiarism</button></td>
+                <td><button type="button" class="btn btn-primary btn-s navbar-btn" ng-click = "model.checkPlagiarism()">CheckPlagiarism</button></td>
             </tr>
         </tbody>
     </table>

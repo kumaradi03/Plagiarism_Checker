@@ -1,7 +1,5 @@
 package com.northeastern.msd.team102.plagiarismchecker.controller;
 
-
-
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
