@@ -107,7 +107,7 @@ public class ASTGenerator {
 	 * @return parsed python file of type 'RuleContext'
 	 * @throws IOException
 	 */
-    private void parse() throws IOException {
+    private void parse() {
         String code = new String(f, Charset.forName("UTF-8"));
         grammerLexer lexer = new grammerLexer(new ANTLRInputStream(code));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
