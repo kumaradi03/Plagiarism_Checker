@@ -2,19 +2,25 @@ package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
-import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
-import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
-import com.northeastern.msd.team102.plagiarismchecker.entity.User;
-import com.northeastern.msd.team102.plagiarismchecker.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.ASTPrinter;
-import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.PythonParser;
-import com.northeastern.msd.team102.plagiarismchecker.antlr.grammer.grammerParser.File_inputContext;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.ASTGenerator;
+import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
+import com.northeastern.msd.team102.plagiarismchecker.entity.User;
+import com.northeastern.msd.team102.plagiarismchecker.service.FileUploadService;
 
 
 @RestController
@@ -26,9 +32,7 @@ public class FileController {
 
     @GetMapping("/parse")
     public String parsePythonFile() throws IOException {
-		PythonParser parserFacade = new PythonParser();
-		File_inputContext ruleCtx = parserFacade.parse(new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py"));
-        ASTPrinter astPrinter = new ASTPrinter(ruleCtx);
+        ASTGenerator astPrinter = new ASTGenerator(new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py"));
         return astPrinter.print();
 	}
 

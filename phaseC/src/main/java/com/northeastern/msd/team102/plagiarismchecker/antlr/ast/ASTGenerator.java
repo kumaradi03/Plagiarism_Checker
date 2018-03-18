@@ -1,14 +1,23 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import com.northeastern.msd.team102.plagiarismchecker.antlr.grammer.grammerLexer;
 import com.northeastern.msd.team102.plagiarismchecker.antlr.grammer.grammerParser;
 
 /**
@@ -16,27 +25,36 @@ import com.northeastern.msd.team102.plagiarismchecker.antlr.grammer.grammerParse
  * @description to print the generated AST for view
  * @note this file is a reference from 'https://github.com/ftomassetti/python-ast'
  */
-public class ASTPrinter {
+public class ASTGenerator {
 
     private boolean ignoringWrappers;
     private StringBuilder str;
     private Map<String, List<Integer>> nodes;
+    private File f;
     private RuleContext ctx = null;
+    private Logger logger;
     
     /**
-     * @param ctx : RuleContext reference
+     * @param f : File whose AST is to be generated
      */
-    public ASTPrinter(RuleContext ctx) {
-    	this.ctx = ctx;
+    public ASTGenerator(File f) {
+    	this.f = f;
+    	logger = Logger.getLogger(ASTGenerator.class.getName());
     	str = new StringBuilder();
     	nodes = new TreeMap<>();
-    	ignoringWrappers = true;
+    	setIgnoringWrappers(true);
+    	try {
+			parse();
+		} catch (IOException e) {
+			logger.log(Level.INFO, "IO Exception: {0}",e);
+		}
+    	exploreString(ctx,0);
     }
     
     /**
 	 * @param ignoringWrappers : boolean; to decide whether to ignore wrappers
 	 */
-    public void setIgnoringWrappers(boolean ignoringWrappers) {
+    private void setIgnoringWrappers(boolean ignoringWrappers) {
         this.ignoringWrappers = ignoringWrappers;
     }
 
@@ -44,7 +62,7 @@ public class ASTPrinter {
 	 * @param ctx : RuleContext reference
 	 */
     public String print() {
-        return exploreString(ctx,0);
+    	return str.toString();
     }
     
     /**
@@ -52,7 +70,7 @@ public class ASTPrinter {
 	 * @param indentation : int - defines no of spaces to show indentation for tree view, root node has '0'
 	 * @return String representation of AST
 	 */
-    private String exploreString(RuleContext ctx, int indentation) {
+    private void exploreString(RuleContext ctx, int indentation) {
     	boolean toBeIgnored = false;
     	if (ignoringWrappers && (ctx.getChildCount() == 1) && (ctx.getChild(0) instanceof ParserRuleContext)) {
     		toBeIgnored = true;
@@ -78,7 +96,6 @@ public class ASTPrinter {
             	exploreString((RuleContext)element, indentation + (toBeIgnored ? 0 : 1));
             }
         }
-		return str.toString();
     }
     
     /**
@@ -86,6 +103,20 @@ public class ASTPrinter {
      */
     public Map<String, List<Integer>> getNodes() {
     	return nodes;
+    }
+
+	/**
+	 * @param file : python file
+	 * @return parsed python file of type 'RuleContext'
+	 * @throws IOException
+	 */
+    private void parse() throws IOException {        
+        byte[] encoded = Files.readAllBytes(f.toPath());
+        String code = new String(encoded, Charset.forName("UTF-8"));        
+        grammerLexer lexer = new grammerLexer(new ANTLRInputStream(code));
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        grammerParser parser = new grammerParser(tokens);
+        this.ctx = parser.file_input();
     }
 
 }
