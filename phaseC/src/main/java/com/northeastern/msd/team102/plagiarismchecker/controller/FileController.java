@@ -66,8 +66,8 @@ public class FileController {
             String filename = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
             FileUpload newFile = new FileUpload(filename, bytes, mimeType);
-            reportService.generateReport(userId, hwId, bytes);
-            fileUploadService.uploadFile(newFile, userId, hwId);
+            FileUpload fileUpload = fileUploadService.uploadFile(newFile, userId, hwId);
+            reportService.generateReport(userId, hwId, fileUpload);
         }
     }
 }

@@ -29,16 +29,20 @@ public class FileUploadService {
     }
 
     // Upload the file
-    public void uploadFile(FileUpload doc, long userId, long hwId) {
+    public FileUpload uploadFile(FileUpload doc, long userId, long hwId) {
         User user = userService.findUserByUserId(userId);
         Homework homework = homeworkService.findById(hwId);
         doc.setUser(user);
         doc.setHomework(homework);
-        fileUploadRepository.saveAndFlush(doc);
+        return fileUploadRepository.saveAndFlush(doc);
     }
 
     public List<FileUpload> findAllByHomeworkId(long hwId) {
         return fileUploadRepository.findAllByHomeworkId(hwId);
+    }
+
+    public List<FileUpload> findAllFileForOtherUser(long hwId, long userId) {
+        return fileUploadRepository.findAllFileForOtherUser(hwId, userId);
     }
 
 }
