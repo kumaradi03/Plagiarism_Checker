@@ -88,7 +88,7 @@ public class User {
     }
 
     /**
-     * Getter for last name.
+     * Getter for last name
      * @return last name of the user.
      */
     public String getLastName() {
@@ -96,7 +96,7 @@ public class User {
     }
 
     /**
-     * Setter for last name.
+     * Setter for last name
      * @param lastName
      */
     public void setLastName(String lastName) {
