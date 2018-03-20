@@ -46,4 +46,8 @@ public class ReportService {
             }
         }
     }
+
+    public List<Report> findAllReportSummary(long userId, long hwId) {
+        return reportRepository.findAllByHomeworkIdAndUser1Id(hwId,userId);
+    }
 }

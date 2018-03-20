@@ -26,8 +26,8 @@
             }
         }
 
-        function checkPlagiarism() {
-
+        function checkPlagiarism(user) {
+            $location.url('/profile/'+vm.user.id+'/homework/'+hwId+'/submission/'+user.id+'/summary');
         }
 
         UserService
@@ -37,7 +37,7 @@
                 UserService
                     .getDistinctUsersForHw(hwId)
                     .then(function (users) {
-                        if(users.length == 0)
+                        if(users.length === 0)
                             vm.error = "No submission.";
                         else
                             vm.users = users;

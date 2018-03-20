@@ -19,8 +19,9 @@
         <a class="glyphicon glyphicon-remove pull-right"></a>
     </span>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#/profile/{{model.user.id}}">Profile</a>
-    <a href="#/profile/{{model.user.id}}/homework">Homework</a>
+    <a href="#/profile/{{model.userId}}">Profile</a>
+    <a href="#/profile/{{model.userId}}/homework">Homework</a>
+    <a href="#/profile/{{model.userId}}/homework/{{model.hwId}}/submission">Submission</a>
 </div>
 <div id="main" class="container-fluid row">
     <div class="alert alert-danger" ng-show="model.error">
@@ -29,15 +30,23 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Button</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">File Name</th>
+            <th scope="col">Student1 Name</th>
+            <th scope="col">File1 Name</th>
+            <th scope="col">Percentage</th>
+            <th scope="col">Detailed Report</th>
         </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="user in model.users">
-                <td>{{user.firstName}} {{user.lastName}}</td>
-                <td><button type="button" class="btn btn-primary btn-s navbar-btn" ng-click = "model.checkPlagiarism(user)">CheckPlagiarism</button></td>
-            </tr>
+        <tr ng-repeat="report in model.reports">
+            <td>{{report.user1.firstName}} {{report.user1.lastName}}</td>
+            <td>{{report.fileUpload1.filename}}</td>
+            <td>{{report.user2.firstName}} {{report.user2.lastName}}</td>
+            <td>{{report.fileUpload2.filename}}</td>
+            <td>{{report.percentage}}</td>
+            <td><button type="button" class="btn btn-primary btn-s navbar-btn">Detailed Report</button></td>
+        </tr>
         </tbody>
     </table>
 </div>
