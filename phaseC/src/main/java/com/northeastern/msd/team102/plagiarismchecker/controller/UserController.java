@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Controller class for User
+ * Controller class for User entity.
  */
 @RestController
 @RequestMapping("/rest/user")
