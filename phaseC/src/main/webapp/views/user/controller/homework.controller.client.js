@@ -47,7 +47,6 @@
             HomeworkService
                 .findAllHomeworkForUser(vm.professor.id)
                 .then(function (homeworks) {
-                    console.log(homeworks);
                     if(homeworks.length == 0)
                         vm.error = "No Homework created.";
                     else

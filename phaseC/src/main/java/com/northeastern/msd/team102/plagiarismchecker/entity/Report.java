@@ -40,6 +40,9 @@ public class Report {
         this.percentage = percentage;
     }
 
+    public Report() {
+
+    }
 
     public long getId() {
         return id;

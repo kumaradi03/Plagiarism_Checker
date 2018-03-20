@@ -20,6 +20,11 @@
                 controller: 'SubmissionController',
                 controllerAs: 'model',
             })
+            .when("/profile/:uid/homework/:hid/submission/:userid/summary",{
+                templateUrl: 'views/user/template/report-summary.client.html',
+                controller: 'ReportSummaryController',
+                controllerAs: 'model',
+            })
             .when("/register",{
                 templateUrl: 'views/user/template/register.client.html',
                 controller: 'RegisterController',
