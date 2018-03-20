@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Service class for Report entity.
+ */
 @Component
 public class ReportService {
 
@@ -27,10 +30,21 @@ public class ReportService {
     @Autowired
     private HomeworkService homeworkService;
 
+    /**
+     * createReport saves the report in the database.
+     * @param report
+     */
     public void createReport(Report report) {
         reportRepository.save(report);
     }
 
+    /**
+     * generateReport method generates a report for the given file against all other files for that particular homework
+     * and user other than the specified user.
+     * @param userId userId
+     * @param hwId homework id
+     * @param file file to be compared
+     */
     public void generateReport(long userId, long hwId, FileUpload file) {
         User user = userService.findUserByUserId(userId);
         Homework hw = homeworkService.findById(hwId);
@@ -47,6 +61,12 @@ public class ReportService {
         }
     }
 
+    /**
+     * findAllReportSummary method returns the report foe the specified user id and homework id.
+     * @param userId user id
+     * @param hwId homework id
+     * @return Lost of Report
+     */
     public List<Report> findAllReportSummary(long userId, long hwId) {
         return reportRepository.findAllByHomeworkIdAndUser1Id(hwId,userId);
     }

@@ -24,7 +24,9 @@ import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.service.FileUploadService;
 
-
+/**
+ * Controller class for FileUpload entity.
+ */
 @RestController
 @RequestMapping("/rest/file")
 public class FileController {
@@ -35,6 +37,11 @@ public class FileController {
     @Autowired
     ReportService reportService;
 
+    /**
+     * parsePythonFile method to return an AST for a python file.
+     * @return return an AST
+     * @throws IOException
+     */
     @GetMapping("/parse")
     public String parsePythonFile() throws IOException {
         File file = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
@@ -43,6 +50,11 @@ public class FileController {
         return astPrinter.print();
 	}
 
+    /**
+     * getDistinctUsersForHw returns all the distinct users for that particular homework.
+     * @param hwId Homework Id
+     * @return a set of Users for that homework
+     */
     @GetMapping("/getUser")
     public Set<User> getDistinctUsersForHw(@RequestParam long hwId) {
         Set<User> set = new HashSet<>();
@@ -56,6 +68,14 @@ public class FileController {
         return set;
     }
 
+    /**
+     * uploadFile method uploads a multipart file to the databse and generates a plagiarism report
+     * of this file with all other files for that particular homework.
+     * @param request MultipartHttpServletRequest
+     * @param userId userId
+     * @param hwId hwId
+     * @throws IOException
+     */
     @PostMapping("/upload")
     public void uploadFile(MultipartHttpServletRequest request,  @RequestParam long userId,  @RequestParam long hwId) throws IOException {
         Iterator<String> itr = request.getFileNames();
