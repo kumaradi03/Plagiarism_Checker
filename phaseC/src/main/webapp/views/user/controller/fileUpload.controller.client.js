@@ -15,8 +15,18 @@
             $('#fileDialog').click();
         });
 
-        $('#folderUploadbutton').click(function(event) {
+        $('#folderUploadButton').click(function(event) {
             $('#folderDialog').click();
+        });
+
+        //Filter for uploading only python files.
+        vm.uploader.filters.push({
+            name:'pythonFilter',
+            fn: function(item, options){
+                var allowedExtensions = ['py'];
+                var ext = item.name.split('.').pop();
+                return allowedExtensions.indexOf(ext) !== -1;
+            }
         });
 
         function openNav(type) {
