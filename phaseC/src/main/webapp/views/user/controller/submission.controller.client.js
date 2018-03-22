@@ -3,13 +3,14 @@
         .module("PlagiarismChecker")
         .controller("SubmissionController", SubmissionController);
 
-    function SubmissionController (UserService, $location, $routeParams) {
+    function SubmissionController (UserService, $location, $routeParams, $scope) {
         var vm = this;
         var userId = $routeParams['uid'];
         var hwId = $routeParams['hid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
-        vm.checkPlagiarism = checkPlagiarism
+        vm.checkPlagiarism = checkPlagiarism;
+        $scope.myVar = 1;
 
         function openNav(type) {
             if(type === "Professor"){
@@ -27,7 +28,7 @@
         }
 
         function checkPlagiarism(user) {
-            $location.url('/profile/'+vm.user.id+'/homework/'+hwId+'/submission/'+user.id+'/summary');
+            $location.url('/profile/'+vm.user.id+'/homework/'+hwId+'/submission/'+user.id+'/type/'+$scope.myVar+'/summary');
         }
 
         UserService

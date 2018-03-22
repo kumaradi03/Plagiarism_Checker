@@ -31,8 +31,14 @@ public class Report {
     @JoinColumn(foreignKey = @ForeignKey(name = "report1_homework_association"))
     private Homework homework;
 
-    @Column(name = "percentage")
-    private double percentage;
+    @Column(name = "percentageCompareHashMap")
+    private double percentageCompareHashMap;
+
+    @Column(name = "percentageCompareTrees")
+    private double percentageCompareTrees;
+
+    @Column(name = "percentageCompareLevenshteinDistance")
+    private double percentageCompareLevenshteinDistance;
 
     /**
      * Constructor for Report class
@@ -41,15 +47,21 @@ public class Report {
      * @param fileUpload1 file for User1
      * @param fileUpload2 file for User1
      * @param homework homework for which report is generated
-     * @param percentage percentage plagiarism for the two files
+     * @param percentageCompareHashMap percentage plagiarism for the two files using HashMap.
+     * @param percentageCompareTrees percentage plagiarism for the two files using Trees.
+     * @param percentageCompareLevenshteinDistance percentage plagiarism for the two files using LevenshteinDistance.
      */
-    public Report(User user1, User user2, FileUpload fileUpload1, FileUpload fileUpload2, Homework homework, double percentage) {
+    public Report(User user1, User user2, FileUpload fileUpload1, FileUpload fileUpload2, Homework homework,
+                  double percentageCompareHashMap, double percentageCompareTrees,
+                  double percentageCompareLevenshteinDistance) {
         this.user1 = user1;
         this.user2 = user2;
         this.fileUpload1 = fileUpload1;
         this.fileUpload2 = fileUpload2;
         this.homework = homework;
-        this.percentage = percentage;
+        this.percentageCompareHashMap = percentageCompareHashMap;
+        this.percentageCompareTrees = percentageCompareTrees;
+        this.percentageCompareLevenshteinDistance = percentageCompareLevenshteinDistance;
     }
 
     /**
@@ -111,16 +123,48 @@ public class Report {
      * Getter for plagiarism percentage for the two files.
      * @return double percentage.
      */
-    public double getPercentage() {
-        return percentage;
+    public double getPercentageCompareHashMap() {
+        return percentageCompareHashMap;
     }
 
     /**
      * Setter for plagiarism percentage for the two files.
-     * @param percentage
+     * @param percentageCompareHashMap
      */
-    public void setPercentage(double percentage) {
-        this.percentage = percentage;
+    public void setPercentageCompareHashMap(double percentageCompareHashMap) {
+        this.percentageCompareHashMap = percentageCompareHashMap;
+    }
+
+    /**
+     * Getter for plagiarism percentage for the two files.
+     * @return double percentage.
+     */
+    public double getpercentageCompareTrees() {
+        return percentageCompareTrees;
+    }
+
+    /**
+     * Setter for plagiarism percentage for the two files.
+     * @param percentageCompareTrees
+     */
+    public void setpercentageCompareTrees (double percentageCompareTrees) {
+        this.percentageCompareTrees = percentageCompareTrees;
+    }
+
+    /**
+     * Getter for plagiarism percentage for the two files.
+     * @return double percentage.
+     */
+    public double getpercentageCompareLevenshteinDistance() {
+        return percentageCompareLevenshteinDistance;
+    }
+
+    /**
+     * Setter for plagiarism percentage for the two files.
+     * @param percentageCompareLevenshteinDistance
+     */
+    public void setpercentageCompareLevenshteinDistancep (double percentageCompareLevenshteinDistance) {
+        this.percentageCompareLevenshteinDistance = percentageCompareLevenshteinDistance;
     }
 
     /**

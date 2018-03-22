@@ -44,7 +44,9 @@
             <td>{{report.fileUpload1.filename}}</td>
             <td>{{report.user2.firstName}} {{report.user2.lastName}}</td>
             <td>{{report.fileUpload2.filename}}</td>
-            <td>{{report.percentage}}</td>
+            <td ng-if="model.sId === '1'">{{report.percentageCompareHashMap}}</td>
+            <td ng-if="model.sId === '2'">{{report.percentageCompareTrees}}</td>
+            <td ng-if="model.sId === '3'">{{report.percentageCompareLevenshteinDistance}}</td>
             <td><button type="button" class="btn btn-primary btn-s navbar-btn">Detailed Report</button></td>
         </tr>
         </tbody>

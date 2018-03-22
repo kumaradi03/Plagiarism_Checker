@@ -26,7 +26,20 @@
     <div class="alert alert-danger" ng-show="model.error">
         {{model.error}}
     </div>
+    <form>
+        <h4>Select Strategy</h4>
+        <label class="radio-inline">
+            <input type="radio" name="optradio" ng-model="myVar" value="1">HashMap
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="optradio" ng-model="myVar" value="2">Trees
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="optradio" ng-model="myVar" value="3">LevenshteinDistance
+        </label>
+    </form>
     <table class="table table-bordered">
+        <h4>Check Report</h4>
         <thead>
         <tr>
             <th scope="col">Name</th>
