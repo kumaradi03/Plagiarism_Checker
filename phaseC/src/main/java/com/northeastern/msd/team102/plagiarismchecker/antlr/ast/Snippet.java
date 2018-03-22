@@ -57,8 +57,8 @@ public class Snippet {
 		try {
 			fread = new FileReader(file);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			SendEmail.email(e.getMessage());
 		}
 		BufferedReader br = new BufferedReader(fread);
 
@@ -81,8 +81,8 @@ public class Snippet {
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			SendEmail.email(e.getMessage());
 		}
 		return ProgramLines;	
 	}
