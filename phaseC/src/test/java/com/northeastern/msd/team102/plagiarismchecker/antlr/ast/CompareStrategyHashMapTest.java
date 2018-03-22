@@ -55,6 +55,6 @@ public class CompareStrategyHashMapTest {
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/calc.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());
 	    assertEquals(10.96, c.compareFiles(encodedFile2, encodedFile1),2);
-	}
+	}	
 	
 }
