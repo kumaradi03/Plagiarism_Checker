@@ -34,7 +34,9 @@ public class CompareStrategyHashMap implements CompareStrategy {
 		ASTGenerator astPrinter2 = new ASTGenerator(file2);	    
 	    Map<String, List<Integer>> node1 = astPrinter1.getNodes();
 	    Map<String, List<Integer>> node2 = astPrinter2.getNodes();
-		return compareAST1withAST2(node1, node2, total);
+	    
+	    WeighComparators w = new WeighComparators("src/main/resources/TrainingData.csv");
+	    return w.getFinalPredictedOutput(compareAST1withAST2(node1, node2, total), 1);
 	}
 	
 	/**

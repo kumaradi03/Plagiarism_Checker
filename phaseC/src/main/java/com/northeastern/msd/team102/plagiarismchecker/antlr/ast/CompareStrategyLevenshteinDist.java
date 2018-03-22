@@ -1,8 +1,6 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 
 
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 public class CompareStrategyLevenshteinDist implements CompareStrategy{
@@ -28,7 +26,9 @@ public class CompareStrategyLevenshteinDist implements CompareStrategy{
         ASTGenerator astPrinter2 = new ASTGenerator(file2);
         String node1 = astPrinter1.print();
         String node2 = astPrinter2.print();
-        return compareFilesUsingLD(node1, node2);
+        
+        WeighComparators w = new WeighComparators("src/main/resources/TrainingData.csv");
+	    return w.getFinalPredictedOutput(compareFilesUsingLD(node1, node2), 2);
     }
 
     /**

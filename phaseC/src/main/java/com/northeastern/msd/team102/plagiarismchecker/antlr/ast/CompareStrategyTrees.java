@@ -36,6 +36,7 @@ public class CompareStrategyTrees implements CompareStrategy {
 				treeNodes2.remove((treeNodes2.indexOf(t1)));
 			}			
 		}		
-		return ((double)similarity/(double)total) * 100.0;
+		WeighComparators w = new WeighComparators("src/main/resources/TrainingData.csv");
+	    return w.getFinalPredictedOutput((((double)similarity/(double)total) * 100.0), 3);
 	}
 }
