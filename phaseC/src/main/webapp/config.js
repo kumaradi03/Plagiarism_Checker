@@ -20,7 +20,7 @@
                 controller: 'SubmissionController',
                 controllerAs: 'model',
             })
-            .when("/profile/:uid/homework/:hid/submission/:userid/summary",{
+            .when("/profile/:uid/homework/:hid/submission/:userid/type/:sid/summary",{
                 templateUrl: 'views/user/template/report-summary.client.html',
                 controller: 'ReportSummaryController',
                 controllerAs: 'model',

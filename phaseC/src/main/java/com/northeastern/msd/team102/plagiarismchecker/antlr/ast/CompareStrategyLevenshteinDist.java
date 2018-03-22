@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class CompareStrategyLevenshteinDist implements CompareStrategy{
+public class CompareStrategyLevenshteinDist implements CompareStrategy {
 
     private Logger logger;
     public CompareStrategyLevenshteinDist () {

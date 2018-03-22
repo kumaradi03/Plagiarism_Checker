@@ -1,7 +1,6 @@
 package com.northeastern.msd.team102.plagiarismchecker.service;
 
-import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.CompareStrategy;
-import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.CompareStrategyHashMap;
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.*;
 import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
 import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
 import com.northeastern.msd.team102.plagiarismchecker.entity.Report;
@@ -52,10 +51,18 @@ public class ReportService {
         fileUploads = fileUploadService.findAllFileForOtherUser(hwId, userId);
         if (!fileUploads.isEmpty()) {
             for(FileUpload f: fileUploads) {
-                CompareStrategy compareStrategy = new CompareStrategyHashMap();
-                Report report = new Report(user, f.getUser(), file, f, hw, compareStrategy.compareFiles(file.getFile(), f.getFile()));
+                Context context = new Context(new CompareStrategyHashMap());
+                double resultStrategy1File1 = context.executeStrategy(file.getFile(), f.getFile());
+                double resultStrategy1File2 = context.executeStrategy(f.getFile(), file.getFile());
+                context = new Context(new CompareStrategyTrees());
+                double resultStrategy2File1 = context.executeStrategy(file.getFile(), f.getFile());
+                double resultStrategy2File2 = context.executeStrategy(f.getFile(), file.getFile());
+                context = new Context(new CompareStrategyLevenshteinDist());
+                double resultStrategy3File1 = context.executeStrategy(file.getFile(), f.getFile());
+                double resultStrategy3File2 = context.executeStrategy(f.getFile(), file.getFile());
+                Report report = new Report(user, f.getUser(), file, f, hw, resultStrategy1File1, resultStrategy2File1, resultStrategy3File1);
                 createReport(report);
-                Report report1 = new Report(f.getUser(), user, f, file, hw, compareStrategy.compareFiles(f.getFile(), file.getFile()));
+                Report report1 = new Report(f.getUser(), user, f, file, hw, resultStrategy1File2, resultStrategy2File2, resultStrategy3File2);
                 createReport(report1);
             }
         }

@@ -8,6 +8,7 @@
         vm.userId = $routeParams['uid'];
         vm.studentId = $routeParams['userid'];
         vm.hwId = $routeParams['hid'];
+        vm.sId = $routeParams['sid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
 
