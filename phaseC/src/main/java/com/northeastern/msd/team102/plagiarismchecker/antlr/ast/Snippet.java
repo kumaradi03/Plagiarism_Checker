@@ -53,7 +53,7 @@ public class Snippet {
 		String comment = "'''";
 		String oneLineComment = "#";
 
-		FileReader fread;
+		FileReader fread = null;
 		try {
 			fread = new FileReader(file);
 		} catch (FileNotFoundException e) {
