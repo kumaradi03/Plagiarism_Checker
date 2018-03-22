@@ -26,7 +26,6 @@ public class UserController {
      */
     @PostMapping("/login")
     public User login(@RequestBody User user) {
-
         logger.log(Level.INFO, "User with username: " + user.getUsername() + "logged in");
         return userService.findUserByCredentials(user);
     }
@@ -37,19 +36,20 @@ public class UserController {
      * @return returns the user object for a given username.
      */
     @GetMapping("/findUserByUsername")
-    public User findUserByUsername(@RequestParam String username) {
+    public User findUserByUsername(@RequestParam("username") String username) {
         logger.log(Level.INFO, "Returning user object with username: " + username);
         return userService.findUserByUsername(username);
     }
 
     /**
      * findUserByUserId method which receives the request for getting the user by userID.
-     * @param userId
+     * @param sUserId
      * @return returns the user object for a given username.
      */
     @GetMapping("/findUserByUserId")
-    public User findUserByUserId(@RequestParam long userId) {
-        logger.log(Level.INFO, "Returning user with id: " + userId);
+    public User findUserByUserId(@RequestParam("sUserId") String sUserId){
+        logger.log(Level.INFO, "Returning user with id: " + sUserId);
+        long userId = Long.parseLong(sUserId);
         return userService.findUserByUserId(userId);
     }
 

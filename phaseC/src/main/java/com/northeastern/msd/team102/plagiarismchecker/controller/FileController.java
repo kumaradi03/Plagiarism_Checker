@@ -1,14 +1,11 @@
 package com.northeastern.msd.team102.plagiarismchecker.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
 import com.northeastern.msd.team102.plagiarismchecker.service.ReportService;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -20,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.ASTGenerator;
 import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.service.FileUploadService;
@@ -42,26 +37,15 @@ public class FileController {
     public static final Logger logger = Logger.getLogger(ReportController.class.getName());
 
     /**
-     * parsePythonFile method to return an AST for a python file.
-     * @return return an AST
-     * @throws IOException
-     */
-    @GetMapping("/parse")
-    public String parsePythonFile() throws IOException {
-        File file = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
-        byte[] encodedFile = Files.readAllBytes(file.toPath());
-        ASTGenerator astPrinter = new ASTGenerator(encodedFile);
-        return astPrinter.print();
-	}
-
-    /**
      * getDistinctUsersForHw returns all the distinct users for that particular homework.
-     * @param hwId Homework Id
+     * @param shwId Homework Id
      * @return a set of Users for that homework
      */
     @GetMapping("/getUser")
-    public Set<User> getDistinctUsersForHw(@RequestParam long hwId) {
-        logger.log(Level.INFO, "Return distinct users for homework with id: " + hwId);
+
+    public Set<User> getDistinctUsersForHw(@RequestParam("shwId") String shwId) {
+        logger.log(Level.INFO, "Return distinct users for homework with id: " + shwId);
+        Long hwId = Long.parseLong(shwId);
         Set<User> set = new HashSet<>();
         Map<Long, User> map = new HashMap<>();
         for (FileUpload file: fileUploadService.findAllByHomeworkId(hwId)) {
@@ -77,13 +61,15 @@ public class FileController {
      * uploadFile method uploads a multipart file to the databse and generates a plagiarism report
      * of this file with all other files for that particular homework.
      * @param request MultipartHttpServletRequest
-     * @param userId userId
-     * @param hwId hwId
+     * @param sUserId userId
+     * @param sHwId hwId
      * @throws IOException
      */
     @PostMapping("/upload")
-    public void uploadFile(MultipartHttpServletRequest request,  @RequestParam long userId,  @RequestParam long hwId) throws IOException {
-        logger.log(Level.INFO, "File uploadede for userID: " + userId + "and hwId: " + hwId);
+    public void uploadFile(MultipartHttpServletRequest request,  @RequestParam("sUserId") String sUserId,  @RequestParam("sHwId") String sHwId) throws IOException {
+        logger.log(Level.INFO, "File uploadede for userID: " + sUserId + "and hwId: " + sHwId);
+        long userId = Long.parseLong(sUserId);
+        long hwId = Long.parseLong(sHwId);
         Iterator<String> itr = request.getFileNames();
         while (itr.hasNext()) {
             String uploadedFile = itr.next();

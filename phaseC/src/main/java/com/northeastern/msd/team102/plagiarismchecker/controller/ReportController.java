@@ -6,7 +6,6 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
@@ -24,13 +23,15 @@ public class ReportController {
     /**
      * findAllReportSummary method which receives the request for fetching the plagiarism reports foa given user
      * and homework.
-     * @param userId User Id
-     * @param hwId Homework Id
+     * @param sUserId User Id
+     * @param sHwId Homework Id
      * @return returns all the reports for for this user and homework
      */
     @GetMapping("/findAllReportSummary")
-    public List<Report> findAllReportSummary(@RequestParam long userId, @RequestParam long hwId) {
-        logger.log(Level.INFO, "Report summary for user with userId: "+ userId + "and homeworkId: " + hwId);
+    public List<Report> findAllReportSummary(@RequestParam("sUserId") String sUserId, @RequestParam("sHwId") String sHwId) {
+        logger.log(Level.INFO, "Report summary for user with userId: "+ sUserId + "and homeworkId: " + sHwId);
+        long userId = Long.parseLong(sUserId);
+        long hwId = Long.parseLong(sHwId);
         return reportService.findAllReportSummary(userId, hwId);
     }
 }
