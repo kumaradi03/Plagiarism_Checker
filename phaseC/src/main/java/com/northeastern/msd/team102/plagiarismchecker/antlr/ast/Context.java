@@ -8,6 +8,6 @@ public class Context {
     }
 
     public double executeStrategy (byte[] file1, byte[] file2){
-        return strategy.compareFiles(file1, file1);
+        return strategy.compareFiles(file1, file2);
     }
 }
