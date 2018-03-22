@@ -58,7 +58,8 @@ public class Snippet {
 			fread = new FileReader(file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			SendEmail.email(e.getMessage());
+			SendEmail.email("End of line error (Exception cought in snippet.java) "
+					+ "empty file has been submitted by student");
 		}
 		BufferedReader br = new BufferedReader(fread);
 
@@ -82,7 +83,8 @@ public class Snippet {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-			SendEmail.email(e.getMessage());
+			SendEmail.email("End of line exception (Error in Snippet.java program), Please check if "
+					+ "file is properly uploaded as per given format");
 		}
 		return ProgramLines;	
 	}
