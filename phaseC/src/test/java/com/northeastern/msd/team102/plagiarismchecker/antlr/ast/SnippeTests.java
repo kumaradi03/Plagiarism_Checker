@@ -19,7 +19,8 @@ public class SnippeTests {
 	@Test
 	public void test1() throws IOException {
 		Snippet s=new Snippet();
-		File file1 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
+		//File file1 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
+		File file1= new File("");
 		File file2 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile2.py");		
 		Map<Integer, ArrayList<String>> File1Map=s.fileToMap(file1);
 		Map<Integer, ArrayList<String>> File2Map=s.fileToMap(file2);		

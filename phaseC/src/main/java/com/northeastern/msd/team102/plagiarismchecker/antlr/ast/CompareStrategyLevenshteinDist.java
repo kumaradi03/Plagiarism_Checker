@@ -21,6 +21,9 @@ public class CompareStrategyLevenshteinDist implements CompareStrategy {
         ASTGenerator astPrinter1 = new ASTGenerator(file1);
         int total = astPrinter1.getTotalCountOfNodes();
         if (total == 0) {
+        	SendEmail.email("Exception cought in ComapareStrategyLevenshteinDistance.java."
+        			+ "Either empty file is submitted or Nodes "
+        			+ "are not stored properly for given file.");
             return 0;
         }
         ASTGenerator astPrinter2 = new ASTGenerator(file2);

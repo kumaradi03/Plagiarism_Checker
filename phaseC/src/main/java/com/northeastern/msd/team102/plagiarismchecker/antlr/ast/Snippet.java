@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.stream.LongStream;
 
 /**
- * 
  * @author mrunal
  * The class is responsible to generate 
  * similar chunk of code among two different python programs.
@@ -47,32 +46,45 @@ public class Snippet {
 	 * 		 python program at that indentation. 
 	 * @throws IOException
 	 */
-	public Map<Integer, ArrayList<String>> fileToMap(File file) throws IOException {
+	public Map<Integer, ArrayList<String>> fileToMap(File file) {
 		
 		Map<Integer, ArrayList<String>> ProgramLines = new HashMap<>();
 		String pyLine;
 		String comment = "'''";
 		String oneLineComment = "#";
 
-		FileReader fread = new FileReader(file);
+		FileReader fread = null;
+		try {
+			fread = new FileReader(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			SendEmail.email("End of line error (Exception cought in snippet.java) "
+					+ "empty file has been submitted by student");
+		}
 		BufferedReader br = new BufferedReader(fread);
 
-		while ((pyLine = br.readLine()) != null) {
+		try {
+			while ((pyLine = br.readLine()) != null) {
 
-			if ((pyLine.length()) != 0) {
-				if (!((pyLine.startsWith(comment)) || (pyLine.startsWith(oneLineComment)))) {
-					int intendCount = this.getIndentCount(pyLine);
-					if (ProgramLines.containsKey(intendCount)) {
-						ArrayList<String> strings = ProgramLines.get(intendCount);
-						strings.add(pyLine);
-						ProgramLines.put(intendCount, strings);
-					} else {
-						ArrayList<String> strings = new ArrayList<>();
-						strings.add(pyLine);
-						ProgramLines.put(intendCount, strings);
+				if ((pyLine.length()) != 0) {
+					if (!((pyLine.startsWith(comment)) || (pyLine.startsWith(oneLineComment)))) {
+						int intendCount = this.getIndentCount(pyLine);
+						if (ProgramLines.containsKey(intendCount)) {
+							ArrayList<String> strings = ProgramLines.get(intendCount);
+							strings.add(pyLine);
+							ProgramLines.put(intendCount, strings);
+						} else {
+							ArrayList<String> strings = new ArrayList<>();
+							strings.add(pyLine);
+							ProgramLines.put(intendCount, strings);
+						}
 					}
 				}
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			SendEmail.email("End of line exception (Error in Snippet.java program), Please check if "
+					+ "file is properly uploaded as per given format.");
 		}
 		return ProgramLines;	
 	}

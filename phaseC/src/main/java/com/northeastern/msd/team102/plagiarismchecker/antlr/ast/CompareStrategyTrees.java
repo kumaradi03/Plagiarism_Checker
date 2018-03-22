@@ -24,7 +24,11 @@ public class CompareStrategyTrees implements CompareStrategy {
 		ASTGenerator ast1 = new ASTGenerator(file1);
 		int total = ast1.getTotalCountOfNodes();
 		if (total == 0) {
+			SendEmail.email("Exception cought in CompareStrategyTrees.java."
+					+ "Either empty file is submitted or Nodes are "
+					+ "not stored properly for given file");
 			return 0;
+			
 		}
 		List<TreeNode> treeNodes1 = ast1.getTreeNodes();
 		ASTGenerator ast2 = new ASTGenerator(file2);
