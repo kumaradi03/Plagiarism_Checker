@@ -14,12 +14,19 @@ public class WeighComparators {
 	private List<ArrayList<Double>> dataX;
 	private List<Double> dataY;
 	private String path;
+	private double weights[];
+	private double YPredicted[];
+	private int noOfComparators;
 	
 	WeighComparators(String path) {
 		logger = Logger.getLogger(WeighComparators.class.getName());
 		this.dataX = new ArrayList<>();
 		this.dataY = new ArrayList<>();
 		this.path = path;
+		this.noOfComparators = 0;
+		readCSV();
+		computeMatrix();
+		getPredictedOutput();
 	}
 	
 	public void readCSV() {
@@ -28,16 +35,19 @@ public class WeighComparators {
         try (BufferedReader br = new BufferedReader(new FileReader(this.path))) {
             while ((line = br.readLine()) != null) {
                 String[] trainRow = line.split(cvsSplitBy);
+                this.noOfComparators = trainRow.length-3;
                 List<Double> row = new ArrayList<>();
-                for (int i = 2; i<5; i++) {
+                for (int i = 2; i<trainRow.length-1; i++) {
                 	row.add(Double.parseDouble(trainRow[i]));
                 }
                 this.dataX.add((ArrayList<Double>) row);
-                this.dataY.add(Double.parseDouble(trainRow[5]));
+                this.dataY.add(Double.parseDouble(trainRow[trainRow.length-1]));
             }
         } catch (Exception e) {
         	logger.log(Level.INFO, "Exception : {0}",e);
-        }    
+        } 
+        this.weights = new double[noOfComparators];
+        this.YPredicted = new double[dataY.size()];
 	}
 	
 	public void computeMatrix() {
@@ -62,12 +72,25 @@ public class WeighComparators {
 		Matrix XInverse = XMul.inverse();
 		Matrix XMul2 = XInverse.times(XTranspose);
 		Matrix wTrain = XMul2.times(Y);
-//		System.out.println(A);
+		double[][] w = wTrain.getArray();
+		for (int p = 0; p< w.length; p++) {
+			this.weights[p] = w[p][0];
+		}
+	}
+	
+	public void getPredictedOutput() {
+		int i = 0;
+		for (ArrayList<Double> d : dataX) {
+			this.YPredicted[i] = 0;
+			for (int j = 0; j < dataX.get(0).size(); j++) {
+				this.YPredicted[i] += d.get(j)*this.weights[j];
+			}
+			System.out.println(this.YPredicted[i]);
+			i++;
+		}
 	}
 	
 	public static void main(String[] args) {
 		WeighComparators w = new WeighComparators("src/main/resources/TrainingData.csv");
-		w.readCSV();
-		w.computeMatrix();
 	}
 }
