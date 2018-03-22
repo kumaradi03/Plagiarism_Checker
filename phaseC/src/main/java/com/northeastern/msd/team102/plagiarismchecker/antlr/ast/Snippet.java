@@ -84,7 +84,7 @@ public class Snippet {
 		} catch (IOException e) {
 			e.printStackTrace();
 			SendEmail.email("End of line exception (Error in Snippet.java program), Please check if "
-					+ "file is properly uploaded as per given format");
+					+ "file is properly uploaded as per given format.");
 		}
 		return ProgramLines;	
 	}
