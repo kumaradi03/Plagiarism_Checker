@@ -35,13 +35,12 @@ public class HomeworkController {
 
     /**
      * findAllHomeworkForUser method returns all the homework for a particular userID.
-     * @param suserId userId
+     * @param sUserId userId
      * @return returns all the homework for the particular userId.
      */
     @GetMapping("/findAllHomeworkForUser")
-    public List<Homework> findAllHomeworkForUser (@RequestParam("userId") String suserId) {
-        long userId = Long.parseLong(suserId);
-        logger.log(Level.INFO, "Return all homework for user: " + userId);
+    public List<Homework> findAllHomeworkForUser (@RequestParam("sUserId") String sUserId) {
+        long userId = Long.parseLong(sUserId);
         return homeworkService.findAllByUserId(userId);
     }
 }

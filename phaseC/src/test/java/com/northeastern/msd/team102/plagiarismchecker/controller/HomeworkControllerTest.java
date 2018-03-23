@@ -70,7 +70,7 @@ public class HomeworkControllerTest {
         String ExpectedOutput="[{\"id\":0,\"name\":\"HomeWork1\",\"description\":\"Home Work1 description\",\"user\":null}]";
         Mockito.when(homeworkService.findAllByUserId(3)).thenReturn(testHomeWorkList);
         MvcResult result;
-        result=mockMvc.perform(MockMvcRequestBuilders.get("/rest/homework/findAllHomeworkForUser").param("userId","3"))
+        result=mockMvc.perform(MockMvcRequestBuilders.get("/rest/homework/findAllHomeworkForUser").param("sUserId","3"))
                 .andExpect(status().isOk())
                 .andReturn();
         assertEquals(ExpectedOutput, result.getResponse().getContentAsString());
