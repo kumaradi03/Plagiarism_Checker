@@ -23,7 +23,7 @@ public class CompareStrategyTrees implements CompareStrategy {
 	public double compareFiles(byte[] file1, byte[] file2) {
 		ASTGenerator ast1 = new ASTGenerator(file1);
 		int total = ast1.getTotalCountOfNodes();
-		if (total == 0) {
+		if (total <= 1) {
 			SendEmail.email("Exception cought in CompareStrategyTrees.java."
 					+ "Either empty file is submitted or Nodes are "
 					+ "not stored properly for given file");
