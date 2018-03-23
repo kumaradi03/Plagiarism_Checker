@@ -60,9 +60,12 @@ public class ReportService {
                 context = new Context(new CompareStrategyLevenshteinDist());
                 double resultStrategy3File1 = context.executeStrategy(file.getFile(), f.getFile());
                 double resultStrategy3File2 = context.executeStrategy(f.getFile(), file.getFile());
-                Report report = new Report(user, f.getUser(), file, f, hw, resultStrategy1File1, resultStrategy2File1, resultStrategy3File1);
+                context = new Context(new CompareStrategyAll());
+                double resultStrategy4File1 = context.executeStrategy(file.getFile(), f.getFile());
+                double resultStrategy4File2 = context.executeStrategy(f.getFile(), file.getFile());
+                Report report = new Report(user, f.getUser(), file, f, hw, resultStrategy1File1, resultStrategy2File1, resultStrategy3File1, resultStrategy4File1);
                 createReport(report);
-                Report report1 = new Report(f.getUser(), user, f, file, hw, resultStrategy1File2, resultStrategy2File2, resultStrategy3File2);
+                Report report1 = new Report(f.getUser(), user, f, file, hw, resultStrategy1File2, resultStrategy2File2, resultStrategy3File2, resultStrategy4File2);
                 createReport(report1);
             }
         }
