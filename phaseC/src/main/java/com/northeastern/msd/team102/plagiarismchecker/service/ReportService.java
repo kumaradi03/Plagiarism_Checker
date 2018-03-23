@@ -8,6 +8,8 @@ import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -16,6 +18,8 @@ import java.util.List;
  */
 @Component
 public class ReportService {
+
+    public final static Logger logger = Logger.getLogger(ReportService.class.getName());
 
     @Autowired
     private ReportRepository reportRepository;
@@ -34,6 +38,8 @@ public class ReportService {
      * @param report
      */
     public void createReport(Report report) {
+
+        logger.log(Level.INFO, "Saving report for reportID: " + report.getId());
         reportRepository.save(report);
     }
 
@@ -45,6 +51,8 @@ public class ReportService {
      * @param file file to be compared
      */
     public void generateReport(long userId, long hwId, FileUpload file) {
+        logger.log(Level.INFO, "Generating report for " + userId + "for Homework " + hwId +
+                "for file " + file.getFilename());
         User user = userService.findUserByUserId(userId);
         Homework hw = homeworkService.findById(hwId);
         List<FileUpload> fileUploads;
@@ -53,16 +61,32 @@ public class ReportService {
             for(FileUpload f: fileUploads) {
                 Context context = new Context(new CompareStrategyHashMap());
                 double resultStrategy1File1 = context.executeStrategy(file.getFile(), f.getFile());
+                logger.log(Level.INFO, "Plagiarism percentage from Strategy HashMap for file1 "
+                        + resultStrategy1File1);
                 double resultStrategy1File2 = context.executeStrategy(f.getFile(), file.getFile());
+                logger.log(Level.INFO, "Plagiarism percentage from Strategy HashMap for file2 "
+                        + resultStrategy1File2);
                 context = new Context(new CompareStrategyTrees());
                 double resultStrategy2File1 = context.executeStrategy(file.getFile(), f.getFile());
+                logger.log(Level.INFO, "Plagiarism percentage from Strategy Trees for file1 "
+                        + resultStrategy2File1);
                 double resultStrategy2File2 = context.executeStrategy(f.getFile(), file.getFile());
+                logger.log(Level.INFO, "Plagiarism percentage from Strategy Trees for file2 "
+                        + resultStrategy2File2);
                 context = new Context(new CompareStrategyLevenshteinDist());
                 double resultStrategy3File1 = context.executeStrategy(file.getFile(), f.getFile());
+                logger.log(Level.INFO, "Plagiarism percentage from Strategy LevenshteinDist for file1 "
+                        + resultStrategy3File1);
                 double resultStrategy3File2 = context.executeStrategy(f.getFile(), file.getFile());
+                logger.log(Level.INFO, "Plagiarism percentage from Strategy LevenshteinDist for file2 "
+                        + resultStrategy3File2);
                 context = new Context(new CompareStrategyAll());
                 double resultStrategy4File1 = context.executeStrategy(file.getFile(), f.getFile());
+                logger.log(Level.INFO, "Plagiarism percentage from Strategy All for file1 "
+                        + resultStrategy4File1);
                 double resultStrategy4File2 = context.executeStrategy(f.getFile(), file.getFile());
+                logger.log(Level.INFO, "Plagiarism percentage from Strategy All for file2 "
+                        + resultStrategy4File2);
                 Report report = new Report(user, f.getUser(), file, f, hw, resultStrategy1File1, resultStrategy2File1, resultStrategy3File1, resultStrategy4File1);
                 createReport(report);
                 Report report1 = new Report(f.getUser(), user, f, file, hw, resultStrategy1File2, resultStrategy2File2, resultStrategy3File2, resultStrategy4File2);
@@ -78,6 +102,8 @@ public class ReportService {
      * @return Lost of Report
      */
     public List<Report> findAllReportSummary(long userId, long hwId) {
+
+        logger.log(Level.INFO, "Returning all report summary for userid " + userId + "and hwId " + hwId);
         return reportRepository.findAllByHomeworkIdAndUser1Id(hwId,userId);
     }
 }

@@ -6,9 +6,9 @@ import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.repository.FileUploadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +16,8 @@ import java.util.List;
  */
 @Component
 public class FileUploadService {
+
+    public final static Logger logger = Logger.getLogger(FileUploadService.class.getName());
 
     @Autowired
     FileUploadRepository fileUploadRepository;
@@ -32,6 +34,7 @@ public class FileUploadService {
      * @return Fileupload for the given file.
      */
     public FileUpload findByFilename(String filename) {
+        logger.log(Level.INFO, "Returning file by filename: " + filename );
         return fileUploadRepository.findByFilename(filename);
     }
 
@@ -43,6 +46,8 @@ public class FileUploadService {
      * @return Fileupload object.
      */
     public FileUpload uploadFile(FileUpload doc, long userId, long hwId) {
+        logger.log(Level.INFO, "Uploading file with filename: " + doc.getFilename() + "for userId: " + userId +
+                "and homeworkId" + hwId );
         User user = userService.findUserByUserId(userId);
         Homework homework = homeworkService.findById(hwId);
         doc.setUser(user);
@@ -56,6 +61,8 @@ public class FileUploadService {
      * @return List of FileUpload object
      */
     public List<FileUpload> findAllByHomeworkId(long hwId) {
+
+        logger.log(Level.INFO, "Returning all the files for hwId: " + hwId);
         return fileUploadRepository.findAllByHomeworkId(hwId);
     }
 
@@ -66,6 +73,7 @@ public class FileUploadService {
      * @return List of FileUpload object.
      */
     public List<FileUpload> findAllFileForOtherUser(long hwId, long userId) {
+        logger.log(Level.INFO, "Returning file for all users except " + userId  + "for homework: " + hwId);
         return fileUploadRepository.findAllFileForOtherUser(hwId, userId);
     }
 

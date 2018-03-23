@@ -1,6 +1,6 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * @version 1.0
@@ -8,7 +8,7 @@ import java.util.logging.Logger;
  */
 public class CompareStrategyAll implements CompareStrategy {
 
-	private Logger logger;	
+	private Logger logger;
 	public CompareStrategyAll () {
 		logger = Logger.getLogger(CompareStrategyAll.class.getName());
 	}

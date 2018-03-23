@@ -2,6 +2,8 @@ package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.service.UserService;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/rest/user")
 public class UserController {
+
+    public final static Logger logger = Logger.getLogger(UserController.class.getName());
+
 
     @Autowired
     private UserService userService;
@@ -22,6 +27,8 @@ public class UserController {
      */
     @PostMapping("/login")
     public User Login(@RequestBody User user) {
+
+        logger.log(Level.INFO, "User with username: " + user.getUsername() + "logged in");
         return userService.findUserByCredentials(user);
     }
 
@@ -32,6 +39,7 @@ public class UserController {
      */
     @GetMapping("/findUserByUsername")
     public User findUserByUsername(@RequestParam String username) {
+        logger.log(Level.INFO, "Returning user object with username: " + username);
         return userService.findUserByUsername(username);
     }
 
@@ -42,6 +50,7 @@ public class UserController {
      */
     @GetMapping("/findUserByUserId")
     public User findUserByUserId(@RequestParam long userId) {
+        logger.log(Level.INFO, "Returning user with id: " + userId);
         return userService.findUserByUserId(userId);
     }
 
@@ -51,6 +60,7 @@ public class UserController {
      */
     @GetMapping("/findProfessor")
     public User findProfessor() {
+        logger.log(Level.INFO, "Returning professor object");
         return userService.findByUserType("Professor");
     }
 
@@ -61,6 +71,7 @@ public class UserController {
      */
     @PostMapping("/registerUser")
     public User registerUser(@RequestBody User user) {
+        logger.log(Level.INFO, "Registering User with username: " + user.getUsername());
         return userService.createUser(user);
     }
 }
