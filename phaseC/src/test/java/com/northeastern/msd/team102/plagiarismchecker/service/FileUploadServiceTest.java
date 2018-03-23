@@ -1,7 +1,6 @@
 package com.northeastern.msd.team102.plagiarismchecker.service;
 
 import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
-import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
 import com.northeastern.msd.team102.plagiarismchecker.repository.FileUploadRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,10 +9,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
