@@ -10,6 +10,7 @@
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.checkPlagiarism = checkPlagiarism;
+        vm.logout = logout;
         $scope.myVar = 1;
 
         function openNav(type) {
@@ -29,6 +30,10 @@
 
         function checkPlagiarism(user) {
             $location.url('/profile/'+vm.user.id+'/homework/'+hwId+'/submission/'+user.id+'/type/'+$scope.myVar+'/summary');
+        }
+
+        function logout() {
+            $location.url("/login");
         }
 
         UserService

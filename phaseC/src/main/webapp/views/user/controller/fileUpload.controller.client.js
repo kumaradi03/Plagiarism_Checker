@@ -9,6 +9,7 @@
         var hwId = $routeParams['hid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
+        vm.logout = logout;
         vm.uploader = new FileUploader({url:"/rest/file/upload/?userId="+userId+"&hwId="+hwId});
 
         $('#fileUploadButton').click(function(event) {
@@ -42,6 +43,10 @@
                 document.getElementById("mySidenav").style.width = "0";
                 document.getElementById("main").style.marginLeft = "0";
             }
+        }
+
+        function logout() {
+            $location.url("/login");
         }
 
         UserService

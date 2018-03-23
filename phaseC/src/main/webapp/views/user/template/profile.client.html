@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
         <div class="navbar-text pull-right wbdv-no-right-margin">
-            <a href="#/profile">{{model.user.firstName}}&nbsp;&nbsp;</a>
+            <a href="#/profile/{{model.user.id}}">{{model.user.firstName}}&nbsp;&nbsp;</a>
             <a ng-click="model.logout()">
                 <span class="glyphicon glyphicon-log-out"></span>
             </a>

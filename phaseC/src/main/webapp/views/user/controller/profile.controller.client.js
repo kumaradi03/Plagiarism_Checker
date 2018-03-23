@@ -95,5 +95,9 @@
             console.log(vm.userId);
             $location.url("/home")
         }
+
+        function logout() {
+            $location.url("/login");
+        }
     }
 })();
