@@ -60,4 +60,19 @@ public class CompareStrategyTreesTest {
 	    assertEquals(8.60, c.compareFiles(encodedFile2, encodedFile1),2);
 	}
 	
+	/**
+	 * Comparison of samplepythonFile1.py and empty file.
+	 * @throws IOException
+	 */
+	@Test
+	public void test_compareAST1withAST2BoundaryEmptyFile() throws IOException {
+		CompareStrategy c = new CompareStrategyTrees();
+		File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/py21.py");
+		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
+	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/calc.py");
+		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());
+		
+	   assertEquals(0, c.compareFiles(encodedFile2, encodedFile1),2);
+	}
+	
 }
