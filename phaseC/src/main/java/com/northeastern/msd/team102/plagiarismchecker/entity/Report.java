@@ -40,6 +40,9 @@ public class Report {
     @Column(name = "percentageCompareLevenshteinDistance")
     private double percentageCompareLevenshteinDistance;
 
+    @Column(name = "percentageCompareAll")
+    private double percentageCompareAll;
+
     /**
      * Constructor for Report class
      * @param user1 User whose report is to be generated
@@ -53,7 +56,7 @@ public class Report {
      */
     public Report(User user1, User user2, FileUpload fileUpload1, FileUpload fileUpload2, Homework homework,
                   double percentageCompareHashMap, double percentageCompareTrees,
-                  double percentageCompareLevenshteinDistance) {
+                  double percentageCompareLevenshteinDistance, double percentageCompareAll) {
         this.user1 = user1;
         this.user2 = user2;
         this.fileUpload1 = fileUpload1;
@@ -62,6 +65,7 @@ public class Report {
         this.percentageCompareHashMap = percentageCompareHashMap;
         this.percentageCompareTrees = percentageCompareTrees;
         this.percentageCompareLevenshteinDistance = percentageCompareLevenshteinDistance;
+        this.percentageCompareAll = percentageCompareAll;
     }
 
     /**
@@ -165,6 +169,22 @@ public class Report {
      */
     public void setpercentageCompareLevenshteinDistancep (double percentageCompareLevenshteinDistance) {
         this.percentageCompareLevenshteinDistance = percentageCompareLevenshteinDistance;
+    }
+
+    /**
+     * Getter for plagiarism percentage for the two files.
+     * @return double percentage.
+     */
+    public double getPercentageCompareAll() {
+        return percentageCompareAll;
+    }
+
+    /**
+     * Setter for plagiarism percentage for the two files.
+     * @param percentageCompareAll
+     */
+    public void setPercentageCompareAll(double percentageCompareAll) {
+        this.percentageCompareAll = percentageCompareAll;
     }
 
     /**
