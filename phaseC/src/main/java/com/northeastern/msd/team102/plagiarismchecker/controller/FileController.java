@@ -58,7 +58,7 @@ public class FileController {
     }
 
     /**
-     * uploadFile method uploads a multipart file to the databse and generates a plagiarism report
+     * uploadFile method uploads a multipart file to the database and generates a plagiarism report
      * of this file with all other files for that particular homework.
      * @param request MultipartHttpServletRequest
      * @param sUserId userId
