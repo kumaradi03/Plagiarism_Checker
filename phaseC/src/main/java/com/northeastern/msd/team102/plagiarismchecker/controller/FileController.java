@@ -38,17 +38,17 @@ public class FileController {
 
     /**
      * getDistinctUsersForHw returns all the distinct users for that particular homework.
-     * @param shwId Homework Id
+     * @param hwId Homework Id
      * @return a set of Users for that homework
      */
     @GetMapping("/getUser")
 
-    public Set<User> getDistinctUsersForHw(@RequestParam("shwId") String shwId) {
-        logger.log(Level.INFO, "Return distinct users for homework with id: " + shwId);
-        Long hwId = Long.parseLong(shwId);
+    public Set<User> getDistinctUsersForHw(@RequestParam("hwId") String hwId) {
+        logger.log(Level.INFO, "Return distinct users for homework with id: " + hwId);
+        Long hwID = Long.parseLong(hwId);
         Set<User> set = new HashSet<>();
         Map<Long, User> map = new HashMap<>();
-        for (FileUpload file: fileUploadService.findAllByHomeworkId(hwId)) {
+        for (FileUpload file: fileUploadService.findAllByHomeworkId(hwID)) {
             if(!map.containsKey(file.getUser().getId())) {
                 map.put(file.getUser().getId(), file.getUser());
                 set.add(file.getUser());
@@ -61,15 +61,15 @@ public class FileController {
      * uploadFile method uploads a multipart file to the database and generates a plagiarism report
      * of this file with all other files for that particular homework.
      * @param request MultipartHttpServletRequest
-     * @param sUserId userId
-     * @param sHwId hwId
+     * @param userId userId
+     * @param hwId hwId
      * @throws IOException
      */
     @PostMapping("/upload")
-    public void uploadFile(MultipartHttpServletRequest request,  @RequestParam("sUserId") String sUserId,  @RequestParam("sHwId") String sHwId) throws IOException {
-        logger.log(Level.INFO, "File uploadede for userID: " + sUserId + "and hwId: " + sHwId);
-        long userId = Long.parseLong(sUserId);
-        long hwId = Long.parseLong(sHwId);
+    public void uploadFile(MultipartHttpServletRequest request,  @RequestParam("userId") String userId,  @RequestParam("hwId") String hwId) throws IOException {
+        logger.log(Level.INFO, "File uploadede for userID: " + userId + "and hwId: " + hwId);
+        long userID = Long.parseLong(userId);
+        long hwID = Long.parseLong(hwId);
         Iterator<String> itr = request.getFileNames();
         while (itr.hasNext()) {
             String uploadedFile = itr.next();
@@ -78,8 +78,8 @@ public class FileController {
             String filename = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
             FileUpload newFile = new FileUpload(filename, bytes, mimeType);
-            FileUpload fileUpload = fileUploadService.uploadFile(newFile, userId, hwId);
-            reportService.generateReport(userId, hwId, fileUpload);
+            FileUpload fileUpload = fileUploadService.uploadFile(newFile, userID, hwID);
+            reportService.generateReport(userID, hwID, fileUpload);
         }
     }
 }

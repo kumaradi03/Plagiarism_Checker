@@ -24,23 +24,23 @@ public class HomeworkController {
     /**
      * createHomework method creates a new homework for a particular professor.
      * @param homework homework object to be created
-     * @param sUserId userId for which the homework is created.
+     * @param userId userId for which the homework is created.
      * @return Homework
      */
     @PostMapping("/create")
-    public Homework createHomework(@RequestBody Homework homework, @RequestParam("sUserId") String sUserId) {
-        long userId = Long.parseLong(sUserId);
-        return homeworkService.createHomework(homework, userId);
+    public Homework createHomework(@RequestBody Homework homework, @RequestParam("userId") String userId) {
+        long userID = Long.parseLong(userId);
+        return homeworkService.createHomework(homework, userID);
     }
 
     /**
      * findAllHomeworkForUser method returns all the homework for a particular userID.
-     * @param sUserId userId
+     * @param userId userId
      * @return returns all the homework for the particular userId.
      */
     @GetMapping("/findAllHomeworkForUser")
-    public List<Homework> findAllHomeworkForUser (@RequestParam("sUserId") String sUserId) {
-        long userId = Long.parseLong(sUserId);
-        return homeworkService.findAllByUserId(userId);
+    public List<Homework> findAllHomeworkForUser (@RequestParam("userId") String userId) {
+        long userID = Long.parseLong(userId);
+        return homeworkService.findAllByUserId(userID);
     }
 }

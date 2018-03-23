@@ -43,14 +43,14 @@ public class UserController {
 
     /**
      * findUserByUserId method which receives the request for getting the user by userID.
-     * @param sUserId
+     * @param userId
      * @return returns the user object for a given username.
      */
     @GetMapping("/findUserByUserId")
-    public User findUserByUserId(@RequestParam("sUserId") String sUserId){
-        logger.log(Level.INFO, "Returning user with id: " + sUserId);
-        long userId = Long.parseLong(sUserId);
-        return userService.findUserByUserId(userId);
+    public User findUserByUserId(@RequestParam("userId") String userId){
+        logger.log(Level.INFO, "Returning user with id: " + userId);
+        long userID = Long.parseLong(userId);
+        return userService.findUserByUserId(userID);
     }
 
     /**

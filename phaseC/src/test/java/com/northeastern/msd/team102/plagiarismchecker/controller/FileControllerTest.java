@@ -46,7 +46,7 @@ public class FileControllerTest {
         List<FileUpload> fileUploadList = new ArrayList<>();
         Mockito.when(fileUploadService.findAllByHomeworkId(3)).thenReturn(fileUploadList);
         MvcResult result;
-        result=mockMvc.perform(MockMvcRequestBuilders.get("/rest/file/getUser").param("shwId",testHWId))
+        result=mockMvc.perform(MockMvcRequestBuilders.get("/rest/file/getUser").param("hwId",testHWId))
                 .andExpect(status().isOk())
                 .andReturn();
         assertEquals(ExpectedOutput, result.getResponse().getContentAsString());
@@ -60,8 +60,8 @@ public class FileControllerTest {
         Mockito.when(fileUploadService.uploadFile(testFileUpload,3,3)).thenReturn(testFileUpload2);
         mockMvc.perform(MockMvcRequestBuilders.fileUpload("/rest/file/upload")
                 .file(firstFile)
-                .param("sUserId", "4")
-                .param("sHwId","5"))
+                .param("userId", "4")
+                .param("hwId","5"))
                 .andExpect(status().is(200));
     }
 }

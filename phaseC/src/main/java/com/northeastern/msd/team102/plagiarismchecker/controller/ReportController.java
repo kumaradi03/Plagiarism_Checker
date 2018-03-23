@@ -23,15 +23,15 @@ public class ReportController {
     /**
      * findAllReportSummary method which receives the request for fetching the plagiarism reports foa given user
      * and homework.
-     * @param sUserId User Id
-     * @param sHwId Homework Id
+     * @param userId User Id
+     * @param hwId Homework Id
      * @return returns all the reports for for this user and homework
      */
     @GetMapping("/findAllReportSummary")
-    public List<Report> findAllReportSummary(@RequestParam("sUserId") String sUserId, @RequestParam("sHwId") String sHwId) {
-        logger.log(Level.INFO, "Report summary for user with userId: "+ sUserId + "and homeworkId: " + sHwId);
-        long userId = Long.parseLong(sUserId);
-        long hwId = Long.parseLong(sHwId);
-        return reportService.findAllReportSummary(userId, hwId);
+    public List<Report> findAllReportSummary(@RequestParam("userId") String userId, @RequestParam("hwId") String hwId) {
+        logger.log(Level.INFO, "Report summary for user with userId: "+ userId + "and homeworkId: " + hwId);
+        long userID = Long.parseLong(userId);
+        long hwID = Long.parseLong(hwId);
+        return reportService.findAllReportSummary(userID, hwID);
     }
 }

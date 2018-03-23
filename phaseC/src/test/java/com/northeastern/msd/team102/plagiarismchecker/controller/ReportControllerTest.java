@@ -42,8 +42,8 @@ public class ReportControllerTest {
         String ExpectedOutput="[{\"id\":0,\"user1\":{\"id\":0,\"firstName\":null,\"lastName\":null,\"userType\":null,\"username\":null,\"password\":null,\"email\":null,\"phone\":null},\"user2\":{\"id\":0,\"firstName\":null,\"lastName\":null,\"userType\":null,\"username\":null,\"password\":null,\"email\":null,\"phone\":null},\"fileUpload1\":{\"id\":0,\"filename\":null,\"file\":null,\"mimeType\":null,\"homework\":null,\"user\":null},\"fileUpload2\":{\"id\":0,\"filename\":null,\"file\":null,\"mimeType\":null,\"homework\":null,\"user\":null},\"homework\":{\"id\":0,\"name\":null,\"description\":null,\"user\":null},\"percentageCompareHashMap\":10.0,\"percentageCompareTrees\":12.0,\"percentageCompareLevenshteinDistance\":12.0,\"percentageCompareAll\":12.0}]";
         Mockito.when(reportService.findAllReportSummary(3,1)).thenReturn(testReportList);
         MvcResult result;
-        result=mockMvc.perform(MockMvcRequestBuilders.get("/rest/report/findAllReportSummary").param("sUserId","3")
-                .param("sHwId","1"))
+        result=mockMvc.perform(MockMvcRequestBuilders.get("/rest/report/findAllReportSummary").param("userId","3")
+                .param("hwId","1"))
                 .andExpect(status().isOk())
                 .andReturn();
         assertEquals(ExpectedOutput, result.getResponse().getContentAsString());

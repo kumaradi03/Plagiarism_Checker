@@ -70,7 +70,7 @@ public class UserControllerTest {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
         Mockito.when(userService.findUserByUserId(userId)).thenReturn(testUser);
         MvcResult result;
-        result=mockMvc.perform(MockMvcRequestBuilders.get("/rest/user/findUserByUserId").param("sUserId",suserId))
+        result=mockMvc.perform(MockMvcRequestBuilders.get("/rest/user/findUserByUserId").param("userId",suserId))
                 .andExpect(status().isOk())
                 .andReturn();
         assertEquals(ExpectedOutput, result.getResponse().getContentAsString());
