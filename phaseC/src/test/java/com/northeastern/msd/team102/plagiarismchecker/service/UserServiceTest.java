@@ -29,7 +29,6 @@ public class UserServiceTest {
     @MockBean
     private UserRepository userRepository;
 
-
     @Test
     public void findUserByCredentials() throws Exception {
         User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com","8573109310");
