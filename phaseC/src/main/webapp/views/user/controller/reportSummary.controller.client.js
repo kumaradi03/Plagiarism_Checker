@@ -11,6 +11,7 @@
         vm.sId = $routeParams['sid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
+        vm.logout = logout;
 
         function openNav(type) {
             if(type === "Professor"){
@@ -25,6 +26,10 @@
                 document.getElementById("mySidenav").style.width = "0";
                 document.getElementById("main").style.marginLeft = "0";
             }
+        }
+
+        function logout() {
+            $location.url("/login");
         }
 
         ReportService

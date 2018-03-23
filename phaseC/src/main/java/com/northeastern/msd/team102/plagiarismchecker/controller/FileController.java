@@ -61,7 +61,7 @@ public class FileController {
      */
     @GetMapping("/getUser")
     public Set<User> getDistinctUsersForHw(@RequestParam long hwId) {
-        logger.log(Level.INFO, "Return distict users for homework with id: " + hwId);
+        logger.log(Level.INFO, "Return distinct users for homework with id: " + hwId);
         Set<User> set = new HashSet<>();
         Map<Long, User> map = new HashMap<>();
         for (FileUpload file: fileUploadService.findAllByHomeworkId(hwId)) {

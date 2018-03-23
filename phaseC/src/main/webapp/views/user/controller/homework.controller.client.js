@@ -9,6 +9,7 @@
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.createHomework = createHomework;
+        vm.logout = logout;
 
         function openNav(type) {
             if(type === "Professor"){
@@ -52,6 +53,10 @@
                     else
                         vm.homeworks = homeworks;
                 });
+        }
+
+        function logout() {
+            $location.url("/login");
         }
 
         UserService

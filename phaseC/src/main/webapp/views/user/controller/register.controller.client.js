@@ -7,6 +7,7 @@
         var vm = this;
         vm.createUser = createUser;
         vm.goToProfile = goToProfile;
+        vm.logout = logout;
 
         function createUser (user) {
             if($scope.registerNew.$valid){
@@ -39,6 +40,10 @@
                     else
                         vm.error = "Sorry Could not register";
                 });
+        }
+
+        function logout() {
+            $location.url("/login");
         }
     }
 })();
