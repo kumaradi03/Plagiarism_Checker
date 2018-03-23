@@ -67,7 +67,7 @@ public class CompareStrategyTreesTest {
 	@Test
 	public void test_compareAST1withAST2BoundaryEmptyFile() throws IOException {
 		CompareStrategy c = new CompareStrategyTrees();
-		File file1=new File("C:\\Python\\python_programs\\py21.py");
+		File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/py21.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/calc.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());
