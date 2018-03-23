@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -59,6 +61,7 @@ public class ASTGenerator {
 	 * @description parse the input byte array
 	 */
     private void parse() {
+        logger.log(Level.INFO, "Parsing file");
         String code = new String(f, Charset.forName("UTF-8"));
         grammerLexer lexer = new grammerLexer(new ANTLRInputStream(code));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -76,26 +79,24 @@ public class ASTGenerator {
     	if (ignoringWrappers && (ctx.getChildCount() == 1) && (ctx.getChild(0) instanceof ParserRuleContext)) {
     		toBeIgnored = true;
     	}
-        if (!toBeIgnored) {
-        	if (grammerParser.ruleNames[ctx.getRuleIndex()] != null) {
-        		String ruleName = grammerParser.ruleNames[ctx.getRuleIndex()];
-        		this.total++;
-                for (int i = 0; i < indentation; i++) {
-                	str.append(" ");
-                }
-                str.append(ruleName);
-                List<Integer> level = new ArrayList<>();
-                if (nodes.containsKey(ruleName)) {
-                	level.addAll(nodes.get(ruleName));
-                }
-                level.add(indentation);
-                nodes.put(ruleName, level);                
-                TreeNode temp = new TreeNode(); 
-    			temp.ctx = ruleName;
-    			temp.parent = parent; 
-    			temp.depth = indentation;
-    			treeNodes.add(temp);    			
-        	}
+        if (!toBeIgnored && (grammerParser.ruleNames[ctx.getRuleIndex()] != null)) {
+            String ruleName = grammerParser.ruleNames[ctx.getRuleIndex()];
+            this.total++;
+            for (int i = 0; i < indentation; i++) {
+                str.append(" ");
+            }
+            str.append(ruleName);
+            List<Integer> level = new ArrayList<>();
+            if (nodes.containsKey(ruleName)) {
+                level.addAll(nodes.get(ruleName));
+            }
+            level.add(indentation);
+            nodes.put(ruleName, level);
+            TreeNode temp = new TreeNode();
+            temp.ctx = ruleName;
+            temp.parent = parent;
+            temp.depth = indentation;
+            treeNodes.add(temp);
         }
         for (int i=0;i<ctx.getChildCount();i++) {
             ParseTree element = ctx.getChild(i);

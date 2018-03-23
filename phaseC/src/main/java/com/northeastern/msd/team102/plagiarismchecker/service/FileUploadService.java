@@ -17,8 +17,6 @@ import java.util.List;
 @Component
 public class FileUploadService {
 
-    public final static Logger logger = Logger.getLogger(FileUploadService.class.getName());
-
     @Autowired
     FileUploadRepository fileUploadRepository;
 
@@ -27,6 +25,8 @@ public class FileUploadService {
 
     @Autowired
     private HomeworkService homeworkService;
+
+    public static final Logger logger = Logger.getLogger(FileUploadService.class.getName());
 
     /**
      * findByFilename method returns the file by a file name.

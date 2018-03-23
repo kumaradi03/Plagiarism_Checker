@@ -1,7 +1,6 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
-
-
-import java.util.logging.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 public class CompareStrategyLevenshteinDist implements CompareStrategy {
 
@@ -18,10 +17,11 @@ public class CompareStrategyLevenshteinDist implements CompareStrategy {
      * @return percent similarity with keeping file1 as base, maps how similar is file2 with file1
      */
     public double compareFiles(byte[] file1, byte[] file2) {
+        logger.log(Level.INFO,"Comparing files using Levenshtein Distance strategy.");
         ASTGenerator astPrinter1 = new ASTGenerator(file1);
         int total = astPrinter1.getTotalCountOfNodes();
         if (total <= 1) {
-        	SendEmail.email("Exception cought in ComapareStrategyLevenshteinDistance.java."
+            SendEmail.getInstance("Exception caught in CompareStrategyLevenshteinDistance.java."
         			+ "Either empty file is submitted or Nodes "
         			+ "are not stored properly for given file.");
             return 0;
@@ -48,31 +48,31 @@ public class CompareStrategyLevenshteinDist implements CompareStrategy {
         int len0 = firstString.length() + 1;
         int len1 = secondString.length() + 1;
         int[] distanceCost = new int[len0];
-        int[] new_generated_distanceCost = new int[len0];
-        float max_distance;
-        float normalised_edit_distance;
+        int[] newGeneratedDistanceCost = new int[len0];
+        float maxDistance;
+        float normalisedEditDistance;
         float percentSimilarity;
 
         if(firstString.length()==0 || secondString.length()==0){
             return 0;
         }
 
-        max_distance=Math.min((len0-1),(len1-1));
+        maxDistance=Math.min((len0-1),(len1-1));
         for (int i = 0; i < len0; i++) distanceCost[i] = i;
         for (int j = 1; j < len1; j++) {
-            new_generated_distanceCost[0] = j;
+            newGeneratedDistanceCost[0] = j;
             for(int i = 1; i < len0; i++) {
                 int match = (firstString.charAt(i - 1) == secondString.charAt(j - 1)) ? 0 : 1;
-                int distanceCost_replace = distanceCost[i - 1] + match;
-                int distanceCost_insert  = distanceCost[i] + 1;
-                int distanceCost_delete  = new_generated_distanceCost[i - 1] + 1;
-                new_generated_distanceCost[i] = Math.min(Math.min(distanceCost_insert, distanceCost_delete),
-                        distanceCost_replace);
+                int distanceCostReplace = distanceCost[i - 1] + match;
+                int distanceCostInsert  = distanceCost[i] + 1;
+                int distanceCostDelete  = newGeneratedDistanceCost[i - 1] + 1;
+                newGeneratedDistanceCost[i] = Math.min(Math.min(distanceCostInsert, distanceCostDelete),
+                        distanceCostReplace);
             }
-            int[] swap = distanceCost; distanceCost = new_generated_distanceCost; new_generated_distanceCost = swap;
+            int[] swap = distanceCost; distanceCost = newGeneratedDistanceCost; newGeneratedDistanceCost = swap;
         }
-        normalised_edit_distance=(distanceCost[len0 - 1]/max_distance);
-        percentSimilarity=(1-normalised_edit_distance)*100;
+        normalisedEditDistance=(distanceCost[len0 - 1]/maxDistance);
+        percentSimilarity=(1-normalisedEditDistance)*100;
         if(percentSimilarity<0){
             return 0;
         }

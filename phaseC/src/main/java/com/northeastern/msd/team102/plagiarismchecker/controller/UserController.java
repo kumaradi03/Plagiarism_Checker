@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/rest/user")
 public class UserController {
 
-    public final static Logger logger = Logger.getLogger(UserController.class.getName());
-
-
     @Autowired
     private UserService userService;
+
+    public static final Logger logger = Logger.getLogger(UserController.class.getName());
 
     /**
      * Login method which receives the request for login.
@@ -26,7 +25,7 @@ public class UserController {
      * @return returns the user object whose login is requested.
      */
     @PostMapping("/login")
-    public User Login(@RequestBody User user) {
+    public User login(@RequestBody User user) {
 
         logger.log(Level.INFO, "User with username: " + user.getUsername() + "logged in");
         return userService.findUserByCredentials(user);
