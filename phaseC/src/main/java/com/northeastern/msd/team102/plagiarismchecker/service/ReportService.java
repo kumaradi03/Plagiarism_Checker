@@ -19,8 +19,6 @@ import java.util.List;
 @Component
 public class ReportService {
 
-    public final static Logger logger = Logger.getLogger(ReportService.class.getName());
-
     @Autowired
     private ReportRepository reportRepository;
 
@@ -32,6 +30,8 @@ public class ReportService {
 
     @Autowired
     private HomeworkService homeworkService;
+
+    public static final Logger logger = Logger.getLogger(ReportService.class.getName());
 
     /**
      * createReport saves the report in the database.

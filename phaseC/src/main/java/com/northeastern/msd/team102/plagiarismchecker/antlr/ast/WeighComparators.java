@@ -21,7 +21,7 @@ public class WeighComparators {
 	private List<Double> dataXTree;
 	private List<Double> dataY;
 	private String path;
-	private double weightsAll[];
+	private double[] weightsAll;
 	private double weightsHashMap;
 	private double weightsLevenshtein;
 	private double weightsTree;
@@ -95,13 +95,13 @@ public class WeighComparators {
 			dataYArr[i][0] = d;
 			i++;
 		}		
-		Matrix X = new Matrix(dataXArr);
-		Matrix Y = new Matrix(dataYArr);
-		Matrix XTranspose = X.transpose();
-		Matrix XMul = XTranspose.times(X);
-		Matrix XInverse = XMul.inverse();
-		Matrix XMul2 = XInverse.times(XTranspose);
-		Matrix wTrain = XMul2.times(Y);
+		Matrix x = new Matrix(dataXArr);
+		Matrix y = new Matrix(dataYArr);
+		Matrix xTranspose = x.transpose();
+		Matrix xMul = xTranspose.times(x);
+		Matrix xInverse = xMul.inverse();
+		Matrix xMul2 = xInverse.times(xTranspose);
+		Matrix wTrain = xMul2.times(y);
 		double[][] w = wTrain.getArray();
 		double[] weights = new double[this.noOfComparators];
 		for (int p = 0; p< w.length; p++) {
@@ -128,13 +128,13 @@ public class WeighComparators {
 			i++;
 		}
 		
-		Matrix X = new Matrix(dataXArr);
-		Matrix Y = new Matrix(dataYArr);
-		Matrix XTranspose = X.transpose();
-		Matrix XMul = XTranspose.times(X);
-		Matrix XInverse = XMul.inverse();
-		Matrix XMul2 = XInverse.times(XTranspose);
-		Matrix wTrain = XMul2.times(Y);
+		Matrix x = new Matrix(dataXArr);
+		Matrix y = new Matrix(dataYArr);
+		Matrix xTranspose = x.transpose();
+		Matrix xMul = xTranspose.times(x);
+		Matrix xInverse = xMul.inverse();
+		Matrix xMul2 = xInverse.times(xTranspose);
+		Matrix wTrain = xMul2.times(y);
 		double[][] wHashMap = wTrain.getArray();
 		return wHashMap[0][0];	
 	}

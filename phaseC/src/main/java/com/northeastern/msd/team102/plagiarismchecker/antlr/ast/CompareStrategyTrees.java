@@ -1,7 +1,8 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 /**
  * @version 1.0
@@ -21,10 +22,11 @@ public class CompareStrategyTrees implements CompareStrategy {
 	 * 			i.e it tells how much portion of code in file1 is present in file2
 	 */
 	public double compareFiles(byte[] file1, byte[] file2) {
+		logger.log(Level.INFO,"Comparing files using Tree strategy.");
 		ASTGenerator ast1 = new ASTGenerator(file1);
 		int total = ast1.getTotalCountOfNodes();
 		if (total <= 1) {
-			SendEmail.email("Exception cought in CompareStrategyTrees.java."
+			SendEmail.getInstance("Exception caught in CompareStrategyTrees.java."
 					+ "Either empty file is submitted or Nodes are "
 					+ "not stored properly for given file");
 			return 0;

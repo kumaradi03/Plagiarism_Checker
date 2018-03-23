@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserService {
 
-    public final static Logger logger = Logger.getLogger(UserService.class.getName());
-
     @Autowired
     private UserRepository userRepository;
+
+    public static final Logger logger = Logger.getLogger(UserService.class.getName());
 
     /**
      * findUserByCredentials method returns user for a given username and password

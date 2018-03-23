@@ -1,11 +1,12 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Logger;
 
 /**
  * @version 1.0
@@ -26,10 +27,11 @@ public class CompareStrategyHashMap implements CompareStrategy {
 	 * 			i.e it tells how much portion of code in file1 is present in file2
 	 */
 	public double compareFiles(byte[] file1, byte[] file2) {
+		logger.log(Level.INFO,"Comparing files using HashMap strategy.");
 		ASTGenerator astPrinter1 = new ASTGenerator(file1);
 		int total = astPrinter1.getTotalCountOfNodes();
 		if (total <= 1) {
-			SendEmail.email("Exception cought in ComapareStrategyHashMap.java."
+            SendEmail.getInstance("Exception caught in CompareStrategyHashMap.java."
         			+ "Either empty file is submitted or Nodes "
         			+ "are not stored properly for given file.");
 			return 0;

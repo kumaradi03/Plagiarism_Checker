@@ -16,13 +16,13 @@ import java.util.List;
 @Component
 public class HomeworkService {
 
-    public final static Logger logger = Logger.getLogger(HomeworkService.class.getName());
-
     @Autowired
     private HomeworkRepository homeworkRepository;
 
     @Autowired
     private UserService userService;
+
+    public static final Logger logger = Logger.getLogger(HomeworkService.class.getName());
 
     /**
      * createHomework method creates a Homework for a given userId.
