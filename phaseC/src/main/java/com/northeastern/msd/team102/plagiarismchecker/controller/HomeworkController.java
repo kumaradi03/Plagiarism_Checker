@@ -2,6 +2,8 @@ package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
 import com.northeastern.msd.team102.plagiarismchecker.service.HomeworkService;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,8 @@ public class HomeworkController {
     @Autowired
     private HomeworkService homeworkService;
 
+    public static final Logger logger = Logger.getLogger(ReportController.class.getName());
+
     /**
      * createHomework method creates a new homework for a particular professor.
      * @param homework homework object to be created
@@ -25,6 +29,7 @@ public class HomeworkController {
      */
     @PostMapping("/create")
     public Homework createHomework(@RequestBody Homework homework, @RequestParam long userId) {
+        logger.log(Level.INFO, "Homework created for user: " + userId);
         return homeworkService.createHomework(homework, userId);
     }
 
@@ -35,6 +40,7 @@ public class HomeworkController {
      */
     @GetMapping("/findAllHomeworkForUser")
     public List<Homework> findAllHomeworkForUser (@RequestParam long userId) {
+        logger.log(Level.INFO, "Return all homework for user: " + userId);
         return homeworkService.findAllByUserId(userId);
     }
 }

@@ -24,6 +24,7 @@ public class Homework {
      * Constructor for Homework class
      */
     public Homework() {
+        //Default Constructor
     }
 
     /**

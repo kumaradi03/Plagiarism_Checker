@@ -5,6 +5,8 @@ import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.repository.HomeworkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -13,6 +15,8 @@ import java.util.List;
  */
 @Component
 public class HomeworkService {
+
+    public final static Logger logger = Logger.getLogger(HomeworkService.class.getName());
 
     @Autowired
     private HomeworkRepository homeworkRepository;
@@ -28,6 +32,7 @@ public class HomeworkService {
      */
     public Homework createHomework(Homework homework, long userId)
     {
+        logger.log(Level.INFO, "Creating homework for userId: " + userId);
         User user = userService.findUserByUserId(userId);
         homework.setUser(user);
         return homeworkRepository.save(homework);
@@ -39,6 +44,8 @@ public class HomeworkService {
      * @return List of Homework
      */
     public List<Homework> findAllByUserId(long userId) {
+
+        logger.log(Level.INFO, "Returning all homeworks for userId: " + userId);
         return homeworkRepository.findAllByUserId(userId);
     }
 
@@ -48,6 +55,8 @@ public class HomeworkService {
      * @return Homework
      */
     public Homework findById(long id) {
+
+        logger.log(Level.INFO, "Returning homework for hwId: " + id);
         return homeworkRepository.findById(id);
     }
 }

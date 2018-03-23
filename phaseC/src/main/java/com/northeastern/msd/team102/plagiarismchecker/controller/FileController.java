@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Set;
 
 import com.northeastern.msd.team102.plagiarismchecker.service.ReportService;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,6 +39,8 @@ public class FileController {
     @Autowired
     ReportService reportService;
 
+    public static final Logger logger = Logger.getLogger(ReportController.class.getName());
+
     /**
      * parsePythonFile method to return an AST for a python file.
      * @return return an AST
@@ -57,6 +61,7 @@ public class FileController {
      */
     @GetMapping("/getUser")
     public Set<User> getDistinctUsersForHw(@RequestParam long hwId) {
+        logger.log(Level.INFO, "Return distict users for homework with id: " + hwId);
         Set<User> set = new HashSet<>();
         Map<Long, User> map = new HashMap<>();
         for (FileUpload file: fileUploadService.findAllByHomeworkId(hwId)) {
@@ -78,6 +83,7 @@ public class FileController {
      */
     @PostMapping("/upload")
     public void uploadFile(MultipartHttpServletRequest request,  @RequestParam long userId,  @RequestParam long hwId) throws IOException {
+        logger.log(Level.INFO, "File uploadede for userID: " + userId + "and hwId: " + hwId);
         Iterator<String> itr = request.getFileNames();
         while (itr.hasNext()) {
             String uploadedFile = itr.next();
