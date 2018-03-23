@@ -64,7 +64,7 @@ public class ASTGeneratorTest {
 	     		+ "    dictorsetmaker     atom     atom     atom     atom simple_stmt  expr_stmt"
 	     		+ "   atom   atom_expr    atom    trailer     argument      term       atom_expr"
 	     		+ "        atom        trailer         atom       atom_expr        atom        trailer"
-	     		+ "         atom      comp_for       atom       atom atom term  atom  atom";
+	     		+ "         atom      comp_for       atom       atom";
       
 	     assertEquals(mockParsedFile, astPrinter.print());
 	}
