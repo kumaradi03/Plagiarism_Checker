@@ -17,16 +17,12 @@
 		<version>2.0.0.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<properties>
-        <property>
-            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-            <java.version>1.8</java.version>
-        </property>
-        <property>
-            <sonar.exclusions>src/main/java/com/northeastern/msd/team102/plagiarismchecker/antlr/grammer/*</sonar.exclusions>
-        </property>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <sonar.exclusions>src/main/java/com/northeastern/msd/team102/plagiarismchecker/antlr/grammer/*</sonar.exclusions>
+    </properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
