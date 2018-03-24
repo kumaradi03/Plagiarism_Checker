@@ -136,7 +136,7 @@ public class WeighComparators {
 		Matrix xMul2 = xInverse.times(xTranspose);
 		Matrix wTrain = xMul2.times(y);
 		double[][] wHashMap = wTrain.getArray();
-		return wHashMap[0][0];	
+		return wHashMap[0][0];
 	}
 	
 	/**
