@@ -28,9 +28,9 @@ public class HomeworkController {
      * @return Homework
      */
     @PostMapping("/create")
-    public Homework createHomework(@RequestBody Homework homework, @RequestParam long userId) {
-        logger.log(Level.INFO, "Homework created for user: " + userId);
-        return homeworkService.createHomework(homework, userId);
+    public Homework createHomework(@RequestBody Homework homework, @RequestParam("userId") String userId) {
+        long userID = Long.parseLong(userId);
+        return homeworkService.createHomework(homework, userID);
     }
 
     /**
@@ -39,8 +39,8 @@ public class HomeworkController {
      * @return returns all the homework for the particular userId.
      */
     @GetMapping("/findAllHomeworkForUser")
-    public List<Homework> findAllHomeworkForUser (@RequestParam long userId) {
-        logger.log(Level.INFO, "Return all homework for user: " + userId);
-        return homeworkService.findAllByUserId(userId);
+    public List<Homework> findAllHomeworkForUser (@RequestParam("userId") String userId) {
+        long userID = Long.parseLong(userId);
+        return homeworkService.findAllByUserId(userID);
     }
 }

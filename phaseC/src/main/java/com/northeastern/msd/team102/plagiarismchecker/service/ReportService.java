@@ -38,7 +38,6 @@ public class ReportService {
      * @param report
      */
     public void createReport(Report report) {
-
         logger.log(Level.INFO, "Saving report for reportID: " + report.getId());
         reportRepository.save(report);
     }
