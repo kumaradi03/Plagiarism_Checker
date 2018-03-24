@@ -57,7 +57,7 @@ public class WeighComparators {
 	private void readCSV() throws URISyntaxException {
         String line = "";
         String cvsSplitBy = ",";
-        URL resource = WeighComparators.class.getResource("/TrainingData.csv");
+        URL resource = WeighComparators.class.getClassLoader().getResource("TrainingData.csv");
         String filepath = Paths.get(resource.toURI()).toFile().getAbsolutePath();
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             while ((line = br.readLine()) != null) {
