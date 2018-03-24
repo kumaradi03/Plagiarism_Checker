@@ -2,6 +2,9 @@ package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,7 +23,6 @@ public class WeighComparators {
 	private List<Double> dataXLevenshtein;
 	private List<Double> dataXTree;
 	private List<Double> dataY;
-	private String path;
 	private double[] weightsAll;
 	private double weightsHashMap;
 	private double weightsLevenshtein;
@@ -30,14 +32,13 @@ public class WeighComparators {
 	/**
 	 * @param path : String - path to the training data
 	 */
-	WeighComparators(String path) {
+	WeighComparators() throws URISyntaxException {
 		logger = Logger.getLogger(WeighComparators.class.getName());
 		this.dataX = new ArrayList<>();
 		this.dataXHashMap = new ArrayList<>();
 		this.dataXLevenshtein = new ArrayList<>();
 		this.dataXTree = new ArrayList<>();
 		this.dataY = new ArrayList<>();
-		this.path = path;
 		this.noOfComparators = 0;
 		this.weightsHashMap = 0;
 		this.weightsLevenshtein = 0;
@@ -53,10 +54,12 @@ public class WeighComparators {
 	/**
 	 * @description reads training data from csv file
 	 */
-	private void readCSV() {
+	private void readCSV() throws URISyntaxException {
         String line = "";
         String cvsSplitBy = ",";
-        try (BufferedReader br = new BufferedReader(new FileReader(this.path))) {
+        URL resource = WeighComparators.class.getResource("/TrainingData.csv");
+        String filepath = Paths.get(resource.toURI()).toFile().getAbsolutePath();
+        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             while ((line = br.readLine()) != null) {
                 String[] trainRow = line.split(cvsSplitBy);
                 this.noOfComparators = trainRow.length-3;

@@ -1,6 +1,7 @@
 package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -66,7 +67,7 @@ public class FileController {
      * @throws IOException
      */
     @PostMapping("/upload")
-    public void uploadFile(MultipartHttpServletRequest request,  @RequestParam("userId") String userId,  @RequestParam("hwId") String hwId) throws IOException {
+    public void uploadFile(MultipartHttpServletRequest request,  @RequestParam("userId") String userId,  @RequestParam("hwId") String hwId) throws IOException, URISyntaxException {
         logger.log(Level.INFO, "File uploadede for userID: " + userId + "and hwId: " + hwId);
         long userID = Long.parseLong(userId);
         long hwID = Long.parseLong(hwId);

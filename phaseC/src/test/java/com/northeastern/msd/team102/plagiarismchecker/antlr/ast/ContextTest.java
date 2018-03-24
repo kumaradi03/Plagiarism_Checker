@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 
 import org.junit.Test;
@@ -15,7 +16,7 @@ public class ContextTest {
      * @throws IOException
      */
     @Test
-    public void test_compareAST1withAST2Boundary1() throws IOException {
+    public void test_compareAST1withAST2Boundary1() throws IOException, URISyntaxException {
         CompareStrategy c = new CompareStrategyTrees();
         Context context=new Context(c);
         File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
@@ -31,7 +32,7 @@ public class ContextTest {
      * @throws IOException
      */
     @Test
-    public void test_compareAST1withAST2() throws IOException {
+    public void test_compareAST1withAST2() throws IOException, URISyntaxException {
         CompareStrategy c = new CompareStrategyTrees();
         Context context=new Context(c);
         File file1 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
@@ -47,7 +48,7 @@ public class ContextTest {
      * @throws IOException
      */
     @Test
-    public void test_compareAST1withAST2Boundary2() throws IOException {
+    public void test_compareAST1withAST2Boundary2() throws IOException, URISyntaxException {
         CompareStrategy c = new CompareStrategyTrees();
         Context context=new Context(c);
         File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
@@ -63,7 +64,7 @@ public class ContextTest {
      * @throws IOException
      */
     @Test
-    public void test_compareAST1withAST2BoundaryEmptyFile() throws IOException {
+    public void test_compareAST1withAST2BoundaryEmptyFile() throws IOException, URISyntaxException {
         CompareStrategy c = new CompareStrategyTrees();
         Context context=new Context(c);
         File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/py21.py");
