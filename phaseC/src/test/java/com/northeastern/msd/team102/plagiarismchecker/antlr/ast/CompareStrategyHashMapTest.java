@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 
 import org.junit.Test;
@@ -20,7 +21,7 @@ public class CompareStrategyHashMapTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void test_compareAST1withAST2Boundary1() throws IOException {
+	public void test_compareAST1withAST2Boundary1() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyHashMap();
 	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
@@ -34,7 +35,7 @@ public class CompareStrategyHashMapTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void test_compareAST1withAST2() throws IOException {
+	public void test_compareAST1withAST2() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyHashMap();
 		File file1 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
@@ -48,7 +49,7 @@ public class CompareStrategyHashMapTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void test_compareAST1withAST2Boundary2() throws IOException {
+	public void test_compareAST1withAST2Boundary2() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyHashMap();
 		File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());

@@ -1,5 +1,6 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -21,7 +22,7 @@ public class CompareStrategyTrees implements CompareStrategy {
 	 * @return percent similarity with keeping file1 as base, maps how similar is file2 with file1
 	 * 			i.e it tells how much portion of code in file1 is present in file2
 	 */
-	public double compareFiles(byte[] file1, byte[] file2) {
+	public double compareFiles(byte[] file1, byte[] file2) throws URISyntaxException {
 		logger.log(Level.INFO,"Comparing files using Tree strategy.");
 		ASTGenerator ast1 = new ASTGenerator(file1);
 		int total = ast1.getTotalCountOfNodes();
@@ -42,7 +43,7 @@ public class CompareStrategyTrees implements CompareStrategy {
 				treeNodes2.remove((treeNodes2.indexOf(t1)));
 			}			
 		}		
-		WeighComparators w = new WeighComparators("src/main/resources/TrainingData.csv");
+		WeighComparators w = new WeighComparators();
 	    return w.getFinalPredictedOutput((((double)similarity/(double)total) * 100.0), 3);
 	}
 }

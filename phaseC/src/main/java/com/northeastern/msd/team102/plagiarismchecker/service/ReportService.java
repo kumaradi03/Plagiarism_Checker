@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import java.net.URISyntaxException;
 import java.util.List;
 
 /**
@@ -49,7 +50,7 @@ public class ReportService {
      * @param hwId homework id
      * @param file file to be compared
      */
-    public void generateReport(long userId, long hwId, FileUpload file) {
+    public void generateReport(long userId, long hwId, FileUpload file) throws URISyntaxException {
         logger.log(Level.INFO, "Generating report for " + userId + "for Homework " + hwId +
                 "for file " + file.getFilename());
         User user = userService.findUserByUserId(userId);
