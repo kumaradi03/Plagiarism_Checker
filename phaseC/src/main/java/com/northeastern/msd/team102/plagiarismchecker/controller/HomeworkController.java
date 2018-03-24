@@ -2,7 +2,6 @@ package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
 import com.northeastern.msd.team102.plagiarismchecker.service.HomeworkService;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
