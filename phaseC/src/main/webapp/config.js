@@ -45,6 +45,11 @@
                 controller: 'CourseController',
                 controllerAs: 'model',
             })
+            .when("/profile/:uid/course/new",{
+                templateUrl: 'views/user/template/course-new.client.html',
+                controller: 'CourseController',
+                controllerAs: 'model',
+            })
             .when("/profile/:uid/homework/",{
                 templateUrl: 'views/user/template/homework.client.html',
                 controller: 'HomeWorkController',

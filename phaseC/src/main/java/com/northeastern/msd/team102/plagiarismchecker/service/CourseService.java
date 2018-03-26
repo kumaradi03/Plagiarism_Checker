@@ -1,6 +1,7 @@
 package com.northeastern.msd.team102.plagiarismchecker.service;
 
 import com.northeastern.msd.team102.plagiarismchecker.entity.Course;
+import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.repository.CourseRepository;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -24,13 +25,26 @@ public class CourseService {
     public static final Logger logger = Logger.getLogger(CourseService.class.getName());
 
     /**
-     * findAllByUserId method returns list of Homework for a given user.
+     * findAllByUserId method returns list of Course for a given user.
      * @param userId
-     * @return List of Homework
+     * @return List of Course
      */
     public List<Course> findAllByUserId(long userId) {
-
-        logger.log(Level.INFO, "Returning all homeworks for userId: " + userId);
+        logger.log(Level.INFO, "Returns all courses for userId: " + userId);
         return courseRepository.findAllByUserId(userId);
+    }
+
+    /**
+     * createCourse method creates a Course for a given userId.
+     * @param course
+     * @param userId
+     * @return Course
+     */
+    public Course createCourse(Course course, long userId)
+    {
+        logger.log(Level.INFO, "Creating course for userId: " + userId);
+        User user = userService.findUserByUserId(userId);
+        course.setUser(user);
+        return courseRepository.save(course);
     }
 }
