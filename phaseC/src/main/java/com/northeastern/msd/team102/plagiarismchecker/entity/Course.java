@@ -3,10 +3,10 @@ package com.northeastern.msd.team102.plagiarismchecker.entity;
 import javax.persistence.*;
 
 /**
- * Homework entity.
+ * Course entity.
  */
 @Entity
-public class Homework {
+public class Course {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id")
@@ -17,26 +17,55 @@ public class Homework {
     private String description;
 
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "homework_user_association"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "course_user_association"))
     private User user;
 
-    /**
-     * Constructor for Homework class
-     */
-    public Homework() {
-        //Default Constructor
-    }
-
-    /**
-     * Getter for HoemworkId
-     * @return the hwId.
-     */
     public long getId() {
         return id;
     }
 
     /**
-     * Getter for User who created the homework.
+     * Setter for courseId
+     * @param id
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    /**
+     * Getter for name of the course.
+     * @return Name of the course
+     */
+    public String getName() {
+        return name;
+    }
+
+
+    /**
+     * Setter for name of the course.
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Getter for course description.
+     * @return Description of the course
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Setter for course description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * Getter for user who created the course
      * @return User object
      */
     public User getUser() {
@@ -44,40 +73,9 @@ public class Homework {
     }
 
     /**
-     * Setter for User.
+     * Setter for user who creates the course
      */
     public void setUser(User user) {
         this.user = user;
     }
-
-    /**
-     * Getter for fetching the name of the homework
-     * @return name of the homework
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Setter for setting the name of the homework
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Getter for homework description
-     * @return returns the homework description.
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Setter for homework description
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
-
