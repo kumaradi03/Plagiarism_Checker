@@ -20,6 +20,16 @@ public class Course {
     @JoinColumn(foreignKey = @ForeignKey(name = "course_user_association"))
     private User user;
 
+    /**
+     * Constructor for Course class
+     */
+    public Course() {
+        //Default Constructor
+    }
+
+    /**
+     * Getter for courseId
+     */
     public long getId() {
         return id;
     }

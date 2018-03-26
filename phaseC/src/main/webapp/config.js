@@ -40,6 +40,11 @@
                 controller: 'ProfileController',
                 controllerAs: 'model',
             })
+            .when("/profile/:uid/course/",{
+                templateUrl: 'views/user/template/course.client.html',
+                controller: 'CourseController',
+                controllerAs: 'model',
+            })
             .when("/profile/:uid/homework/",{
                 templateUrl: 'views/user/template/homework.client.html',
                 controller: 'HomeWorkController',

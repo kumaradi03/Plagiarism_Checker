@@ -16,7 +16,7 @@
                     UserService
                         .findUserByUsername(user.username)
                         .then(function (usr) {
-                            if(usr == "")
+                            if(usr === "")
                                 goToProfile(user);
                             else
                                 vm.error = "Sorry Could not register";
