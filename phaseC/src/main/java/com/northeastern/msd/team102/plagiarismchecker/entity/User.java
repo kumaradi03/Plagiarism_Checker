@@ -23,8 +23,6 @@ public class User {
     private String password;
     @Column(name = "email")
     private String email;
-    @Column(name = "phone")
-    private String phone;
 
     /**
      * Constructor for User class
@@ -35,9 +33,8 @@ public class User {
      * @param lastName lastName of the user
      * @param lastName lastName of the user
      * @param email email of the user
-     * @param phone phone of the user
      */
-    public User(long id, String firstName, String lastName, String userType, String username, String password, String email, String phone) {
+    public User(long id, String firstName, String lastName, String userType, String username, String password, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,7 +42,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.phone = phone;
     }
 
     /**
@@ -165,22 +161,6 @@ public class User {
      */
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    /**
-     * Getter for user phone.
-     * @return phone for the user.
-     */
-    public String getPhone() {
-        return phone;
-    }
-
-    /**
-     * Setter for phone.
-     * @param phone
-     */
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
 }
