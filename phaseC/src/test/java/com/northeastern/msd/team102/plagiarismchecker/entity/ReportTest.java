@@ -12,8 +12,8 @@ public class ReportTest {
 
     @Test
     public void getSetId() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");
@@ -25,8 +25,8 @@ public class ReportTest {
 
     @Test
     public void getUser1() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");
@@ -37,8 +37,8 @@ public class ReportTest {
 
     @Test
     public void setUser1() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");
@@ -50,8 +50,8 @@ public class ReportTest {
 
     @Test
     public void getSetUser2() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");
@@ -63,8 +63,8 @@ public class ReportTest {
 
     @Test
     public void getSetHashMapPercentage() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");
@@ -76,8 +76,8 @@ public class ReportTest {
 
     @Test
     public void getSetTreesPercentage() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");
@@ -89,8 +89,8 @@ public class ReportTest {
 
     @Test
     public void getSetLDPercentage() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");
@@ -103,8 +103,8 @@ public class ReportTest {
 
     @Test
     public void getFileUpload1() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");
@@ -115,8 +115,8 @@ public class ReportTest {
 
     @Test
     public void setFileUpload1() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");
@@ -128,8 +128,8 @@ public class ReportTest {
 
     @Test
     public void getSetFileUpload2() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");
@@ -141,8 +141,8 @@ public class ReportTest {
 
     @Test
     public void getSetHomework() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");
@@ -156,15 +156,15 @@ public class ReportTest {
     @Test
     public void testDefaultContsructor() throws Exception {
         Report testReport = new Report();
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
         testReport.setUser1(testUser);
         assertEquals(3,testReport.getUser1().getId());
     }
 
     @Test
     public void getSetCompareAllPercentage() throws Exception {
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
-        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
+        User testUser2 =new User(4,"testFirst","testLast","student","testUser2","testpassword","test2@test.com");
         byte[] testBytes=new byte[2];
         FileUpload testFileUpload1 = new FileUpload("testFileName",testBytes,"testMimeType");
         FileUpload testFileUpload2 = new FileUpload("testFileNam2",testBytes,"testMimeType");

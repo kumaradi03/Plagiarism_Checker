@@ -40,7 +40,7 @@ public class FileControllerTest {
     public void getDistinctUsersForHw() throws Exception {
         String testHWId = "3";
         String ExpectedOutput="[]";
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
         Set<User> set = new HashSet<>();
         set.add(testUser);
         List<FileUpload> fileUploadList = new ArrayList<>();

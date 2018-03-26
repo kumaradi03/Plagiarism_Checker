@@ -20,7 +20,7 @@ public class HomeworkTest {
     @Test
     public void setUser() throws Exception {
         Homework testHomeWork = new Homework();
-        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com","1234567");
+        User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
         testHomeWork.setUser(testUser);
         assertEquals(3,testHomeWork.getUser().getId());
     }

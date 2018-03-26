@@ -31,7 +31,7 @@ public class UserServiceTest {
 
     @Test
     public void findUserByCredentials() throws Exception {
-        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com","8573109310");
+        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
         when(userRepository.findByUsernameAndPassword("adi","adi")).thenReturn(mockUser);
         given(this.userService.findUserByCredentials(mockUser)).willReturn(mockUser);
         assertEquals(mockUser,this.userService.findUserByCredentials(mockUser));
@@ -39,7 +39,7 @@ public class UserServiceTest {
 
     @Test
     public void findUserByUsername() throws Exception {
-        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com","8573109310");
+        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
         when(userRepository.findByUsername("adi")).thenReturn(mockUser);
         given(this.userService.findUserByUsername("adi")).willReturn(mockUser);
         assertEquals(mockUser,this.userService.findUserByUsername("adi"));
@@ -48,7 +48,7 @@ public class UserServiceTest {
 
     @Test
     public void findUserByUserId() throws Exception {
-        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com","8573109310");
+        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
         when(userRepository.findById(1)).thenReturn(mockUser);
         given(this.userService.findUserByUserId(1)).willReturn(mockUser);
         assertEquals(mockUser,this.userService.findUserByUserId(1));
@@ -56,7 +56,7 @@ public class UserServiceTest {
 
     @Test
     public void createUser() throws Exception {
-        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com","8573109310");
+        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
         when(userRepository.save(mockUser)).thenReturn(mockUser);
         given(this.userService.createUser(mockUser)).willReturn(mockUser);
         assertEquals(mockUser,this.userService.createUser(mockUser));
@@ -64,7 +64,7 @@ public class UserServiceTest {
 
     @Test
     public void findByUserType() throws Exception {
-        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com","8573109310");
+        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
         when(userRepository.findByUserType("Student")).thenReturn(mockUser);
         given(this.userService.findByUserType("Student")).willReturn(mockUser);
         assertEquals(mockUser,this.userService.findByUserType("Student"));
