@@ -1,24 +1,24 @@
 (function(){
     angular
         .module("PlagiarismChecker")
-        .factory('CourseService', CourseService);
+        .factory('EnrollService', EnrollService);
 
-    function CourseService($http) {
+    function EnrollService($http) {
 
         var api = {
-            "findAllCoursesForUser": findAllCoursesForUser,
-            "createCourse":createCourse
+            "findAllEnrollmentForUser": findAllEnrollmentForUser,
+            "createEnrollment": createEnrollment
         };
         return api;
 
-        function findAllCoursesForUser (userId) {
-            return $http.get("/rest/course/findAllCoursesForUser/?userId="+userId)
+        function findAllEnrollmentForUser (userId) {
+            return $http.get("/rest/enroll/findAllEnrollmentForUser/?userId="+userId)
                 .then(function(res){
                     return res.data;
                 });
         }
 
-        function createCourse(course, userId) {
+        function createEnrollment(course, userId) {
             return $http.post("/rest/course/create/?userId="+userId, course)
                 .then(function(res){
                     return res.data;

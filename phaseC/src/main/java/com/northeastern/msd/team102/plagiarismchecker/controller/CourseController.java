@@ -4,10 +4,7 @@ import com.northeastern.msd.team102.plagiarismchecker.entity.Course;
 import com.northeastern.msd.team102.plagiarismchecker.service.CourseService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,13 +21,25 @@ public class CourseController {
     public static final Logger logger = Logger.getLogger(CourseController.class.getName());
 
     /**
-     * findAllHomeworkForUser method returns all the homework for a particular userID.
+     * findAllCoursesForUser method returns all the course for a particular userID.
      * @param userId userId
-     * @return returns all the homework for the particular userId.
+     * @return returns all the course for the particular userId.
      */
     @GetMapping("/findAllCoursesForUser")
     public List<Course> findAllCoursesForUser (@RequestParam("userId") String userId) {
         long userID = Long.parseLong(userId);
         return courseService.findAllByUserId(userID);
+    }
+
+    /**
+     * createCourse method creates a new course for a particular professor.
+     * @param course course object to be created
+     * @param userId userId for which the course is created.
+     * @return Course
+     */
+    @PostMapping("/create")
+    public Course createHomework(@RequestBody Course course, @RequestParam("userId") String userId) {
+        long userID = Long.parseLong(userId);
+        return courseService.createCourse(course, userID);
     }
 }

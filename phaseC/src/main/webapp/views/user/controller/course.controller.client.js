@@ -3,11 +3,12 @@
         .module("PlagiarismChecker")
         .controller("CourseController", CourseController);
 
-    function CourseController (UserService, CourseService, $location, $routeParams) {
+    function CourseController (UserService, CourseService, EnrollService, $location, $routeParams) {
         var vm = this;
         var userId = $routeParams['uid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
+        vm.createCourse = createCourse;
         vm.logout = logout;
 
         function openNav() {
@@ -25,19 +26,39 @@
             $location.url("/login");
         }
 
+        function createCourse(course) {
+            CourseService
+                .createCourse(course, vm.user.id)
+                .then(function (course) {
+                    $location.url("/profile/"+vm.user.id+"/course");
+                });
+        }
+
         UserService
             .findUserById(userId)
             .then(function (user) {
                 vm.user = user;
-                CourseService
-                    .findAllCoursesForUser(userId)
-                    .then(function (courses) {
-                        if(courses.length === 0)
-                            vm.error = "No courses created.";
-                        else
-                            vm.courses = courses;
-                        openNav();
-                    });
+                if(vm.user.userType === 'Student') {
+                    EnrollService
+                        .findAllEnrollmentForUser(userId)
+                        .then(function (enrollments) {
+                            if(enrollments.length === 0)
+                                vm.error = "No courses enrolled.";
+                            else
+                                vm.enrollments = enrollments;
+                        });
+                }
+                else {
+                    CourseService
+                        .findAllCoursesForUser(userId)
+                        .then(function (courses) {
+                            if(courses.length === 0)
+                                vm.error = "No courses created.";
+                            else
+                                vm.courses = courses;
+                        });
+                }
+                openNav();
             });
     }
 })();

@@ -23,22 +23,12 @@
     <a href="#/profile/{{model.user.id}}/course">Course</a>
 </div>
 <div id="main">
-    <div class="container-fluid row">
-        <div>
-            <a href="#/profile/{{model.user.id}}/course/new" ng-if="model.user.userType === 'Professor'">
-                <span class="glyphicon glyphicon-plus pull-right"></span>
-            </a>
-            <a href="#/profile/{{model.user.id}}/course/registerCourse" ng-if="model.user.userType === 'Student'">
-                <span class="glyphicon glyphicon-plus pull-right"></span>
-            </a>
-        </div>
-    </div>
     <div class="row container-fluid">
         <div class="col-xs-12 ">
             <div class="alert alert-danger" ng-show="model.error">
                 {{model.error}}
             </div>
-            <ul class="list-group" ng-if="model.user.userType === 'Professor'">
+            <ul class="list-group">
                 <li ng-repeat = "course in model.courses"
                     class="list-group-item">
                     <a href="#/profile/{{model.user.id}}/course/{{course.id}}/homework">
