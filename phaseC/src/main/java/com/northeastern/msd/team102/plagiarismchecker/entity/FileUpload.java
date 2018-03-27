@@ -25,7 +25,7 @@ public class FileUpload {
     private Homework homework;
 
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "user_homework_association"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "fileUpload_user_association"))
     private User user;
 
     /**

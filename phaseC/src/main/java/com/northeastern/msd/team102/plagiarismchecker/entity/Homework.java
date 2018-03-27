@@ -20,11 +20,22 @@ public class Homework {
     @JoinColumn(foreignKey = @ForeignKey(name = "homework_user_association"))
     private User user;
 
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "homework_course_association"))
+    private Course course;
+
     /**
      * Constructor for Homework class
      */
     public Homework() {
         //Default Constructor
+    }
+
+    public Homework(String name, String description, User user, Course course) {
+        this.name = name;
+        this.description = description;
+        this.user = user;
+        this.course = course;
     }
 
     /**
@@ -48,6 +59,21 @@ public class Homework {
      */
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * Getter for Course for which homework is created.
+     * @return Course Object
+     */
+    public Course getCourse() {
+        return course;
+    }
+
+    /**
+     * Setter for Course.
+     */
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     /**

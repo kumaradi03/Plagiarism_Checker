@@ -15,12 +15,12 @@
                 controller: 'LoginController',
                 controllerAs: 'model',
             })
-            .when("/profile/:uid/homework/:hid/fileupload",{
+            .when("/profile/:uid/course/:cid/homework/:hid/fileupload",{
                 templateUrl: 'views/user/template/fileUpload.client.html',
                 controller: 'FileUploadController',
                 controllerAs: 'model',
             })
-            .when("/profile/:uid/homework/:hid/submission",{
+            .when("/profile/:uid/course/:cid/homework/:hid/submission",{
                 templateUrl: 'views/user/template/submission.client.html',
                 controller: 'SubmissionController',
                 controllerAs: 'model',
@@ -55,12 +55,12 @@
                 controller: 'EnrollController',
                 controllerAs: 'model',
             })
-            .when("/profile/:uid/homework/",{
+            .when("/profile/:uid/course/:cid/homework/",{
                 templateUrl: 'views/user/template/homework.client.html',
                 controller: 'HomeWorkController',
                 controllerAs: 'model',
             })
-            .when("/profile/:uid/homework/new",{
+            .when("/profile/:uid/course/:cid/homework/new",{
                 templateUrl: 'views/user/template/homework-new.client.html',
                 controller: 'HomeWorkController',
                 controllerAs: 'model',

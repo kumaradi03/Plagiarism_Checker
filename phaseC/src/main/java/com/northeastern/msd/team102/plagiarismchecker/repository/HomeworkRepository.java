@@ -13,11 +13,12 @@ import java.util.List;
 public interface HomeworkRepository extends JpaRepository<Homework, Long> {
 
     /**
-     * findAllByUserId method finds all homework by specified userId.
-     * @param userId
-     * @return List of homework for the specified userId.
+     * findAllByCourseId method finds all homework by specified courseId
+     * @param courseId
+     * @return List of homework for the specified courseId.
      */
-    List<Homework> findAllByUserId(long userId);
+    List<Homework> findAllByCourseId(long courseId);
+
 
     /**
      * findById method returns homework for the given id.

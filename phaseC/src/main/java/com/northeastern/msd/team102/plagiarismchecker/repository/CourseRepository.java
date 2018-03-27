@@ -16,6 +16,8 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
      */
     List<Course> findAllByUserId(long userId);
 
+    Course findById(long courseId);
+
     @Query("Select c from Course c where id not in (Select course from Enroll e where user = ?1)")
     List<Course> findAllCoursesNotEnrolledByUser(User user);
 

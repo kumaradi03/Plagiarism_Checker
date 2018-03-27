@@ -6,6 +6,7 @@
     function FileUploadController(FileUploader, UserService, $location, $routeParams) {
         var vm = this;
         var userId = $routeParams['uid'];
+        vm.courseId = $routeParams['cid'];
         var hwId = $routeParams['hid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
@@ -30,19 +31,15 @@
             }
         });
 
-        function openNav(type) {
-            if(type === "Student"){
-                document.getElementById("mySidenav").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-            }
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
         }
 
         /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-        function closeNav(type) {
-            if(type === "Student"){
-                document.getElementById("mySidenav").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
-            }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
         }
 
         function logout() {
@@ -53,7 +50,7 @@
             .findUserById(userId)
             .then(function (user) {
                 vm.user = user;
-                openNav(vm.user.userType);
+                openNav();
             });
     }
 })();

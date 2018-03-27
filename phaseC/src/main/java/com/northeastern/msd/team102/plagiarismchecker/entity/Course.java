@@ -27,6 +27,12 @@ public class Course {
         //Default Constructor
     }
 
+    public Course(String name, String description, User user) {
+        this.name = name;
+        this.description = description;
+        this.user = user;
+    }
+
     /**
      * Getter for courseId
      */

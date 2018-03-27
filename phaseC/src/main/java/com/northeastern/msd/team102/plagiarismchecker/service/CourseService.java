@@ -1,6 +1,7 @@
 package com.northeastern.msd.team102.plagiarismchecker.service;
 
 import com.northeastern.msd.team102.plagiarismchecker.entity.Course;
+import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.repository.CourseRepository;
 import org.apache.log4j.Level;
@@ -22,6 +23,9 @@ public class CourseService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private HomeworkService homeworkService;
+
     public static final Logger logger = Logger.getLogger(CourseService.class.getName());
 
     /**
@@ -37,6 +41,11 @@ public class CourseService {
     public List<Course> findAllCoursesNotEnrolledByUser(User user) {
         logger.log(Level.INFO, "Returns all courses in which the user is not enrolled for userId: " + user.getId());
         return courseRepository.findAllCoursesNotEnrolledByUser(user);
+    }
+
+    public Course findById(long id) {
+        logger.log(Level.INFO, "Returning course for courseId: " + id);
+        return courseRepository.findById(id);
     }
 
     /**
