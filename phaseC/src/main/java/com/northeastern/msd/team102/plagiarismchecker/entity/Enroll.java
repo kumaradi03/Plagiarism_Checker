@@ -20,6 +20,22 @@ public class Enroll {
     @JoinColumn(foreignKey = @ForeignKey(name = "enroll_course_association"))
     private Course course;
 
+    /**
+     * Constructor for Enroll entity
+      * @param user user enrolled
+     * @param course course for which the user is enrolled.
+     */
+    public Enroll(User user, Course course) {
+        this.user = user;
+        this.course = course;
+    }
+
+    /**
+     * Default constructor
+     */
+    public Enroll() {
+        //Default Constructor
+    }
 
     /**
      * Getter for enrollId

@@ -19,7 +19,7 @@
         }
 
         function createEnrollment(course, userId) {
-            return $http.post("/rest/course/create/?userId="+userId, course)
+            return $http.post("/rest/enroll/create/?userId="+userId, course)
                 .then(function(res){
                     return res.data;
                 });

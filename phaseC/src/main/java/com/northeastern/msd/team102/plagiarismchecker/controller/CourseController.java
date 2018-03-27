@@ -1,6 +1,7 @@
 package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import com.northeastern.msd.team102.plagiarismchecker.entity.Course;
+import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.service.CourseService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,11 @@ public class CourseController {
         return courseService.findAllByUserId(userID);
     }
 
+    @PostMapping("/findAllCoursesNotEnrolledByUser")
+    public List<Course> findAllCoursesNotEnrolledByUser (@RequestBody User user) {
+        return courseService.findAllCoursesNotEnrolledByUser(user);
+    }
+
     /**
      * createCourse method creates a new course for a particular professor.
      * @param course course object to be created
@@ -38,7 +44,7 @@ public class CourseController {
      * @return Course
      */
     @PostMapping("/create")
-    public Course createHomework(@RequestBody Course course, @RequestParam("userId") String userId) {
+    public Course createCourse (@RequestBody Course course, @RequestParam("userId") String userId) {
         long userID = Long.parseLong(userId);
         return courseService.createCourse(course, userID);
     }
