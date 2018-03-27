@@ -50,6 +50,11 @@
                 controller: 'CourseController',
                 controllerAs: 'model',
             })
+            .when("/profile/:uid/course/registerCourse",{
+                templateUrl: 'views/user/template/enroll-course.client.html',
+                controller: 'EnrollController',
+                controllerAs: 'model',
+            })
             .when("/profile/:uid/homework/",{
                 templateUrl: 'views/user/template/homework.client.html',
                 controller: 'HomeWorkController',

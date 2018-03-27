@@ -1,6 +1,8 @@
 package com.northeastern.msd.team102.plagiarismchecker.service;
 
+import com.northeastern.msd.team102.plagiarismchecker.entity.Course;
 import com.northeastern.msd.team102.plagiarismchecker.entity.Enroll;
+import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.repository.EnrollRepository;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -21,9 +23,6 @@ public class EnrollService {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private CourseService courseService;
-
     public static final Logger logger = Logger.getLogger(EnrollService.class.getName());
 
     /**
@@ -34,5 +33,19 @@ public class EnrollService {
     public List<Enroll> findAllByUserId(long userId) {
         logger.log(Level.INFO, "Returns all courses for userId: " + userId);
         return enrollRepository.findAllByUserId(userId);
+    }
+
+    /**
+     * createEnroll method creates an enrollment for a given userId and a given course.
+     * @param course
+     * @param userId
+     * @return Enroll
+     */
+    public Enroll createEnroll(Course course, long userId)
+    {
+        logger.log(Level.INFO, "Creating homework for userId: " + userId);
+        User user = userService.findUserByUserId(userId);
+        Enroll enroll = new Enroll(user, course);
+        return enrollRepository.save(enroll);
     }
 }

@@ -34,6 +34,11 @@ public class CourseService {
         return courseRepository.findAllByUserId(userId);
     }
 
+    public List<Course> findAllCoursesNotEnrolledByUser(User user) {
+        logger.log(Level.INFO, "Returns all courses in which the user is not enrolled for userId: " + user.getId());
+        return courseRepository.findAllCoursesNotEnrolledByUser(user);
+    }
+
     /**
      * createCourse method creates a Course for a given userId.
      * @param course

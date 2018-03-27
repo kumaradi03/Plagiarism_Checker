@@ -1,13 +1,11 @@
 package com.northeastern.msd.team102.plagiarismchecker.controller;
 
+import com.northeastern.msd.team102.plagiarismchecker.entity.Course;
 import com.northeastern.msd.team102.plagiarismchecker.entity.Enroll;
 import com.northeastern.msd.team102.plagiarismchecker.service.EnrollService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +30,17 @@ public class EnrollController {
     public List<Enroll> findAllEnrollmentForUser (@RequestParam("userId") String userId) {
         long userID = Long.parseLong(userId);
         return enrollService.findAllByUserId(userID);
+    }
+
+    /**
+     * createEnrollment method creates a new enrollment for a particular userId and course.
+     * @param course course object to be created
+     * @param userId userId for which the enrollment is created.
+     * @return Enroll
+     */
+    @PostMapping("/create")
+    public Enroll createEnrollment(@RequestBody Course course, @RequestParam("userId") String userId) {
+        long userID = Long.parseLong(userId);
+        return enrollService.createEnroll(course, userID);
     }
 }

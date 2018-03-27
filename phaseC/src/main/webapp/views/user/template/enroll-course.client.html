@@ -28,26 +28,27 @@
             <div class="alert alert-danger" ng-show="model.error">
                 {{model.error}}
             </div>
-            <ul class="list-group">
-                <li ng-repeat = "course in model.courses"
-                    class="list-group-item">
-                    <a href="#/profile/{{model.user.id}}/course/{{course.id}}/homework">
-                        {{course.name}}
-                    </a>
-                </li>
-            </ul>
-            <ul class="list-group" ng-if="model.user.userType === 'Student'">
-                <li ng-repeat = "enrollment in model.enrollments"
-                    class="list-group-item">
-                    <a href="#/profile/{{model.user.id}}/course/{{enrollment.course.id}}/homework">
-                        {{enrollment.course.name}}
-                    </a>
-                </li>
-            </ul>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Course Name</th>
+                    <th scope="col">Course Description</th>
+                    <th scope="col">Professor Name</th>
+                    <th scope="col">Add Course</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="course in model.courses">
+                    <td>{{course.name}}</td>
+                    <td>{{course.description}}</td>
+                    <td>{{course.user.firstName}} {{course.user.lastName}}</td>
+                    <td><button type="button" class="btn btn-primary btn-s navbar-btn" ng-click="model.enrollCourse(course)">Add Course</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-</body>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="row navbar-text text-capitalize">

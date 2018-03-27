@@ -13,4 +13,6 @@ public interface EnrollRepository extends JpaRepository<Enroll, Long> {
      * @return List of enroll for the specified userId.
      */
     List<Enroll> findAllByUserId(long userId);
+
+
 }
