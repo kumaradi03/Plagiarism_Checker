@@ -5,10 +5,32 @@ package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
  * @description TreeNode type to store AST nodes
  */
 public class TreeNode implements Comparable<TreeNode>{
-	String ctx = null;
-	String parent = null;
-	int depth = -1;
 	
+	/**
+	 * currentNodeName: name of current AST node
+	 */
+	private String currentNodeName = null;
+	
+	/**
+	 *  parentNodeName: name of parent AST node
+	 */
+	private String parentNodeName = null;
+	
+	/**
+	 * depth: depth of current node
+	 */
+	private int depth = -1;
+	
+	/**
+	 * @param currentNodeName: name of current AST node
+	 * @param parentNodeName: name of parent AST node
+	 * @param depth: depth of current node
+	 */
+	public TreeNode(String currentNodeName, String parentNodeName, int depth) {
+		this.currentNodeName = currentNodeName; 
+		this.parentNodeName = parentNodeName;
+		this.depth = depth;
+	}
 	/**
 	 * @param o : Object
 	 * @return true if o has same name, parent name and depth as the current object; else false
@@ -19,8 +41,8 @@ public class TreeNode implements Comparable<TreeNode>{
 			return false;
 		}
 		TreeNode t = (TreeNode) o;
-		return (this.ctx!=null && t.ctx!=null && this.parent!=null && t.parent!=null && 
-				this.ctx.equals(t.ctx) && this.parent.equals(t.parent) && this.depth==t.depth);
+		return (this.currentNodeName!=null && t.currentNodeName!=null && this.parentNodeName!=null && t.parentNodeName!=null && 
+				this.currentNodeName.equals(t.currentNodeName) && this.parentNodeName.equals(t.parentNodeName) && this.depth==t.depth);
 	}
 
 	/**
@@ -29,8 +51,8 @@ public class TreeNode implements Comparable<TreeNode>{
 	 */
 	@Override
 	public int compareTo(TreeNode t) {
-		return (this.ctx!=null && t.ctx!=null && this.parent!=null && t.parent!=null && 
-				 this.parent.equals(t.parent) && this.depth==t.depth) ? this.ctx.compareTo(t.ctx) : -1;
+		return (this.currentNodeName!=null && t.currentNodeName!=null && this.parentNodeName!=null && t.parentNodeName!=null && 
+				 this.parentNodeName.equals(t.parentNodeName) && this.depth==t.depth) ? this.currentNodeName.compareTo(t.currentNodeName) : -1;
 	}
 	
 	/**
@@ -38,7 +60,7 @@ public class TreeNode implements Comparable<TreeNode>{
 	 */
 	@Override
 	  public int hashCode() {
-	    return this.ctx.length() + this.parent.length() + this.depth;
+	    return this.currentNodeName.length() + this.parentNodeName.length() + this.depth;
 	  }
 
 }

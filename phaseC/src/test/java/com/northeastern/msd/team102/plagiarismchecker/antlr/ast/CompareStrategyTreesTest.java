@@ -26,8 +26,7 @@ public class CompareStrategyTreesTest {
 	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile2.py");
-		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());
-		
+		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
 	    assertEquals(94.12, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	

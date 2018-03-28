@@ -14,24 +14,66 @@ import Jama.Matrix;
 
 /**
  * @version 1.0
- * @description compares 2 python files
+ * @description linear regression using normal equations to assign learned weights to each algorithm
  */
 public class WeighComparators {
-	private Logger logger;
-	private List<ArrayList<Double>> dataX;
-	private List<Double> dataXHashMap;
-	private List<Double> dataXLevenshtein;
-	private List<Double> dataXTree;
-	private List<Double> dataY;
-	private double[] weightsAll;
-	private double weightsHashMap;
-	private double weightsLevenshtein;
-	private double weightsTree;
-	private int noOfComparators;
 	
 	/**
-	 * @param path : String - path to the training data
+	 * logger - to log data to file
 	 */
+	private Logger logger;
+	
+	/**
+	 * dataX - to store input feature data from TrainingData.csv file (refer columns index: 2,3,4)
+	 */
+	private List<ArrayList<Double>> dataX;
+	
+	/**
+	 * dataXHashMap - to store input feature data from TrainingData.csv file (refer columns index: 2)
+	 */
+	private List<Double> dataXHashMap;
+	
+	/**
+	 * dataXLevenshtein - to store input feature data from TrainingData.csv file (refer columns index: 3)
+	 */
+	private List<Double> dataXLevenshtein;
+	
+	/**
+	 * dataXTree - to store input feature data from TrainingData.csv file (refer columns index: 4)
+	 */
+	private List<Double> dataXTree;
+	
+	/**
+	 * dataY - to store output class data from TrainingData.csv file (refer columns index: 5)
+	 */
+	private List<Double> dataY;
+	
+	/**
+	 * weightsAll - to store weights to be assigned to each algorithm
+	 * index 0 : Hashmap, index 1: Levenshtein, index 2: Tree
+	 */
+	private double[] weightsAll;
+	
+	/**
+	 * weightsHashMap - to store weight to be assigned to HashMap algorithm
+	 */
+	private double weightsHashMap;
+	
+	/**
+	 * weightsLevenshtein - to store weight to be assigned to Levenshtein algorithm
+	 */
+	private double weightsLevenshtein;
+	
+	/**
+	 * weightsTree - to store weight to be assigned to Tree algorithm
+	 */
+	private double weightsTree;
+	
+	/**
+	 * noOfComparators - to store count of total number of comparators in the system
+	 */
+	private int noOfComparators;
+	
 	WeighComparators() throws URISyntaxException {
 		logger = Logger.getLogger(WeighComparators.class.getName());
 		this.dataX = new ArrayList<>();
@@ -54,11 +96,17 @@ public class WeighComparators {
 	/**
 	 * @description reads training data from csv file
 	 */
-	private void readCSV() throws URISyntaxException {
+	private void readCSV() {
+		logger.log(Level.INFO, "Reading training data");
         String line = "";
         String cvsSplitBy = ",";
         URL resource = WeighComparators.class.getClassLoader().getResource("TrainingData.csv");
-        String filepath = Paths.get(resource.toURI()).toFile().getAbsolutePath();
+        String filepath = null;
+		try {
+			filepath = Paths.get(resource.toURI()).toFile().getAbsolutePath();
+		} catch (URISyntaxException e1) {
+			logger.log(Level.INFO, "Exception : {0}",e1);
+		}
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             while ((line = br.readLine()) != null) {
                 String[] trainRow = line.split(cvsSplitBy);
