@@ -1,6 +1,6 @@
 package com.northeastern.msd.team102.plagiarismchecker.controller;
 
-import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
+import com.northeastern.msd.team102.plagiarismchecker.entity.File;
 import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
 import com.northeastern.msd.team102.plagiarismchecker.entity.Report;
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
@@ -36,10 +36,10 @@ public class ReportControllerTest {
 
     @Test
     public void findAllReportSummary() throws Exception{
-        Report testReport = new Report(new User(), new User(), new FileUpload(), new FileUpload(), new Homework(), 10.00,12,12,12);
+        Report testReport = new Report(new File(), new File(), 10.00,12,12,12);
         List<Report> testReportList = new ArrayList<>();
         testReportList.add(testReport);
-        String ExpectedOutput="[{\"id\":0,\"user1\":{\"id\":0,\"firstName\":null,\"lastName\":null,\"userType\":null,\"username\":null,\"password\":null,\"email\":null},\"user2\":{\"id\":0,\"firstName\":null,\"lastName\":null,\"userType\":null,\"username\":null,\"password\":null,\"email\":null},\"fileUpload1\":{\"id\":0,\"filename\":null,\"file\":null,\"mimeType\":null,\"homework\":null,\"user\":null},\"fileUpload2\":{\"id\":0,\"filename\":null,\"file\":null,\"mimeType\":null,\"homework\":null,\"user\":null},\"homework\":{\"id\":0,\"name\":null,\"description\":null,\"user\":null},\"percentageCompareHashMap\":10.0,\"percentageCompareTrees\":12.0,\"percentageCompareLevenshteinDistance\":12.0,\"percentageCompareAll\":12.0}]";
+        String ExpectedOutput="[{\"id\":0,\"file1\":{\"id\":0,\"filename\":null,\"file\":null,\"mimeType\":null,\"course\":null,\"homework\":null,\"user\":null},\"file2\":{\"id\":0,\"filename\":null,\"file\":null,\"mimeType\":null,\"course\":null,\"homework\":null,\"user\":null},\"percentageCompareHashMap\":10.0,\"percentageCompareTrees\":12.0,\"percentageCompareLevenshteinDistance\":12.0,\"percentageCompareAll\":12.0}]";
         Mockito.when(reportService.findAllReportSummary(3,1)).thenReturn(testReportList);
         MvcResult result;
         result=mockMvc.perform(MockMvcRequestBuilders.get("/rest/report/findAllReportSummary").param("userId","3")

@@ -1,15 +1,10 @@
 package com.northeastern.msd.team102.plagiarismchecker.controller;
 
-import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
 import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
-import com.northeastern.msd.team102.plagiarismchecker.entity.Report;
-import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.service.HomeworkService;
-import com.northeastern.msd.team102.plagiarismchecker.service.ReportService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -25,8 +20,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import static org.junit.Assert.*;
 
 /**
  * Test case suite to test HomeWork controller

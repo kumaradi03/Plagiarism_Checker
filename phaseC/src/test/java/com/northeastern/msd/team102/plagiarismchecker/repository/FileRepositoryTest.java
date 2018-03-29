@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 /**
  *  Test suite for
  */
-public class FileUploadRepositoryTest {
+public class FileRepositoryTest {
     @Test
     public void findByFilename() throws Exception {
 

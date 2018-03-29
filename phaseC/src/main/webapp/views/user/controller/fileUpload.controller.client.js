@@ -3,7 +3,7 @@
         .module("PlagiarismChecker")
         .controller("FileUploadController", FileUploadController);
 
-    function FileUploadController(FileUploader, UserService, $location, $routeParams) {
+    function FileUploadController(FileUploader, UserService, FileService, $location, $routeParams) {
         var vm = this;
         var userId = $routeParams['uid'];
         vm.courseId = $routeParams['cid'];
@@ -11,7 +11,7 @@
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.logout = logout;
-        vm.uploader = new FileUploader({url:"/rest/file/upload/?userId="+userId+"&hwId="+hwId});
+        vm.uploader = new FileUploader({url:"/rest/file/upload/?userId="+userId+"&courseId="+vm.courseId+"&hwId="+hwId});
 
         $('#fileUploadButton').click(function(event) {
             $('#fileDialog').click();
@@ -50,7 +50,14 @@
             .findUserById(userId)
             .then(function (user) {
                 vm.user = user;
-                openNav();
+                FileService
+                    .findAllFileForHomework(userId, vm.courseId, hwId)
+                    .then(function (files) {
+                        if (files.length === 0)
+                            vm.fileExists = false;
+                        else
+                            vm.fileExists = true;
+                    });
             });
     }
 })();

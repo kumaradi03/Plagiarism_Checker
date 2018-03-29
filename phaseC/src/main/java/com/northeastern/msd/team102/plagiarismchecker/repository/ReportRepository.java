@@ -2,6 +2,7 @@ package com.northeastern.msd.team102.plagiarismchecker.repository;
 
 import com.northeastern.msd.team102.plagiarismchecker.entity.Report;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,5 +19,6 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
      * @param userId user Id
      * @return List of reports.
      */
-    List<Report> findAllByHomeworkIdAndUser1Id(long hwId, long userId);
+    @Query("select r from Report r join File f on file1_id = f.id where homework_id = ?1 and user_id = ?2")
+    List<Report> findAllByHomeworkIdAndUserId(long hwId, long userId);
 }
