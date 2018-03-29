@@ -37,6 +37,7 @@
         UserService
             .findUserById(userId)
             .then(function (user) {
+                vm.user = user;
                 CourseService
                     .findAllCoursesNotEnrolledByUser(user)
                     .then(function (courses) {
@@ -44,6 +45,7 @@
                             vm.error = "No courses to enroll.";
                         else
                             vm.courses = courses;
+                        openNav();
                     });
             });
     }

@@ -3,10 +3,10 @@ package com.northeastern.msd.team102.plagiarismchecker.entity;
 import javax.persistence.*;
 
 /**
- * FileUpload entity.
+ * File entity.
  */
 @Entity
-public class FileUpload {
+public class File {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -21,20 +21,24 @@ public class FileUpload {
     private String mimeType;
 
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "fileUpload_homework_association"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "file_course_association"))
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "file_homework_association"))
     private Homework homework;
 
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "fileUpload_user_association"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "file_user_association"))
     private User user;
 
     /**
-     * Constructor for FileUpload class
+     * Constructor for File class
      * @param filename File name
      * @param file file in bytes array
      * @param mimeType mimeType of the file.
      */
-    public FileUpload (String filename, byte[] file, String mimeType) {
+    public File(String filename, byte[] file, String mimeType) {
         this.file = file;
         this.filename = filename;
         this.mimeType = mimeType;
@@ -43,7 +47,7 @@ public class FileUpload {
     /**
      *  Default Constructor
      */
-    public FileUpload() {
+    public File() {
 
     }
 
@@ -139,5 +143,20 @@ public class FileUpload {
      */
     public void setMimeType(String mimeType) {
         this.mimeType = mimeType;
+    }
+
+    /**
+     * Getter for Course.
+     * @return the Course object for the given file.
+     */
+    public Course getCourse() {
+        return course;
+    }
+
+    /**
+     * Setter for Course.
+     */
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

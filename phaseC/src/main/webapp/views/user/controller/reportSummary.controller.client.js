@@ -35,6 +35,7 @@
         ReportService
             .findAllReportSummary(vm.studentId, vm.hwId)
             .then(function (reports) {
+                console.log(reports);
                 if(reports.length === 0)
                     vm.error = "No reports.";
                 else

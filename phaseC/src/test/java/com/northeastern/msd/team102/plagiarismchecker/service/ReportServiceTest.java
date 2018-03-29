@@ -2,7 +2,6 @@ package com.northeastern.msd.team102.plagiarismchecker.service;
 
 import com.northeastern.msd.team102.plagiarismchecker.entity.Report;
 import com.northeastern.msd.team102.plagiarismchecker.repository.ReportRepository;
-import com.sun.org.apache.regexp.internal.RE;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class ReportServiceTest {
     private UserService userService;
 
     @MockBean
-    private FileUploadService fileUploadService;
+    private FileService fileService;
 
     @MockBean
     private HomeworkService homeworkService;
@@ -63,7 +62,7 @@ public class ReportServiceTest {
     public void findAllReportSummary() throws Exception {
         Report testReport = new Report();
         List<Report> testReportList=new ArrayList<>();
-        when(reportRepository.findAllByHomeworkIdAndUser1Id(3,1)).thenReturn(testReportList);
+        when(reportRepository.findAllByHomeworkIdAndUserId(3,1)).thenReturn(testReportList);
         given(this.reportService.findAllReportSummary(3,1)).willReturn(testReportList);
         assertEquals(testReportList,this.reportService.findAllReportSummary(3,1));
     }

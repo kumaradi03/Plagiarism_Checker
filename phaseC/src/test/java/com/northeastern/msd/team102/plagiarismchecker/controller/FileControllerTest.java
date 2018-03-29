@@ -2,9 +2,9 @@ package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
+import com.northeastern.msd.team102.plagiarismchecker.entity.File;
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
-import com.northeastern.msd.team102.plagiarismchecker.service.FileUploadService;
+import com.northeastern.msd.team102.plagiarismchecker.service.FileService;
 import com.northeastern.msd.team102.plagiarismchecker.service.ReportService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +31,7 @@ public class FileControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    FileUploadService fileUploadService;
+    FileService fileService;
 
     @MockBean
     ReportService reportService;
@@ -43,8 +43,8 @@ public class FileControllerTest {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
         Set<User> set = new HashSet<>();
         set.add(testUser);
-        List<FileUpload> fileUploadList = new ArrayList<>();
-        Mockito.when(fileUploadService.findAllByHomeworkId(3)).thenReturn(fileUploadList);
+        List<File> fileList = new ArrayList<>();
+        Mockito.when(fileService.findAllByHomeworkId(3)).thenReturn(fileList);
         MvcResult result;
         result=mockMvc.perform(MockMvcRequestBuilders.get("/rest/file/getUser").param("hwId",testHWId))
                 .andExpect(status().isOk())
@@ -54,14 +54,15 @@ public class FileControllerTest {
 
     @Test
     public void uploadFile() throws Exception {
-        FileUpload testFileUpload = new FileUpload();
-        FileUpload testFileUpload2 = new FileUpload();
+        File testFile = new File();
+        File testFile2 = new File();
         MockMultipartFile firstFile = new MockMultipartFile("data", "filename.txt", "text/plain", "some xml".getBytes());
-        Mockito.when(fileUploadService.uploadFile(testFileUpload,3,3)).thenReturn(testFileUpload2);
+        Mockito.when(fileService.uploadFile(testFile,3,3, 2)).thenReturn(testFile2);
         mockMvc.perform(MockMvcRequestBuilders.fileUpload("/rest/file/upload")
                 .file(firstFile)
                 .param("userId", "4")
-                .param("hwId","5"))
+                .param("hwId","5")
+                .param("courseId","2"))
                 .andExpect(status().is(200));
     }
 }

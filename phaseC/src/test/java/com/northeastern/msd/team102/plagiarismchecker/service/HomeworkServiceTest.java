@@ -36,6 +36,9 @@ public class HomeworkServiceTest {
     @MockBean
     private UserService userService;
 
+    @MockBean
+    private CourseService courseService;
+
     @Test
     public void createHomework() throws Exception {
         Homework testHomeWork = new Homework();

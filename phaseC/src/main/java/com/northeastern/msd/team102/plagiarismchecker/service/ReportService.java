@@ -1,7 +1,7 @@
 package com.northeastern.msd.team102.plagiarismchecker.service;
 
 import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.*;
-import com.northeastern.msd.team102.plagiarismchecker.entity.FileUpload;
+import com.northeastern.msd.team102.plagiarismchecker.entity.File;
 import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
 import com.northeastern.msd.team102.plagiarismchecker.entity.Report;
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
@@ -27,7 +27,7 @@ public class ReportService {
     private UserService userService;
 
     @Autowired
-    private FileUploadService fileUploadService;
+    private FileService fileService;
 
     @Autowired
     private HomeworkService homeworkService;
@@ -50,15 +50,15 @@ public class ReportService {
      * @param hwId homework id
      * @param file file to be compared
      */
-    public void generateReport(long userId, long hwId, FileUpload file) throws URISyntaxException {
+    public void generateReport(long userId, long hwId, File file) throws URISyntaxException {
         logger.log(Level.INFO, "Generating report for " + userId + "for Homework " + hwId +
                 "for file " + file.getFilename());
         User user = userService.findUserByUserId(userId);
         Homework hw = homeworkService.findById(hwId);
-        List<FileUpload> fileUploads;
-        fileUploads = fileUploadService.findAllFileForOtherUser(hwId, userId);
-        if (!fileUploads.isEmpty()) {
-            for(FileUpload f: fileUploads) {
+        List<File> files;
+        files = fileService.findAllFileForOtherUser(hwId, userId);
+        if (!files.isEmpty()) {
+            for(File f: files) {
                 Context context = new Context(new CompareStrategyHashMap());
                 double resultStrategy1File1 = context.executeStrategy(file.getFile(), f.getFile());
                 logger.log(Level.INFO, "Plagiarism percentage from Strategy HashMap for file1 "
@@ -87,9 +87,9 @@ public class ReportService {
                 double resultStrategy4File2 = context.executeStrategy(f.getFile(), file.getFile());
                 logger.log(Level.INFO, "Plagiarism percentage from Strategy All for file2 "
                         + resultStrategy4File2);
-                Report report = new Report(user, f.getUser(), file, f, hw, resultStrategy1File1, resultStrategy2File1, resultStrategy3File1, resultStrategy4File1);
+                Report report = new Report(file, f, resultStrategy1File1, resultStrategy2File1, resultStrategy3File1, resultStrategy4File1);
                 createReport(report);
-                Report report1 = new Report(f.getUser(), user, f, file, hw, resultStrategy1File2, resultStrategy2File2, resultStrategy3File2, resultStrategy4File2);
+                Report report1 = new Report(f, file, resultStrategy1File2, resultStrategy2File2, resultStrategy3File2, resultStrategy4File2);
                 createReport(report1);
             }
         }
@@ -102,8 +102,8 @@ public class ReportService {
      * @return Lost of Report
      */
     public List<Report> findAllReportSummary(long userId, long hwId) {
-
         logger.log(Level.INFO, "Returning all report summary for userid " + userId + "and hwId " + hwId);
-        return reportRepository.findAllByHomeworkIdAndUser1Id(hwId,userId);
+        return reportRepository.findAllByHomeworkIdAndUserId(hwId,userId);
     }
+
 }
