@@ -9,6 +9,6 @@ Team 102 Members
 Run :
 1.	Maven Clean Install.
 2.	Run Application as Java Application.
-3.	Run on LocalHost as : http://localhost:8080/#/ogin
-AWS Instance : [AWS Link](http://codex.us-east-1.elasticbeanstalk.com/)
+3.	Run on LocalHost as : http://localhost:8080/#/login
 
+AWS Instance : [AWS Link](http://codex.us-east-1.elasticbeanstalk.com/)
