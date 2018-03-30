@@ -96,17 +96,12 @@ public class WeighComparators {
 	/**
 	 * @description reads training data from csv file
 	 */
-	private void readCSV() {
+	private void readCSV() throws URISyntaxException {
 		logger.log(Level.INFO, "Reading training data");
         String line = "";
         String cvsSplitBy = ",";
         URL resource = WeighComparators.class.getClassLoader().getResource("TrainingData.csv");
-        String filepath = null;
-		try {
-			filepath = Paths.get(resource.toURI()).toFile().getAbsolutePath();
-		} catch (URISyntaxException e1) {
-			logger.log(Level.INFO, "Exception : {0}",e1);
-		}
+		String filepath = Paths.get(resource.toURI()).toFile().getAbsolutePath();
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             while ((line = br.readLine()) != null) {
                 String[] trainRow = line.split(cvsSplitBy);
