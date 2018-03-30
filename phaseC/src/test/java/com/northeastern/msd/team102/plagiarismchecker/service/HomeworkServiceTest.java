@@ -36,23 +36,26 @@ public class HomeworkServiceTest {
     @MockBean
     private UserService userService;
 
+    @MockBean
+    private CourseService courseService;
+
     @Test
     public void createHomework() throws Exception {
         Homework testHomeWork = new Homework();
         when(homeworkRepository.save(testHomeWork)).thenReturn(testHomeWork);
-        given(this.homeworkService.createHomework(testHomeWork,1)).willReturn(testHomeWork);
-        assertEquals(testHomeWork,this.homeworkService.createHomework(testHomeWork,1));
+        given(this.homeworkService.createHomework(testHomeWork,1, 1)).willReturn(testHomeWork);
+        assertEquals(testHomeWork,this.homeworkService.createHomework(testHomeWork,1,1));
 
     }
 
     @Test
-    public void findAllByUserId() throws Exception {
+    public void findAllByCourseId() throws Exception {
         Homework testHomeWork = new Homework();
         List<Homework> homeworkList = new ArrayList<>();
         homeworkList.add(testHomeWork);
         when(homeworkRepository.save(testHomeWork)).thenReturn(testHomeWork);
-        given(this.homeworkService.findAllByUserId(3)).willReturn(homeworkList);
-        assertEquals(homeworkList,this.homeworkService.findAllByUserId(3));
+        given(this.homeworkService.findAllByCourseId(3)).willReturn(homeworkList);
+        assertEquals(homeworkList,this.homeworkService.findAllByCourseId(3));
     }
 
     @Test

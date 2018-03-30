@@ -1,15 +1,14 @@
 (function(){
     angular
         .module("PlagiarismChecker")
-        .controller("HomeWorkController", HomeWorkController);
+        .controller("EnrollController", EnrollController);
 
-    function HomeWorkController (UserService, HomeworkService, $location, $routeParams) {
+    function EnrollController (UserService, CourseService, EnrollService, $location, $routeParams) {
         var vm = this;
         var userId = $routeParams['uid'];
-        vm.courseId = $routeParams['cid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
-        vm.createHomework = createHomework;
+        vm.enrollCourse = enrollCourse;
         vm.logout = logout;
 
         function openNav() {
@@ -23,11 +22,11 @@
             document.getElementById("main").style.marginLeft = "0";
         }
 
-        function createHomework(homework) {
-            HomeworkService
-                .createHomework(homework, vm.user.id, vm.courseId)
-                .then(function (homework) {
-                    $location.url("/profile/"+vm.user.id+"/course/"+vm.courseId+"/homework");
+        function enrollCourse(course) {
+            EnrollService
+                .createEnrollment(course, userId)
+                .then(function (enroll) {
+                    $location.url("/profile/"+userId+"/course");
                 });
         }
 
@@ -37,15 +36,15 @@
 
         UserService
             .findUserById(userId)
-            .then(function (usr) {
-                vm.user = usr;
-                HomeworkService
-                    .findAllHomeworkForCourse(vm.courseId)
-                    .then(function (homeworks) {
-                        if(homeworks.length === 0)
-                            vm.error = "No Homework created.";
+            .then(function (user) {
+                vm.user = user;
+                CourseService
+                    .findAllCoursesNotEnrolledByUser(user)
+                    .then(function (courses) {
+                        if(courses.length === 0)
+                            vm.error = "No courses to enroll.";
                         else
-                            vm.homeworks = homeworks;
+                            vm.courses = courses;
                         openNav();
                     });
             });

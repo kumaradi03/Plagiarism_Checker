@@ -30,7 +30,7 @@ public class UserRepositoryTest {
 
     @Test
     public void findByUsernameAndPassword() throws Exception {
-        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com","8573109310");
+        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
         when(userRepository.findByUsernameAndPassword("adi","adi")).thenReturn(mockUser);
         given(this.userRepository.findByUsernameAndPassword("adi","adi")).willReturn(mockUser);
         assertEquals(mockUser,this.userRepository.findByUsernameAndPassword("adi","adi"));
@@ -38,7 +38,7 @@ public class UserRepositoryTest {
 
     @Test
     public void findByUsername() throws Exception {
-        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com","8573109310");
+        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
         when(userRepository.findByUsername("adi")).thenReturn(mockUser);
         given(this.userRepository.findByUsername("adi")).willReturn(mockUser);
         assertEquals(mockUser,this.userRepository.findByUsername("adi"));
@@ -46,7 +46,7 @@ public class UserRepositoryTest {
 
     @Test
     public void findById() throws Exception {
-        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com","8573109310");
+        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
         when(userRepository.findById(1)).thenReturn(mockUser);
         given(this.userRepository.findById(1)).willReturn(mockUser);
         assertEquals(mockUser,this.userRepository.findById(1));
@@ -54,7 +54,7 @@ public class UserRepositoryTest {
 
     @Test
     public void findByUserType() throws Exception {
-        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com","8573109310");
+        User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
         when(userRepository.findByUserType("Student")).thenReturn(mockUser);
         given(this.userRepository.findByUserType("Student")).willReturn(mockUser);
         assertEquals(mockUser,this.userRepository.findByUserType("Student"));

@@ -3,14 +3,15 @@
         .module("PlagiarismChecker")
         .controller("FileUploadController", FileUploadController);
 
-    function FileUploadController(FileUploader, UserService, $location, $routeParams) {
+    function FileUploadController(FileUploader, UserService, FileService, $location, $routeParams) {
         var vm = this;
         var userId = $routeParams['uid'];
+        vm.courseId = $routeParams['cid'];
         var hwId = $routeParams['hid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.logout = logout;
-        vm.uploader = new FileUploader({url:"/rest/file/upload/?userId="+userId+"&hwId="+hwId});
+        vm.uploader = new FileUploader({url:"/rest/file/upload/?userId="+userId+"&courseId="+vm.courseId+"&hwId="+hwId});
 
         $('#fileUploadButton').click(function(event) {
             $('#fileDialog').click();
@@ -30,19 +31,15 @@
             }
         });
 
-        function openNav(type) {
-            if(type === "Student"){
-                document.getElementById("mySidenav").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-            }
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
         }
 
         /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-        function closeNav(type) {
-            if(type === "Student"){
-                document.getElementById("mySidenav").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
-            }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
         }
 
         function logout() {
@@ -53,7 +50,14 @@
             .findUserById(userId)
             .then(function (user) {
                 vm.user = user;
-                openNav(vm.user.userType);
+                FileService
+                    .findAllFileForHomework(userId, vm.courseId, hwId)
+                    .then(function (files) {
+                        if (files.length === 0)
+                            vm.fileExists = false;
+                        else
+                            vm.fileExists = true;
+                    });
             });
     }
 })();

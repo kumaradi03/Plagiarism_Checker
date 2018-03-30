@@ -92,7 +92,6 @@
         }
 
         function goToHome(){
-            console.log(vm.userId);
             $location.url("/home")
         }
 

@@ -20,7 +20,7 @@
     </span>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#/profile/{{model.userId}}">Profile</a>
-    <a href="#/profile/{{model.userId}}/homework">Homework</a>
+    <a href="#/profile/{{model.userId}}/course/{{model.courseId}}/homework">Homework</a>
     <a href="#/profile/{{model.userId}}/homework/{{model.hwId}}/submission">Submission</a>
 </div>
 <div id="main" class="container-fluid row">
@@ -39,10 +39,10 @@
         </thead>
         <tbody>
         <tr ng-repeat="report in model.reports">
-            <td>{{report.user1.firstName}} {{report.user1.lastName}}</td>
-            <td>{{report.fileUpload1.filename}}</td>
-            <td>{{report.user2.firstName}} {{report.user2.lastName}}</td>
-            <td>{{report.fileUpload2.filename}}</td>
+            <td>{{report.file1.user.firstName}} {{report.file1.user.lastName}}</td>
+            <td>{{report.file1.filename}}</td>
+            <td>{{report.file2.user.firstName}} {{report.file2.user.lastName}}</td>
+            <td>{{report.file2.filename}}</td>
             <td ng-if="model.sId === '1'">{{report.percentageCompareHashMap}}</td>
             <td ng-if="model.sId === '2'">{{report.percentageCompareTrees}}</td>
             <td ng-if="model.sId === '3'">{{report.percentageCompareLevenshteinDistance}}</td>

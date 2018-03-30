@@ -10,7 +10,7 @@
             <span ng-click="model.openNav()">
                 <a class="glyphicon glyphicon-align-justify"></a>
             </span>
-            <a ng-click="model.goToHome()">Plagiarism Checker</a>
+            <a>Plagiarism Checker</a>
         </div>
     </div>
 </nav>
@@ -21,12 +21,14 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#/profile/{{model.user.id}}">Profile</a>
     <a href="#/profile/{{model.user.id}}/course">Course</a>
-    <a href="#/profile/{{model.user.id}}/course/{{model.courseId}}/homework">Homework</a>
 </div>
 <div id="main">
     <div class="container-fluid row">
-        <div ng-show = "model.user.userType === 'Professor'">
-            <a href="#/profile/{{model.user.id}}/course/{{model.courseId}}/homework/new">
+        <div>
+            <a href="#/profile/{{model.user.id}}/course/new" ng-if="model.user.userType === 'Professor'">
+                <span class="glyphicon glyphicon-plus pull-right"></span>
+            </a>
+            <a href="#/profile/{{model.user.id}}/course/registerCourse" ng-if="model.user.userType === 'Student'">
                 <span class="glyphicon glyphicon-plus pull-right"></span>
             </a>
         </div>
@@ -36,14 +38,19 @@
             <div class="alert alert-danger" ng-show="model.error">
                 {{model.error}}
             </div>
-            <ul class="list-group">
-                <li ng-repeat = "homework in model.homeworks"
+            <ul class="list-group" ng-if="model.user.userType === 'Professor'">
+                <li ng-repeat = "course in model.courses"
                     class="list-group-item">
-                    <a href="#/profile/{{model.user.id}}/course/{{model.courseId}}/homework/{{homework.id}}/submission" ng-if="model.user.userType === 'Professor'">
-                        {{homework.name}}
+                    <a href="#/profile/{{model.user.id}}/course/{{course.id}}/homework">
+                        {{course.name}}
                     </a>
-                    <a href="#/profile/{{model.user.id}}/course/{{model.courseId}}/homework/{{homework.id}}/fileupload" ng-if="model.user.userType === 'Student'">
-                        {{homework.name}}
+                </li>
+            </ul>
+            <ul class="list-group" ng-if="model.user.userType === 'Student'">
+                <li ng-repeat = "enrollment in model.enrollments"
+                    class="list-group-item">
+                    <a href="#/profile/{{model.user.id}}/course/{{enrollment.course.id}}/homework">
+                        {{enrollment.course.name}}
                     </a>
                 </li>
             </ul>
