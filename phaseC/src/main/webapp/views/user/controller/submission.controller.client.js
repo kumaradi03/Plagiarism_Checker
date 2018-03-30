@@ -7,6 +7,7 @@
         var vm = this;
         var userId = $routeParams['uid'];
         var hwId = $routeParams['hid'];
+        var courseId = $routeParams['cid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.checkPlagiarism = checkPlagiarism;
@@ -29,7 +30,7 @@
         }
 
         function checkPlagiarism(user) {
-            $location.url('/profile/'+vm.user.id+'/homework/'+hwId+'/submission/'+user.id+'/type/'+$scope.myVar+'/summary');
+            $location.url('/profile/'+vm.user.id+'/course/'+courseId+'/homework/'+hwId+'/submission/'+user.id+'/type/'+$scope.myVar+'/summary');
         }
 
         function logout() {
