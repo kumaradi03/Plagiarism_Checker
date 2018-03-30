@@ -4,6 +4,10 @@ import org.apache.log4j.Logger;
 
 import java.net.URISyntaxException;
 
+/**
+ * @version 1.0
+ * @description compares 2 python files using Levenshtein strategy
+ */
 public class CompareStrategyLevenshteinDist implements CompareStrategy {
 
     private Logger logger;
@@ -23,6 +27,7 @@ public class CompareStrategyLevenshteinDist implements CompareStrategy {
         ASTGenerator astPrinter1 = new ASTGenerator(file1);
         int total = astPrinter1.getTotalCountOfNodes();
         if (total <= 1) {
+        	logger.log(Level.INFO,"WARNING: Empty base file submitted for Levenshtein comparison.");
             SendEmail.getInstance("Exception caught in CompareStrategyLevenshteinDistance.java."
         			+ "Either empty file is submitted or Nodes "
         			+ "are not stored properly for given file.");
@@ -31,18 +36,14 @@ public class CompareStrategyLevenshteinDist implements CompareStrategy {
         ASTGenerator astPrinter2 = new ASTGenerator(file2);
         String node1 = astPrinter1.print();
         String node2 = astPrinter2.print();
-        
-        WeighComparators w = new WeighComparators();
-	    return w.getFinalPredictedOutput(compareFilesUsingLD(node1, node2), 2);
+        return compareFilesUsingLD(node1, node2);
     }
 
     /**
-     * This function implements logic to compare two string using
-     * Levenshtein Edit distance
+     * @description This function implements logic to compare two string using Levenshtein Edit distance
      * @param rawfirstString first String
      * @param rawsecondString second String
-     * @return Edit distance similarity between rawfirstString and
-     * rawsecondString
+     * @return Edit distance similarity between rawfirstString and rawsecondString
      */
     public double compareFilesUsingLD(String rawfirstString, String rawsecondString) {
         String firstString = rawfirstString.trim().replaceAll(" +", " ");

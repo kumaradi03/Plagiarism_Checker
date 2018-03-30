@@ -32,6 +32,7 @@ public class CompareStrategyHashMap implements CompareStrategy {
 		ASTGenerator astPrinter1 = new ASTGenerator(file1);
 		int total = astPrinter1.getTotalCountOfNodes();
 		if (total <= 1) {
+			logger.log(Level.INFO,"WARNING: Empty base file submitted for HashMap comparison.");
             SendEmail.getInstance("Exception caught in CompareStrategyHashMap.java."
         			+ "Either empty file is submitted or Nodes "
         			+ "are not stored properly for given file.");
@@ -40,9 +41,7 @@ public class CompareStrategyHashMap implements CompareStrategy {
 		ASTGenerator astPrinter2 = new ASTGenerator(file2);	    
 	    Map<String, List<Integer>> node1 = astPrinter1.getNodes();
 	    Map<String, List<Integer>> node2 = astPrinter2.getNodes();
-	    
-	    WeighComparators w = new WeighComparators();
-	    return w.getFinalPredictedOutput(compareAST1withAST2(node1, node2, total), 1);
+	    return compareAST1withAST2(node1, node2, total);
 	}
 	
 	/**

@@ -5,9 +5,14 @@ import org.apache.log4j.Logger;
 
 import java.net.URISyntaxException;
 
+//@todo Until access for MOSS is received, the class column in 'TrainingData.csv' is from a general online plagiarism detector,
+// 			hence some irregularities in output might be seen for now.
+// 			After receiving MOSS access, just replace the class column in 'TrainingData.csv' for MOSS generated values,
+// 			and rest, the algorithm will scale itself automatically.
 /**
  * @version 1.0
- * @description compares 2 python files
+ * @description compares 2 python files using weighted average of all comparison strategies using 
+				Linear regression using normal equations strategy
  */
 public class CompareStrategyAll implements CompareStrategy {
 

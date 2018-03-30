@@ -27,6 +27,7 @@ public class CompareStrategyTrees implements CompareStrategy {
 		ASTGenerator ast1 = new ASTGenerator(file1);
 		int total = ast1.getTotalCountOfNodes();
 		if (total <= 1) {
+			logger.log(Level.INFO,"WARNING: Empty base file submitted for AST Tree comparison.");
 			SendEmail.getInstance("Exception caught in CompareStrategyTrees.java."
 					+ "Either empty file is submitted or Nodes are "
 					+ "not stored properly for given file");
@@ -42,8 +43,7 @@ public class CompareStrategyTrees implements CompareStrategy {
 				similarity++;
 				treeNodes2.remove((treeNodes2.indexOf(t1)));
 			}			
-		}		
-		WeighComparators w = new WeighComparators();
-	    return w.getFinalPredictedOutput((((double)similarity/(double)total) * 100.0), 3);
+		}
+		return (((double)similarity/(double)total) * 100.0);
 	}
 }
