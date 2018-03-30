@@ -53,8 +53,6 @@ public class ReportService {
     public void generateReport(long userId, long hwId, File file) throws URISyntaxException {
         logger.log(Level.INFO, "Generating report for " + userId + "for Homework " + hwId +
                 "for file " + file.getFilename());
-        User user = userService.findUserByUserId(userId);
-        Homework hw = homeworkService.findById(hwId);
         List<File> files;
         files = fileService.findAllFileForOtherUser(hwId, userId);
         if (!files.isEmpty()) {
