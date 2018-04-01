@@ -34,7 +34,8 @@ public class Snippet {
         try {
             fileReader = new FileReader(file);
         } catch (FileNotFoundException e) {
-        	e.getMessage();
+        	SendEmail.getInstance("Exception caught in Snippet.java."
+					+ "empty file submitted");
         }
         BufferedReader br = new BufferedReader(fileReader);
         try {
@@ -44,7 +45,8 @@ public class Snippet {
             	}
                 }
             } catch (IOException e) {
-          e.getMessage();         
+            	SendEmail.getInstance("Exception caught in Snippet.java."
+    					+ "empty file submitted");
         } finally {
             br.close();
         }
@@ -54,7 +56,7 @@ public class Snippet {
     /**
      *
      * @param pyLine String to check.
-     * @return true if String passed in not a comment.
+     * @return true if String passed is not a comment.
      */   
     private Boolean isComment(String pyLine) {
         String comment = "'''";
