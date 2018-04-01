@@ -70,7 +70,7 @@ public class LCS {
          *  until lcsSuffix[row][col] != 0
          */
         while (lcsSuffix[row][column] != 0) {
-        	lcSubstring  = original.charAt(row - 1) + lcSubstring; // or Y[col-1]
+        	lcSubstring  = original.charAt(row - 1) + lcSubstring;
             --commonLength;
             row--;
             column--;
