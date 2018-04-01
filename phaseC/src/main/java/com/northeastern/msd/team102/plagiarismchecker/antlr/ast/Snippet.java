@@ -68,7 +68,7 @@ public class Snippet {
      * 
      * @param file1Strings List of lines in given python file.
      * @param file2Strings List of lines in supspected python file.
-     * @return
+     * @return Array of File lines which are suspected to be plagiaried.
      */
     public int[] findSimilarLines(List<String> file1Strings, List<String> file2Strings) {
     	Double count= 0.0;    	
