@@ -6,7 +6,6 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
@@ -29,8 +28,10 @@ public class ReportController {
      * @return returns all the reports for for this user and homework
      */
     @GetMapping("/findAllReportSummary")
-    public List<Report> findAllReportSummary(@RequestParam long userId, @RequestParam long hwId) {
+    public List<Report> findAllReportSummary(@RequestParam("userId") String userId, @RequestParam("hwId") String hwId) {
         logger.log(Level.INFO, "Report summary for user with userId: "+ userId + "and homeworkId: " + hwId);
-        return reportService.findAllReportSummary(userId, hwId);
+        long userID = Long.parseLong(userId);
+        long hwID = Long.parseLong(hwId);
+        return reportService.findAllReportSummary(userID, hwID);
     }
 }

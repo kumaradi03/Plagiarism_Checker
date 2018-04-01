@@ -12,24 +12,12 @@ public class Report {
     private long id;
 
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "report_user1_association"))
-    private User user1;
-
-    @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "report_user2_association"))
-    private User user2;
-
-    @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "report1_file1_association"))
-    private FileUpload fileUpload1;
+    private File file1;
 
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "report1_file2_association"))
-    private FileUpload fileUpload2;
-
-    @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "report1_homework_association"))
-    private Homework homework;
+    private File file2;
 
     @Column(name = "percentageCompareHashMap")
     private double percentageCompareHashMap;
@@ -45,23 +33,17 @@ public class Report {
 
     /**
      * Constructor for Report class
-     * @param user1 User whose report is to be generated
-     * @param user2 User against which  the report is created
-     * @param fileUpload1 file for User1
-     * @param fileUpload2 file for User1
-     * @param homework homework for which report is generated
+     * @param file1 file for User1
+     * @param file2 file for User1
      * @param percentageCompareHashMap percentage plagiarism for the two files using HashMap.
      * @param percentageCompareTrees percentage plagiarism for the two files using Trees.
      * @param percentageCompareLevenshteinDistance percentage plagiarism for the two files using LevenshteinDistance.
      */
-    public Report(User user1, User user2, FileUpload fileUpload1, FileUpload fileUpload2, Homework homework,
+    public Report(File file1, File file2,
                   double percentageCompareHashMap, double percentageCompareTrees,
                   double percentageCompareLevenshteinDistance, double percentageCompareAll) {
-        this.user1 = user1;
-        this.user2 = user2;
-        this.fileUpload1 = fileUpload1;
-        this.fileUpload2 = fileUpload2;
-        this.homework = homework;
+        this.file1 = file1;
+        this.file2 = file2;
         this.percentageCompareHashMap = percentageCompareHashMap;
         this.percentageCompareTrees = percentageCompareTrees;
         this.percentageCompareLevenshteinDistance = percentageCompareLevenshteinDistance;
@@ -89,38 +71,6 @@ public class Report {
      */
     public void setId(long id) {
         this.id = id;
-    }
-
-    /**
-     * Getter for User whose report is to be generated.
-     * @return User object
-     */
-    public User getUser1() {
-        return user1;
-    }
-
-    /**
-     * Setter for User whose report is to be generated.
-     * @param user1
-     */
-    public void setUser1(User user1) {
-        this.user1 = user1;
-    }
-
-    /**
-     * Getter for User against which  the report is created.
-     * @return User object
-     */
-    public User getUser2() {
-        return user2;
-    }
-
-    /**
-     * Setter for User against which  the report is created.
-     * @param user2
-     */
-    public void setUser2(User user2) {
-        this.user2 = user2;
     }
 
     /**
@@ -191,47 +141,32 @@ public class Report {
      * Getter for file for User1.
      * @return file for user1.
      */
-    public FileUpload getFileUpload1() {
-        return fileUpload1;
+    public File getFile1() {
+        return file1;
     }
 
     /**
      * Setter for file for User1.
-     * @param fileUpload1
+     * @param file1
      */
-    public void setFileUpload1(FileUpload fileUpload1) {
-        this.fileUpload1 = fileUpload1;
+    public void setFile1(File file1) {
+        this.file1 = file1;
     }
 
     /**
      * Getter for file for User2.
      * @return file for user2.
      */
-    public FileUpload getFileUpload2() {
-        return fileUpload2;
+    public File getFile2() {
+        return file2;
     }
 
     /**
      * Setter for file for User2.
-     * @param fileUpload2
+     * @param file2
      */
-    public void setFileUpload2(FileUpload fileUpload2) {
-        this.fileUpload2 = fileUpload2;
+    public void setFile2(File file2) {
+        this.file2 = file2;
     }
 
-    /**
-     * Getter for homework for which report is generated.
-     * @return homework for which the particular report is generated.
-     */
-    public Homework getHomework() {
-        return homework;
-    }
-
-    /**
-     * Setter for homework for which report is generated.
-     * @param homework
-     */
-    public void setHomework(Homework homework) {
-        this.homework = homework;
-    }
 }

@@ -9,6 +9,7 @@
         vm.studentId = $routeParams['userid'];
         vm.hwId = $routeParams['hid'];
         vm.sId = $routeParams['sid'];
+        vm.courseId = $routeParams['cid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.logout = logout;
@@ -35,6 +36,7 @@
         ReportService
             .findAllReportSummary(vm.studentId, vm.hwId)
             .then(function (reports) {
+                console.log(reports);
                 if(reports.length === 0)
                     vm.error = "No reports.";
                 else

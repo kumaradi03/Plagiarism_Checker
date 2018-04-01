@@ -15,17 +15,17 @@
                 controller: 'LoginController',
                 controllerAs: 'model',
             })
-            .when("/profile/:uid/homework/:hid/fileupload",{
+            .when("/profile/:uid/course/:cid/homework/:hid/fileupload",{
                 templateUrl: 'views/user/template/fileUpload.client.html',
                 controller: 'FileUploadController',
                 controllerAs: 'model',
             })
-            .when("/profile/:uid/homework/:hid/submission",{
+            .when("/profile/:uid/course/:cid/homework/:hid/submission",{
                 templateUrl: 'views/user/template/submission.client.html',
                 controller: 'SubmissionController',
                 controllerAs: 'model',
             })
-            .when("/profile/:uid/homework/:hid/submission/:userid/type/:sid/summary",{
+            .when("/profile/:uid/course/:cid/homework/:hid/submission/:userid/type/:sid/summary",{
                 templateUrl: 'views/user/template/report-summary.client.html',
                 controller: 'ReportSummaryController',
                 controllerAs: 'model',
@@ -40,12 +40,27 @@
                 controller: 'ProfileController',
                 controllerAs: 'model',
             })
-            .when("/profile/:uid/homework/",{
+            .when("/profile/:uid/course/",{
+                templateUrl: 'views/user/template/course.client.html',
+                controller: 'CourseController',
+                controllerAs: 'model',
+            })
+            .when("/profile/:uid/course/new",{
+                templateUrl: 'views/user/template/course-new.client.html',
+                controller: 'CourseController',
+                controllerAs: 'model',
+            })
+            .when("/profile/:uid/course/registerCourse",{
+                templateUrl: 'views/user/template/enroll-course.client.html',
+                controller: 'EnrollController',
+                controllerAs: 'model',
+            })
+            .when("/profile/:uid/course/:cid/homework/",{
                 templateUrl: 'views/user/template/homework.client.html',
                 controller: 'HomeWorkController',
                 controllerAs: 'model',
             })
-            .when("/profile/:uid/homework/new",{
+            .when("/profile/:uid/course/:cid/homework/new",{
                 templateUrl: 'views/user/template/homework-new.client.html',
                 controller: 'HomeWorkController',
                 controllerAs: 'model',
