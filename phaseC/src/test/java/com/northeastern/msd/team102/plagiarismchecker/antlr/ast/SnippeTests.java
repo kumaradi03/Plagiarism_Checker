@@ -58,19 +58,5 @@ public class SnippeTests {
 		assertArrayEquals(expectedLines, similarLines);	
 	}
 	
-	/**
-	 * Compares empty file.
-	 * @throws IOException
-	 */
-	@Test
-	public void test4() throws IOException {
-		Snippet s=new Snippet();
-		File file1 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/empty.py");
-		File file2 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/bs4-file.py");
-		ArrayList<String> File1Lines = s.fileToList(file1);
-		ArrayList<String> File2Lines = s.fileToList(file2);
-		int[] similarLines  = s.findSimilarLines(File1Lines, File2Lines);
-		int[] expectedLines = {};
-		assertArrayEquals(expectedLines, similarLines);	
-	}
+	
 }
