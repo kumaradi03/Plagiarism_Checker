@@ -1,12 +1,13 @@
+package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
+
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 
@@ -68,9 +69,9 @@ public class Snippet {
      * @return
      */
     public int[] findSimilarLines(List<String> file1Strings, List<String> file2Strings) {
-    	lcs l=new lcs();
     	Double count= 0.0;    	
-    	int k=0; 	
+    	int k=0; 
+    	LCS lcs=new LCS();
     	if(file1Strings == null || file2Strings == null)
     		return null;
     	int similarLines[] = new int[file1Strings.size()];
@@ -79,8 +80,8 @@ public class Snippet {
     		int lineNo = 1;
     		similarLines[k] = -1;
     		for (String file2Line : file2Strings) {
-    			String snippet =l.printLCSubStr(file1Line, file2Line);
-    			if(snippet.length() > maxSimilarLength && snippet.length() >= file1Line.length() * 0.75 && snippet.length() >= file1Line.length() * 0.75) {
+    			String snippet =lcs.LcsSubString(file1Line, file2Line);
+    			if(snippet.length() > maxSimilarLength && (snippet.length() >= file1Line.length() * 0.75) && (snippet.length() >= file2Line.length() * 0.75)) {
     				similarLines[k] = lineNo;
     				maxSimilarLength=snippet.length();
     			}
@@ -90,21 +91,7 @@ public class Snippet {
     			count++;
     		}	
     		k++;	
-    	}    	
-    	//double score = (count/(double) file1Strings.size()) * 100;   	
+    	}
     	return similarLines;   	
-    }
-    
-   
-    public static void main(String[] args) throws IOException {
-    	Snippet s=new Snippet();
-    	File file1 = new File("C:\\Python\\python_programs\\beautifulSoup.py");
-		File file2 = new File("C:\\Python\\python_programs\\bs4-file.py");			
-	   ArrayList<String> File1Lines=s.fileToList(file1);
-	   ArrayList<String> File2Lines=s.fileToList(file2);		
-	  int[] currentString=(s.findSimilarLines(File1Lines, File2Lines));
-	  for(int i=0;i <= currentString.length-1;i++)
-		System.out.println(currentString[i]);
-
     }
 }
