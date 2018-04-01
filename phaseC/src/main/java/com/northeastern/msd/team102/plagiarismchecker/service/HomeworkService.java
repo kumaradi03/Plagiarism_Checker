@@ -1,5 +1,6 @@
 package com.northeastern.msd.team102.plagiarismchecker.service;
 
+import com.northeastern.msd.team102.plagiarismchecker.entity.Course;
 import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.repository.HomeworkRepository;
@@ -22,6 +23,9 @@ public class HomeworkService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CourseService courseService;
+
     public static final Logger logger = Logger.getLogger(HomeworkService.class.getName());
 
     /**
@@ -30,23 +34,25 @@ public class HomeworkService {
      * @param userId
      * @return Homework
      */
-    public Homework createHomework(Homework homework, long userId)
+    public Homework createHomework(Homework homework, long userId, long courseId)
     {
-        logger.log(Level.INFO, "Creating homework for userId: " + userId);
+        logger.log(Level.INFO, "Creating homework for userId: " + userId + "and courseId: " + courseId);
         User user = userService.findUserByUserId(userId);
+        Course course = courseService.findById(courseId);
         homework.setUser(user);
+        homework.setCourse(course);
         return homeworkRepository.save(homework);
     }
 
     /**
-     * findAllByUserId method returns list of Homework for a given user.
-     * @param userId
+     * findAllByCourseId method returns list of Homework for a given course.
+     * @param courseId
      * @return List of Homework
      */
-    public List<Homework> findAllByUserId(long userId) {
+    public List<Homework> findAllByCourseId(long courseId) {
 
-        logger.log(Level.INFO, "Returning all homeworks for userId: " + userId);
-        return homeworkRepository.findAllByUserId(userId);
+        logger.log(Level.INFO, "Returning all homeworks for courseId: " + courseId);
+        return homeworkRepository.findAllByCourseId(courseId);
     }
 
     /**

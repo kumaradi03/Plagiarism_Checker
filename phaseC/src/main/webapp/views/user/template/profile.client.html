@@ -10,18 +10,17 @@
             <span ng-click="model.openNav(model.user.userType)">
                 <a class="glyphicon glyphicon-align-justify"></a>
             </span>
-            <a ng-click="model.goToHome()">Movies&More</a>
+            <a>Plagiarism Checker</a>
         </div>
     </div>
 </nav>
-
 <div id="mySidenav" class="sidenav">
     <span ng-click="model.closeNav(model.user.userType)">
         <a class="glyphicon glyphicon-remove pull-right"></a>
     </span>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#/profile/{{model.user.id}}">Profile</a>
-    <a href="#/profile/{{model.user.id}}/homework/">Homework</a>
+    <a href="#/profile/{{model.user.id}}/course/">Course</a>
 </div>
 <div id="mySidenav1" class="sidenav">
     <span ng-click="model.closeNav(model.user.userType)">
@@ -29,7 +28,7 @@
     </span>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#/profile/{{model.user.id}}">Profile</a>
-    <a href="#/profile/{{model.user.id}}/homework">Homework</a>
+    <a href="#/profile/{{model.user.id}}/course">Course</a>
 </div>
 <div id="mySidenav2" class="sidenav">
     <span ng-click="model.closeNav(model.user.userType)">
@@ -39,7 +38,6 @@
     <a href="#/profile/{{model.user.id}}">Profile</a>
 </div>
 <!-- Use any element to open the sidenav -->
-
 <div id="main" class="container-fluid ">
     <h1>Profile</h1>
     <div ng-show ="model.error" class="alert alert-danger" role="alert">

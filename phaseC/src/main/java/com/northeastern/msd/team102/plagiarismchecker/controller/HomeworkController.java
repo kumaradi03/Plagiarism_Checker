@@ -2,7 +2,6 @@ package com.northeastern.msd.team102.plagiarismchecker.controller;
 
 import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
 import com.northeastern.msd.team102.plagiarismchecker.service.HomeworkService;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,19 +27,20 @@ public class HomeworkController {
      * @return Homework
      */
     @PostMapping("/create")
-    public Homework createHomework(@RequestBody Homework homework, @RequestParam long userId) {
-        logger.log(Level.INFO, "Homework created for user: " + userId);
-        return homeworkService.createHomework(homework, userId);
+    public Homework createHomework(@RequestBody Homework homework, @RequestParam("userId") String userId, @RequestParam("courseId") String courseId) {
+        long userID = Long.parseLong(userId);
+        long courseID = Long.parseLong(courseId);
+        return homeworkService.createHomework(homework, userID, courseID);
     }
 
     /**
      * findAllHomeworkForUser method returns all the homework for a particular userID.
-     * @param userId userId
+     * @param courseId courseId
      * @return returns all the homework for the particular userId.
      */
-    @GetMapping("/findAllHomeworkForUser")
-    public List<Homework> findAllHomeworkForUser (@RequestParam long userId) {
-        logger.log(Level.INFO, "Return all homework for user: " + userId);
-        return homeworkService.findAllByUserId(userId);
+    @GetMapping("/findAllHomeworkForCourse")
+    public List<Homework> findAllHomeworkForCourse (@RequestParam("courseId") String courseId) {
+        long courseID = Long.parseLong(courseId);
+        return homeworkService.findAllByCourseId(courseID);
     }
 }

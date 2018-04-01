@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 
 import org.junit.Test;
@@ -20,13 +21,12 @@ public class CompareStrategyTreesTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void test_compareAST1withAST2Boundary1() throws IOException {
+	public void test_compareAST1withAST2Boundary1() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyTrees();
 	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile2.py");
-		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());
-		
+		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
 	    assertEquals(94.12, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	
@@ -35,7 +35,7 @@ public class CompareStrategyTreesTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void test_compareAST1withAST2() throws IOException {
+	public void test_compareAST1withAST2() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyTrees();
 		File file1 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
@@ -50,7 +50,7 @@ public class CompareStrategyTreesTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void test_compareAST1withAST2Boundary2() throws IOException {
+	public void test_compareAST1withAST2Boundary2() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyTrees();
 		File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
@@ -65,7 +65,7 @@ public class CompareStrategyTreesTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void test_compareAST1withAST2BoundaryEmptyFile() throws IOException {
+	public void test_compareAST1withAST2BoundaryEmptyFile() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyTrees();
 		File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/py21.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
