@@ -9,16 +9,12 @@
 
         function login(user) {
             UserService
-                .findUserByUsername(user.username)
+                .login(user)
                 .then(function (loginUser) {
-                    if(loginUser !== "") {
-                        if(loginUser.password === user.password)
+                    if(loginUser !== "")
                             $location.url('/profile/'+ loginUser.id);
                         else
-                            vm.error = "Username and Password doesnt match"
-                    }
-                    else
-                        vm.error = 'User not found.';
+                            vm.error = "User not found."
                 });
         }
     }

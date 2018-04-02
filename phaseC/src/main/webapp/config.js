@@ -5,65 +5,113 @@
 
     function configuration($routeProvider) {
         $routeProvider
-            .when("/",{
+            .when("/", {
                 templateUrl: 'views/user/template/login.client.html',
                 controller: 'LoginController',
-                controllerAs: 'model',
+                controllerAs: 'model'
             })
-            .when("/login",{
+            .when("/login", {
                 templateUrl: 'views/user/template/login.client.html',
                 controller: 'LoginController',
-                controllerAs: 'model',
+                controllerAs: 'model'
             })
-            .when("/profile/:uid/course/:cid/homework/:hid/fileupload",{
+            .when("/profile/:uid/course/:cid/homework/:hid/fileupload", {
                 templateUrl: 'views/user/template/fileUpload.client.html',
                 controller: 'FileUploadController',
                 controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+
             })
-            .when("/profile/:uid/course/:cid/homework/:hid/submission",{
+            .when("/profile/:uid/course/:cid/homework/:hid/submission", {
                 templateUrl: 'views/user/template/submission.client.html',
                 controller: 'SubmissionController',
                 controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
-            .when("/profile/:uid/course/:cid/homework/:hid/submission/:userid/type/:sid/summary",{
+            .when("/profile/:uid/course/:cid/homework/:hid/submission/:userid/type/:sid/summary", {
                 templateUrl: 'views/user/template/report-summary.client.html',
                 controller: 'ReportSummaryController',
                 controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
-            .when("/register",{
+            .when("/register", {
                 templateUrl: 'views/user/template/register.client.html',
                 controller: 'RegisterController',
-                controllerAs: 'model',
+                controllerAs: 'model'
             })
-            .when("/profile/:uid",{
+            .when("/profile/:uid", {
                 templateUrl: 'views/user/template/profile.client.html',
                 controller: 'ProfileController',
                 controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
-            .when("/profile/:uid/course/",{
+            .when("/profile/:uid/course/", {
                 templateUrl: 'views/user/template/course.client.html',
                 controller: 'CourseController',
                 controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
-            .when("/profile/:uid/course/new",{
+            .when("/profile/:uid/course/new", {
                 templateUrl: 'views/user/template/course-new.client.html',
                 controller: 'CourseController',
                 controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
-            .when("/profile/:uid/course/registerCourse",{
+            .when("/profile/:uid/course/registerCourse", {
                 templateUrl: 'views/user/template/enroll-course.client.html',
                 controller: 'EnrollController',
                 controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
-            .when("/profile/:uid/course/:cid/homework/",{
+            .when("/profile/:uid/course/:cid/homework/", {
                 templateUrl: 'views/user/template/homework.client.html',
                 controller: 'HomeWorkController',
                 controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
-            .when("/profile/:uid/course/:cid/homework/new",{
+            .when("/profile/:uid/course/:cid/homework/new", {
                 templateUrl: 'views/user/template/homework-new.client.html',
                 controller: 'HomeWorkController',
                 controllerAs: 'model',
-            })
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            });
+
+        function checkLoggedIn(UserService, $location, $q) {
+            console.log("Adi");
+            var deferred = $q.defer();
+            UserService
+                .loggedIn()
+                .then(function (res) {
+                    var user = res;
+                    if (user === "") {
+                        deferred.reject();
+                        $location.url("/login");
+                    } else {
+                        deferred.resolve(user);
+                    }
+                }, function (err) {
+                    deferred.reject();
+                    $location.url("/login");
+                });
+            return deferred.promise;
         }
+    }
 })();
