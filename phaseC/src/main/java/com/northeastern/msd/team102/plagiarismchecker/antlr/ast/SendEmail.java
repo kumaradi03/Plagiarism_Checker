@@ -33,6 +33,11 @@ public class SendEmail {
         //Default constructor
     }
 
+	/**
+	 * This function creates and return singleton instance of SendEmail
+	 * @param errorMessage string representing error message
+	 * @return an singleton instance SendEmail
+	 */
     public static SendEmail getInstance (String errorMessage) {
         if(emailInstance == null)
             emailInstance = new SendEmail();
@@ -40,6 +45,10 @@ public class SendEmail {
         return emailInstance;
     }
 
+	/**
+	 * This static function sends an email with the error message
+	 * @param errorMessage string representing error message
+	 */
 	private static void email (String errorMessage) {
 		
 		final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
