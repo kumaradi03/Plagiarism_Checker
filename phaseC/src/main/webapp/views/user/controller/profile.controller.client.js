@@ -55,16 +55,6 @@
                 openNav(vm.user.userType);
             });
 
-        function logout() {
-            UserService
-                .logout()
-                .then(function (res) {
-                    $location.url("/login");
-                },function (err) {
-                    $location.url("/login");
-                });
-        }
-
         function update(newUser) {
             if(newUser.password === newUser.verifypassword) {
                 UserService
@@ -96,7 +86,13 @@
         }
 
         function logout() {
-            $location.url("/login");
+            UserService
+                .logout()
+                .then(function (res) {
+                    $location.url("/login");
+                },function (err) {
+                    $location.url("/login");
+                });
         }
     }
 })();
