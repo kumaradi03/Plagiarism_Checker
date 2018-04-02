@@ -95,7 +95,6 @@
             });
 
         function checkLoggedIn(UserService, $location, $q) {
-            console.log("Adi");
             var deferred = $q.defer();
             UserService
                 .loggedIn()

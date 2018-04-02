@@ -38,6 +38,7 @@ public class Report {
      * @param percentageCompareHashMap percentage plagiarism for the two files using HashMap.
      * @param percentageCompareTrees percentage plagiarism for the two files using Trees.
      * @param percentageCompareLevenshteinDistance percentage plagiarism for the two files using LevenshteinDistance.
+     * @param percentageCompareAll percentage plagiarism for the two files using weighted Comparison.
      */
     public Report(File file1, File file2,
                   double percentageCompareHashMap, double percentageCompareTrees,
