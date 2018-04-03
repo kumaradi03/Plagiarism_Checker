@@ -12,6 +12,7 @@
             "register": register,
             "findUserById": findUserById,
             "findProfessor": findProfessor,
+            "updateUser": updateUser,
             "getDistinctUsersForHw":getDistinctUsersForHw,
             "loggedIn":loggedIn
         };
@@ -33,6 +34,13 @@
 
         function loggedIn() {
             return $http.get("/rest/user/loggedIn")
+                .then(function(res){
+                    return res.data;
+                });
+        }
+
+        function updateUser(newUser) {
+            return $http.put("/rest/user/update", newUser)
                 .then(function(res){
                     return res.data;
                 });

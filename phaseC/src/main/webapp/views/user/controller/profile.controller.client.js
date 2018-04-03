@@ -58,7 +58,7 @@
         function update(newUser) {
             if(newUser.password === newUser.verifypassword) {
                 UserService
-                    .updateUser(vm.userId, newUser)
+                    .updateUser(newUser)
                     .then(function (user) {
                         if (user) {
                             vm.message = "User Successfully Updated!";

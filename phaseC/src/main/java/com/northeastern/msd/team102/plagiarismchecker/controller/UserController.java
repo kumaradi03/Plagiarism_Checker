@@ -98,4 +98,15 @@ public class UserController {
         session.setAttribute("User", user);
         return userService.createUser(user);
     }
+
+    /**
+     * updateUser method updates the user fields.
+     * @param user
+     * @return returns the user object that is updated.
+     */
+    @PutMapping("/update")
+    public User updateUser(@RequestBody User user) {
+        logger.log(Level.INFO, "Updating User with username: " + user.getUsername());
+        return userService.updateUser(user);
+    }
 }
