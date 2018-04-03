@@ -72,4 +72,16 @@ public class UserService {
         logger.log(Level.INFO, "Returning user with type " + userType);
         return userRepository.findByUserType(userType);
     }
+
+    /**
+     * updateUser method updates an existing user in the database
+     * @param user
+     * @return User
+     */
+    public User updateUser(User user) {
+        logger.log(Level.INFO, "Updating user with username " + user.getUsername());
+        return userRepository.save(user);
+    }
+
+
 }

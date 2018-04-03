@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Controller class for User entity.
  */
@@ -25,9 +27,31 @@ public class UserController {
      * @return returns the user object whose login is requested.
      */
     @PostMapping("/login")
-    public User login(@RequestBody User user) {
+    public User login(@RequestBody User user, HttpSession session) {
         logger.log(Level.INFO, "User with username: " + user.getUsername() + "logged in");
-        return userService.findUserByCredentials(user);
+        User loginUser = userService.findUserByCredentials(user);
+        if(loginUser !=  null)
+            session.setAttribute("User", user);
+        return loginUser;
+    }
+
+    /**
+     * loggedIn method to check if the user is logged in.
+     * @return returns the user object which is logged in.
+     */
+    @GetMapping("/loggedIn")
+    public User loggedIn(HttpSession session) {
+        logger.log(Level.INFO, "LoggedIn function to check for session");
+        return (User)session.getAttribute("User");
+    }
+
+    /**
+     * logout method to invalidate a session.
+     */
+    @GetMapping("/logout")
+    public void logout(HttpSession session) {
+        logger.log(Level.INFO, "Logout function to invalidate a session");
+        session.invalidate();
     }
 
     /**
@@ -69,8 +93,20 @@ public class UserController {
      * @return returns the user object that is registered.
      */
     @PostMapping("/registerUser")
-    public User registerUser(@RequestBody User user) {
+    public User registerUser(@RequestBody User user, HttpSession session) {
         logger.log(Level.INFO, "Registering User with username: " + user.getUsername());
+        session.setAttribute("User", user);
         return userService.createUser(user);
+    }
+
+    /**
+     * updateUser method updates the user fields.
+     * @param user
+     * @return returns the user object that is updated.
+     */
+    @PutMapping("/update")
+    public User updateUser(@RequestBody User user) {
+        logger.log(Level.INFO, "Updating User with username: " + user.getUsername());
+        return userService.updateUser(user);
     }
 }

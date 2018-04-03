@@ -1,12 +1,13 @@
 package com.northeastern.msd.team102.plagiarismchecker.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * User entity.
  */
 @Entity
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
@@ -29,9 +30,9 @@ public class User {
      * @param id id of the user
      * @param firstName firstName of the user
      * @param lastName lastName of the user
-     * @param lastName lastName of the user
-     * @param lastName lastName of the user
-     * @param lastName lastName of the user
+     * @param userType userType of the user
+     * @param username username of the user
+     * @param password password of the user
      * @param email email of the user
      */
     public User(long id, String firstName, String lastName, String userType, String username, String password, String email) {

@@ -7,16 +7,40 @@
 
         var api = {
             "login": login,
+            "logout": logout,
             "findUserByUsername": findUserByUsername,
             "register": register,
             "findUserById": findUserById,
             "findProfessor": findProfessor,
-            "getDistinctUsersForHw":getDistinctUsersForHw
+            "updateUser": updateUser,
+            "getDistinctUsersForHw":getDistinctUsersForHw,
+            "loggedIn":loggedIn
         };
         return api;
 
         function login(user) {
             return $http.post("/rest/user/login", user)
+                .then(function(res){
+                    return res.data;
+                });
+        }
+
+        function logout() {
+            return $http.get("/rest/user/logout")
+                .then(function(res){
+                    return res.data;
+                });
+        }
+
+        function loggedIn() {
+            return $http.get("/rest/user/loggedIn")
+                .then(function(res){
+                    return res.data;
+                });
+        }
+
+        function updateUser(newUser) {
+            return $http.put("/rest/user/update", newUser)
                 .then(function(res){
                     return res.data;
                 });

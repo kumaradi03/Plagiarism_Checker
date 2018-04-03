@@ -55,20 +55,10 @@
                 openNav(vm.user.userType);
             });
 
-        function logout() {
-            UserService
-                .logout()
-                .then(function (res) {
-                    $location.url("/login");
-                },function (err) {
-                    $location.url("/login");
-                });
-        }
-
         function update(newUser) {
             if(newUser.password === newUser.verifypassword) {
                 UserService
-                    .updateUser(vm.userId, newUser)
+                    .updateUser(newUser)
                     .then(function (user) {
                         if (user) {
                             vm.message = "User Successfully Updated!";
@@ -96,7 +86,13 @@
         }
 
         function logout() {
-            $location.url("/login");
+            UserService
+                .logout()
+                .then(function (res) {
+                    $location.url("/login");
+                },function (err) {
+                    $location.url("/login");
+                });
         }
     }
 })();

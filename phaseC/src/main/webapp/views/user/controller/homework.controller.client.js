@@ -32,7 +32,13 @@
         }
 
         function logout() {
-            $location.url("/login");
+            UserService
+                .logout()
+                .then(function (res) {
+                    $location.url("/login");
+                },function (err) {
+                    $location.url("/login");
+                });
         }
 
         UserService
