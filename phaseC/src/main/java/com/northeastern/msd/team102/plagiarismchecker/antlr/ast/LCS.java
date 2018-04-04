@@ -14,7 +14,7 @@ public class LCS {
 	 * @param suspected : String
 	 * @return substring String - Longest common substring of original and suspected string.
 	 */
-	static String LcsSubString(String original, String suspected)
+	public static String lcsSubString(String original, String suspected)
     {
 		/**
 		 * Table to store lengths of longest common suffixes of substrings. Note that

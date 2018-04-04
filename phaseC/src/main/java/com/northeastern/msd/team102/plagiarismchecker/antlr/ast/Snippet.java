@@ -1,13 +1,14 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
-
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 
 
@@ -26,17 +27,11 @@ public class Snippet {
      * @return ArrayList ProgramLines -> array of lines in the python file. 
      * @throws IOException
      */
-    public  ArrayList<String> fileToList(File file) throws IOException {
+    public  List<String> fileToList(File file) throws IOException {
 
         ArrayList<String>programLines = new ArrayList();
         String pyLine;
-        FileReader fileReader = null;
-        try {
-            fileReader = new FileReader(file);
-        } catch (FileNotFoundException e) {
-        	SendEmail.getInstance("Exception caught in Snippet.java."
-					+ "empty file submitted");
-        }
+        FileReader fileReader = new FileReader(file);
         BufferedReader br = new BufferedReader(fileReader);
         try {
             while ((pyLine = br.readLine()) != null) {
@@ -45,8 +40,7 @@ public class Snippet {
             	}
                 }
             } catch (IOException e) {
-            	SendEmail.getInstance("Exception caught in Snippet.java."
-    					+ "empty file submitted");
+            	e.printStackTrace();
         } finally {
             br.close();
         }
@@ -67,33 +61,70 @@ public class Snippet {
     /**
      * 
      * @param file1Strings List of lines in given python file.
-     * @param file2Strings List of lines in supspected python file.
-     * @return Array of File lines which are suspected to be plagiaried.
+     * @param file2Strings List of lines in suspected python file.
+     * @return ArrayList of File lines which are suspected to be plagiaried.
+     * @throws IOException 
      */
-    public int[] findSimilarLines(List<String> file1Strings, List<String> file2Strings) {
-    	Double count= 0.0;    	
-    	int k=0; 
-    	LCS lcs=new LCS();
+    public List<Map<Integer, String>> findSimilarLines(File file1, File file2) throws IOException {
+    	List<String> file1Strings = fileToList(file1);
+    	List<String> file2Strings = fileToList(file2);
+    	List<Map<Integer, String>> similarFiles = new ArrayList<>() ;
+    	Map<Integer,String> similarLines1 = new HashMap<>();
+    	Map<Integer,String> similarLines2 = new HashMap<>();
+    	
     	if(file1Strings == null || file2Strings == null)
-    		return null;
-    	int similarLines[] = new int[file1Strings.size()];
+    		return similarFiles;
+    	int lineNo1 = 1;
     	for(String file1Line : file1Strings) {
     		int maxSimilarLength = 0;
-    		int lineNo = 1;
-    		similarLines[k] = -1;
+    		int lineNo2=1;
     		for (String file2Line : file2Strings) {
-    			String snippet =lcs.LcsSubString(file1Line, file2Line);
-    			if(snippet.length() > maxSimilarLength && (snippet.length() >= file1Line.length() * 0.75) && (snippet.length() >= file2Line.length() * 0.75)) {
-    				similarLines[k] = lineNo;
+    			String snippet =LCS.lcsSubString(file1Line, file2Line);
+    			if(snippet.length() > maxSimilarLength && 
+    					(snippet.length() >= file1Line.length() * 0.5) && 
+    						(snippet.length() >= file2Line.length() * 0.5)) {
+    				if(!similarLines1.containsKey(lineNo1)){
+    					similarLines1.put(lineNo1, file1Line);
+    				}
+    				similarLines2.put(lineNo2, file2Line);
     				maxSimilarLength=snippet.length();
     			}
-    			lineNo++;
-    		}   		
-    		if(similarLines[k] != -1) {
-    			count++;
-    		}	
-    		k++;	
+    			lineNo2++;
+    		}
+    		lineNo1++;
     	}
-    	return similarLines;   	
+    	
+    	similarFiles.add(similarLines1);
+    	similarFiles.add(similarLines2);
+    	
+    	return similarFiles; 	
     }
+    
+    public String generateHtmlDiv(Map<Integer,String> similarLines) throws IOException {
+    
+    	StringBuilder htmlStrings=new StringBuilder();
+    	htmlStrings=htmlStrings.append("<div><p style=\"white-space :pre-wrap ;color :red\">");
+    	for (Entry<Integer, String> entry : similarLines.entrySet()) {
+           htmlStrings.append(entry.getKey()+entry.getValue()+"<br>");
+		}
+    	htmlStrings.append("</p></div>");
+		return htmlStrings.toString();
+    	
+    }
+    
+    public String[] generateSnippets(File file1, File file2) throws IOException {
+	
+    	List<Map<Integer, String>> similarFiles=findSimilarLines(file1, file2);
+    	Map<Integer, String> similarLines1=similarFiles.get(0);
+    	Map<Integer, String> similarLines2=similarFiles.get(1);
+    	
+    	String htmlStrings1=generateHtmlDiv(similarLines1);
+    	String htmlStrings2=generateHtmlDiv(similarLines2);
+		
+    	String[] detailedReport=new String[2];
+    	detailedReport[0]=htmlStrings1;
+    	detailedReport[1]=htmlStrings2;
+    	
+    	return detailedReport; 
+    }   
 }
