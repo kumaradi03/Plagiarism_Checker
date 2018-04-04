@@ -40,6 +40,15 @@
                     loggedIn: checkLoggedIn
                 }
             })
+            .when("/profile/:uid/course/:cid/homework/:hid/submission/:userid/type/:sid/summary/file1/:fid1/file2/" +
+                ":fid2", {
+                templateUrl: 'views/user/template/snippet.client.html',
+                controller: 'SnippetController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
             .when("/register", {
                 templateUrl: 'views/user/template/register.client.html',
                 controller: 'RegisterController',
