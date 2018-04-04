@@ -20,8 +20,17 @@
             }
             else if(type ==="Professor")
             {
-                document.getElementById("mySidenav1").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
+                UserService
+                    .findUserById(userId)
+                    .then(function (user) {
+                        vm.Tempuser = user;
+                        if(vm.Tempuser.statusFlag === "true") {
+                            document.getElementById("mySidenav1").style.width = "250px";
+                            document.getElementById("main").style.marginLeft = "250px";
+                        }
+                    });
+                // document.getElementById("mySidenav1").style.width = "250px";
+                // document.getElementById("main").style.marginLeft = "250px";
             }
             else if(type === "Admin") {
                 UserService
