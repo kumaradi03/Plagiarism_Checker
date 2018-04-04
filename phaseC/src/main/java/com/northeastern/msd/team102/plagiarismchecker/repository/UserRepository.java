@@ -3,7 +3,12 @@ package com.northeastern.msd.team102.plagiarismchecker.repository;
 
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Repository for User entity.
@@ -39,5 +44,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return user
      */
     User findByUserType(String userType);
+
+    @Query(nativeQuery=true, value="SELECT * FROM user u where u.user_type = 'Professor'  AND  u.status_flag = 'false' OR u.user_type = 'Admin'  AND  u.status_flag = 'false'")
+    List<User> findProfessors();
+
+    @Modifying
+    @Transactional
+    @Query(nativeQuery=true, value="UPDATE user u SET u.status_flag ='true' WHERE u.id = ?1")
+    int setUserStatus(long userId);
 }
 

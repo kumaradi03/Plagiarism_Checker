@@ -15,7 +15,14 @@
                 controller: 'LoginController',
                 controllerAs: 'model'
             })
-            .when("/profile/:uid/course/:cid/homework/:hid/fileupload", {
+
+            .when("/profile/admin/:aid",{
+                templateUrl: 'views/user/template/admin.client.html',
+                controller: 'AdminController',
+                controllerAs: 'model',
+            })
+
+            .when("/profile/:uid/course/:cid/homework/:hid/fileupload",{
                 templateUrl: 'views/user/template/fileUpload.client.html',
                 controller: 'FileUploadController',
                 controllerAs: 'model',
@@ -24,6 +31,7 @@
                 }
 
             })
+
             .when("/profile/:uid/course/:cid/homework/:hid/submission", {
                 templateUrl: 'views/user/template/submission.client.html',
                 controller: 'SubmissionController',

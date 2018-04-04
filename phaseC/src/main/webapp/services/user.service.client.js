@@ -14,7 +14,9 @@
             "findProfessor": findProfessor,
             "updateUser": updateUser,
             "getDistinctUsersForHw":getDistinctUsersForHw,
-            "loggedIn":loggedIn
+            "loggedIn":loggedIn,
+            "getProfessors":getProfessors,
+            "approveProfessors":approveProfessors
         };
         return api;
 
@@ -76,6 +78,20 @@
 
         function getDistinctUsersForHw(hwId) {
             return $http.get("/rest/file/getUser/?hwId="+hwId)
+                .then(function(res){
+                    return res.data;
+                });
+        }
+
+        function getProfessors() {
+            return $http.get("/rest/user/findProfessors")
+                .then(function(res){
+                    return res.data;
+                });
+        }
+
+        function approveProfessors(approvedProfessorsId){
+            return $http.post("/rest/user/setUserStatus", approvedProfessorsId)
                 .then(function(res){
                     return res.data;
                 });
