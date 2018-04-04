@@ -175,18 +175,10 @@ public class UsageStatistics {
         this.compareCount = compareCount;
     }
 
-    /**
-     * getter for the comparator strategy used for comparison
-     * @return algoType
-     */
     public String getAlgoType() {
         return algoType;
     }
 
-    /**
-     * setter for the comparator strategy used for comparison
-     * @param algoType
-     */
     public void setAlgoType(String algoType) {
         this.algoType = algoType;
     }
