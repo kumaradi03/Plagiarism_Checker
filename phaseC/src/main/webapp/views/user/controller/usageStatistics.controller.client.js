@@ -1,21 +1,14 @@
 (function(){
     angular
         .module("PlagiarismChecker")
-        .controller("ReportSummaryController", ReportSummaryController);
+        .controller("UsageStatisticsController", UsageStatisticsController);
 
-    function ReportSummaryController (ReportService, $location, $routeParams, UserService) {
+    function UsageStatisticsController ($location, $routeParams, UserService, UsageStatisicsService) {
         var vm = this;
         vm.userId = $routeParams['uid'];
-        vm.studentId = $routeParams['userid'];
-        vm.hwId = $routeParams['hid'];
-        vm.sId = $routeParams['sid'];
-        vm.courseId = $routeParams['cid'];
-        vm.orderByField = 'percentageCompareHashMap';
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.logout = logout;
-        vm.getDetailedReport = getDetailedReport;
-
 
         function openNav(type) {
             if(type === "Professor"){
@@ -42,21 +35,17 @@
                 });
         }
 
-        function getDetailedReport(file1Id, file2Id) {
-            $location.url('/profile/'+ vm.userId + '/course/' + vm.courseId + '/homework/' + vm.hwId + '/submission/'
-                + vm.studentId + '/type/' + vm.sId + '/summary/file1/'+ file1Id + '/file2/' + file2Id);
-        }
-
-        ReportService
-            .findAllReportSummary(vm.studentId, vm.hwId)
+        UsageStatisicsService
+            .findAllUsageStatisticsByProfessor(vm.userId)
             .then(function (reports) {
-                vm.reverseSort = false;
                 console.log(reports);
                 if(reports.length === 0)
                     vm.error = "No reports.";
-                else
+                else {
                     vm.reports = reports;
+                }
                 openNav("Professor");
             });
+
     }
 })();
