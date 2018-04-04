@@ -7,9 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.List;
-
 
 /**
  * Controller class for User entity.
@@ -88,6 +86,7 @@ public class UserController {
         logger.log(Level.INFO, "Returning professor object");
         return userService.findByUserType("Professor");
     }
+
 
     /**
      * findProfessors method which receives a request for fetching professors and

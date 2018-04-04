@@ -29,8 +29,6 @@
                             document.getElementById("main").style.marginLeft = "250px";
                         }
                     });
-                // document.getElementById("mySidenav1").style.width = "250px";
-                // document.getElementById("main").style.marginLeft = "250px";
             }
             else if(type === "Admin") {
                 UserService
