@@ -23,12 +23,17 @@
                 document.getElementById("mySidenav1").style.width = "250px";
                 document.getElementById("main").style.marginLeft = "250px";
             }
-            else
-            {
-                document.getElementById("mySidenav2").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-            }
-
+            else if(type === "Admin") {
+                UserService
+                    .findUserById(userId)
+                    .then(function (user) {
+                        vm.Tempuser = user;
+                        if(vm.Tempuser.statusFlag === "true") {
+                            document.getElementById("mySidenav3").style.width = "250px";
+                            document.getElementById("main").style.marginLeft = "250px";
+                        }
+                    });
+                }
         }
 
         /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
@@ -39,6 +44,10 @@
             }
             else if(type === "Professor"){
                 document.getElementById("mySidenav1").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+            else if(type === "Admin"){
+                document.getElementById("mySidenav3").style.width = "0";
                 document.getElementById("main").style.marginLeft = "0";
             }
             else

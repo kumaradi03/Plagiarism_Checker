@@ -23,6 +23,8 @@ public class User {
     private String password;
     @Column(name = "email")
     private String email;
+    @Column(name = "statusFlag")
+    private String statusFlag;
 
     /**
      * Constructor for User class
@@ -34,6 +36,18 @@ public class User {
      * @param lastName lastName of the user
      * @param email email of the user
      */
+
+    public User(long id, String firstName, String lastName, String userType, String username, String password, String email,String statusFlag) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userType = userType;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.statusFlag=statusFlag;
+    }
+
     public User(long id, String firstName, String lastName, String userType, String username, String password, String email) {
         this.id = id;
         this.firstName = firstName;
@@ -43,6 +57,8 @@ public class User {
         this.password = password;
         this.email = email;
     }
+
+
 
     /**
      * Default constructor
@@ -161,6 +177,14 @@ public class User {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getStatusFlag() {
+        return statusFlag;
+    }
+
+    public void setStatusFlag(String statusFlag) {
+        this.statusFlag = statusFlag;
     }
 
 }

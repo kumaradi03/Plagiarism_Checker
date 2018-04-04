@@ -5,7 +5,11 @@ import com.northeastern.msd.team102.plagiarismchecker.repository.UserRepository;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Service class for User entity.
@@ -59,6 +63,9 @@ public class UserService {
     public User createUser(User user) {
 
         logger.log(Level.INFO, "Creating user with username " + user.getUsername());
+        if(user.getUserType().equals("Student")){
+            user.setStatusFlag("true");
+        }else{user.setStatusFlag("false");}
         return userRepository.save(user);
     }
 
@@ -71,5 +78,27 @@ public class UserService {
 
         logger.log(Level.INFO, "Returning user with type " + userType);
         return userRepository.findByUserType(userType);
+    }
+
+    public List<User> findProfessors(){
+        List<User> processedProcessors= new ArrayList<>();
+        List<User> unprocessedProcessors = userRepository.findProfessors();
+        for(User eachProfessor : unprocessedProcessors){
+            User processedProfessor= new User();
+            processedProfessor.setId(eachProfessor.getId());
+            processedProfessor.setUsername(eachProfessor.getUsername());
+            processedProfessor.setFirstName(eachProfessor.getFirstName());
+            processedProfessor.setLastName(eachProfessor.getLastName());
+            processedProfessor.setEmail(eachProfessor.getEmail());
+            processedProfessor.setUserType(eachProfessor.getUserType());
+            processedProcessors.add(processedProfessor);
+        }
+        return processedProcessors;
+    }
+
+    public void setUserStatus(long[] userIdList){
+        for(long eachUserId : userIdList) {
+                userRepository.setUserStatus(eachUserId);
+        }
     }
 }

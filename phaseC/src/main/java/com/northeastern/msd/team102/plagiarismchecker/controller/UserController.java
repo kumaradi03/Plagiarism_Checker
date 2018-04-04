@@ -7,6 +7,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Controller class for User entity.
  */
@@ -61,6 +64,22 @@ public class UserController {
     public User findProfessor() {
         logger.log(Level.INFO, "Returning professor object");
         return userService.findByUserType("Professor");
+    }
+
+    @GetMapping("/findProfessors")
+    public List<User> findProfessors() {
+        return userService.findProfessors();
+    }
+
+//    @GetMapping("/setProfessorStatus")
+//    public int setProfessorStatus() {
+//        return userService.setUserStatus(2);
+//    }
+
+    @PostMapping("/setUserStatus")
+    public int setUserStatus(@RequestBody long[] approvedProfessorList) {
+        userService.setUserStatus(approvedProfessorList);
+        return 1;
     }
 
     /**

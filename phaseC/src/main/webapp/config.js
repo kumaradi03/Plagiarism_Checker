@@ -15,6 +15,13 @@
                 controller: 'LoginController',
                 controllerAs: 'model',
             })
+
+            .when("/profile/admin/:aid",{
+                templateUrl: 'views/user/template/admin.client.html',
+                controller: 'AdminController',
+                controllerAs: 'model',
+            })
+
             .when("/profile/:uid/course/:cid/homework/:hid/fileupload",{
                 templateUrl: 'views/user/template/fileUpload.client.html',
                 controller: 'FileUploadController',
