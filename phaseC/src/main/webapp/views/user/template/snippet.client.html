@@ -22,6 +22,7 @@
     <a href="#/profile/{{model.user.id}}">Profile</a>
     <a href="#/profile/{{model.user.id}}/course/{{model.courseId}}/homework">Homework</a>
     <a href="#/profile/{{model.user.id}}/course/{{model.courseId}}/homework/{{model.hwId}}/submission">Submission</a>
+    <a href="#/profile/{{model.user.id}}/statistics" ng-if="model.user.userType !== 'Student'">Usage Statistics</a>
 </div>
 <div class="alert alert-danger" ng-show="model.error">
     {{model.error}}

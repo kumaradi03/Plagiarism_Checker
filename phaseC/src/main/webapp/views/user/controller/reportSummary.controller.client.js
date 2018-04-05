@@ -58,6 +58,11 @@
                 + vm.studentId + '/type/' + vm.sId + '/summary/file1/'+ file1Id + '/file2/' + file2Id);
         }
 
+        /**
+         * find plagiarism report summary by comparing the current student's homework with all other student's
+         * who have submitted the same homework assignment for the registered course.
+         * the generated report is then saved as usage statistics
+         */
         ReportService
             .findAllReportSummary(vm.studentId, vm.hwId)
             .then(function (reports) {

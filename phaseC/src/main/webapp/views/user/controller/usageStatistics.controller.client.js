@@ -11,6 +11,11 @@
         vm.logout = logout;
         vm.reports = []
 
+        /**
+         * open the naviation panel,
+         * Set the width of the side navigation to 250 and the left margin of the page content to 250
+         * @param type: type of the user
+         */
         function openNav(type) {
             if(type === "Professor"){
                 document.getElementById("mySidenav").style.width = "250px";
@@ -18,7 +23,11 @@
             }
         }
 
-        /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+        /**
+         * open the naviation panel,
+         * Set the width of the side navigation to 0 and the left margin of the page content to 0
+         * @param type: type of user
+         */
         function closeNav(type) {
             if(type === "Professor"){
                 document.getElementById("mySidenav").style.width = "0";
@@ -26,6 +35,9 @@
             }
         }
 
+        /**
+         * Navigate back to login page
+         */
         function logout() {
             UserService
                 .logout()
@@ -36,6 +48,9 @@
                 });
         }
 
+        /**
+         * fetch the user by ID
+         */
         UserService
             .findUserById(vm.userId)
             .then(function (user) {
@@ -43,6 +58,10 @@
                 openNav(vm.user.userType);
             });
 
+        /**
+         * find all usage statistics of the number of plagiarism detection cases run for the
+         * current user(Professor in this case)
+         */
         UsageStatisicsService
             .findAllUsageStatisticsByProfessor(vm.userId)
             .then(function (reports) {
