@@ -40,7 +40,7 @@
             .then(function (reports) {
                 console.log(reports);
                 if(reports.length === 0)
-                    vm.error = "No reports.";
+                    vm.error = "No usage statistics information obtained. Please run comparison on submissions!";
                 else {
                     vm.reports = reports;
                 }
