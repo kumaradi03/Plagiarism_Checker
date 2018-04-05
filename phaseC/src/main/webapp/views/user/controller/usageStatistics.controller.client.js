@@ -9,6 +9,7 @@
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.logout = logout;
+        vm.reports = []
 
         function openNav(type) {
             if(type === "Professor"){
@@ -35,10 +36,16 @@
                 });
         }
 
+        UserService
+            .findUserById(vm.userId)
+            .then(function (user) {
+                vm.user = user;
+                openNav(vm.user.userType);
+            });
+
         UsageStatisicsService
             .findAllUsageStatisticsByProfessor(vm.userId)
             .then(function (reports) {
-                console.log(reports);
                 if(reports.length === 0)
                     vm.error = "No usage statistics information obtained. Please run comparison on submissions!";
                 else {

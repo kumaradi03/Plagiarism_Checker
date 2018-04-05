@@ -19,28 +19,31 @@
         <a class="glyphicon glyphicon-remove pull-right"></a>
     </span>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#/profile/{{model.userId}}">Profile</a>
-    <a href="#/profile/{{model.userId}}/statistics">Usage Statistics</a>
+    <a href="#/profile/{{model.user.id}}">Profile</a>
+    <a href="#/profile/{{model.user.id}}/course">Course</a>
+    <a href="#/profile/{{model.user.id}}/statistics" ng-if="model.user.userType !== 'Student'">Usage Statistics</a>
 </div>
 <div id="main" class="container-fluid row">
     <div class="alert alert-danger" ng-show="model.error">
         {{model.error}}
     </div>
-    <table class="table table-bordered">
+    <table class="table table-bordered" ng-if="model.reports.length !== 0">
         <thead>
         <tr>
-            <th scope="col">Professor</th>
+            <th scope="col" ng-if="model.user.userType === 'Admin'">Professor</th>
             <th scope="col">Student</th>
             <th scope="col">Course</th>
             <th scope="col">Homework</th>
             <th scope="col">Algorithm used</th>
-            <th scope="col">Compare Count</th>
+            <th scope="col">Number of comparisons</th>
             <th scope="col">Date</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="report in model.reports">
-            <td>{{report.professor.firstName}} {{report.professor.lastName}}</td>
+            <td ng-if="model.user.userType === 'Admin'">
+                {{report.professor.firstName}} {{report.professor.lastName}}
+            </td>
             <td>{{report.student.firstName}} {{report.student.lastName}}</td>
             <td>{{report.course.name}}</td>
             <td>{{report.homework.name}}</td>

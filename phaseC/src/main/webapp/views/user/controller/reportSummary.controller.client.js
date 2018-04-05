@@ -69,11 +69,7 @@
                     vm.reports = reports;
                     UsageStatisicsService.addStatistics(vm.reports["0"].file1.course.user,
                         vm.reports["0"].file1.user, vm.reports["0"].file1.course,
-                        vm.reports["0"].file1.homework, vm.reports.length, vm.algoType)
-                        .then(function (res) {
-                            if(!res)
-                                console.log("record inserted in UsageStatistics");
-                        });
+                        vm.reports["0"].file1.homework, vm.reports.length, vm.algoType);
                 }
                 openNav("Professor");
             });
