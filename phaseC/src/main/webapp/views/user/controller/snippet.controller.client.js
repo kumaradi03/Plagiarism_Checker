@@ -10,11 +10,10 @@
         vm.studentId = $routeParams['userid'];
         vm.courseId = $routeParams['cid'];
         vm.fileId1 = $routeParams['fid1'];
-        vm.fileId2 = $routeParams['fid1'];
+        vm.fileId2 = $routeParams['fid2'];
         vm.type = $routeParams['sid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
-        vm.getDetailedReport = getDetailedReport;
         vm.logout = logout;
 
         function openNav(type) {
@@ -32,14 +31,6 @@
             }
         }
 
-        function getDetailedReport() {
-            ReportService
-                .getDetailedReport(vm.fileId1, vm.fileId2)
-                .then(function (divs) {
-                    vm.divs = divs;
-                });
-
-        }
 
         function logout() {
             UserService
@@ -51,11 +42,20 @@
                 });
         }
 
+
         UserService
             .findUserById(userId)
             .then(function (user) {
                 vm.user = user;
                 openNav(vm.user.userType);
+            });
+
+
+        ReportService
+            .getDetailedReport(vm.fileId1, vm.fileId2)
+            .then(function (divs) {
+                vm.myFile1 = divs[0];
+                vm.myFile2 = divs[1];
             });
     }
 

@@ -1,4 +1,4 @@
 (function () {
     angular
-        .module("PlagiarismChecker", ["ngRoute", "angularFileUpload"]);
+        .module("PlagiarismChecker", ["ngRoute", "angularFileUpload", "ngSanitize"]);
 })();

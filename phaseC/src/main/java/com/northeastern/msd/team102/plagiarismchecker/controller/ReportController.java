@@ -6,6 +6,8 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -36,12 +38,18 @@ public class ReportController {
         return reportService.findAllReportSummary(userID, hwID);
     }
 
+    /**
+     * getDetailedReport method to get the plagiarised code snippet of the two files.
+     * @param file1Id File id for the first file.
+     * @param file2Id File id for the Second file.
+     * @return Array of Strings containing the plagiarised code and the line numbers for the given files.
+     */
     @GetMapping("/getDetailedReport")
-    public Map<Integer, String> getDetailedReport (@RequestParam("file1Id") String userId, @RequestParam("hwId") String hwId) {
-        logger.log(Level.INFO, "Report summary for user with userId: "+ userId + "and homeworkId: " + hwId);
-        long userID = Long.parseLong(userId);
-        long hwID = Long.parseLong(hwId);
-        return reportService.findAllReportSummary(userID, hwID);
+    public String[] getDetailedReport (@RequestParam("file1Id") String file1Id, @RequestParam("file2Id")
+            String file2Id) throws IOException {
+        logger.log(Level.INFO, "Snippet for file1: "+ file1Id + "and file2: " + file2Id);
+        long file1ID = Long.parseLong(file1Id);
+        long file2ID = Long.parseLong(file2Id);
+        return reportService.getDetailedReport(file1ID, file2ID);
     }
-
 }

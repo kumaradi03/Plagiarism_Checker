@@ -19,6 +19,13 @@ public interface FileRepository extends JpaRepository<File, Long> {
     File findByFilename(String filename);
 
     /**
+     * findById method to return file by fileId.
+     * @param fileId
+     * @return File object for the given fileId
+     */
+    File findById(long fileId);
+
+    /**
      * findAllByHomeworkId to fetch all the files for a particular homework.
      * @param hwId homework Id for the files to be fetched.
      * @return List of Fileuploads for the particular homework

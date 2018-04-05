@@ -25,36 +25,18 @@
     <a href="#/profile/{{model.userId}}/course/{{model.courseId}}/homework/{{model.hwId}}/submission/{{model.studentId}}/
         type/{{model.type}}/summary">Summary</a>
 </div>
-<div id="main" class="container-fluid row">
-    <div class="alert alert-danger" ng-show="model.error">
-        {{model.error}}
+<div class="alert alert-danger" ng-show="model.error">
+    {{model.error}}
+</div>
+<div id="main" class="container-fluid ">
+    <div>
+        <pre class="col-xs-6">
+             <span ng-bind-html="model.myFile1"></span>
+        </pre>
+        <pre class="col-xs-6">
+            <span ng-bind-html="model.myFile2"></span>
+        </pre>
     </div>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th scope="col">Student Name</th>
-            <th scope="col">File Name</th>
-            <th scope="col">Student1 Name</th>
-            <th scope="col">File1 Name</th>
-            <th scope="col">Percentage</th>
-            <th scope="col">Detailed Report</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="report in model.reports">
-            <td>{{report.file1.user.firstName}} {{report.file1.user.lastName}}</td>
-            <td>{{report.file1.filename}}</td>
-            <td>{{report.file2.user.firstName}} {{report.file2.user.lastName}}</td>
-            <td>{{report.file2.filename}}</td>
-            <td ng-if="model.sId === '1'">{{report.percentageCompareHashMap}}</td>
-            <td ng-if="model.sId === '2'">{{report.percentageCompareTrees}}</td>
-            <td ng-if="model.sId === '3'">{{report.percentageCompareLevenshteinDistance}}</td>
-            <td ng-if="model.sId === '4'">{{report.percentageCompareAll}}</td>
-            <td><button type="button" class="btn btn-primary btn-s navbar-btn" ng-click="model.getDetailedReport(report.file1.id, report.file2.id)">
-                Detailed Report</button></td>
-        </tr>
-        </tbody>
-    </table>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
