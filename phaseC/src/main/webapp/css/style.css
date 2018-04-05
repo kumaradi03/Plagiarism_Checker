@@ -164,6 +164,8 @@ form.submitted .ng-invalid
 pre {
     background: #303030;
     color: #f1f1f1;
+    height:600px;
+    overflow:auto;
     padding: 10px 16px;
     border-radius: 2px;
     border-top: 4px solid #00aeef;
@@ -189,4 +191,16 @@ pre p:before {
 .red {
     white-space :pre-wrap;
     color:red;
+}
+
+#fileHeader {
+    font-size: x-large;
+    font-family: Arial;
+    font-weight: bolder;
+}
+
+#fileHeader1 {
+    font-size: x-large;
+    font-family: Arial;
+    font-weight: bolder;
 }
