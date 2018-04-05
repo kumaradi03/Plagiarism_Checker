@@ -80,6 +80,11 @@ public class UserService {
         return userRepository.findByUserType(userType);
     }
 
+    /**
+     * findProfessors method finds a list of Professor and Admin users
+     * having statusFlag as false
+     * @return a list of Professor and Admin users
+     */
     public List<User> findProfessors(){
         List<User> processedProcessors= new ArrayList<>();
         List<User> unprocessedProcessors = userRepository.findProfessors();
@@ -96,6 +101,12 @@ public class UserService {
         return processedProcessors;
     }
 
+    /**
+     * setUserStatus methods sets the status_Flag of userId passed in
+     * parameters
+     * @param userIdList An array of long having userIds of Professor and Admin users
+     *                   to be approved
+     */
     public void setUserStatus(long[] userIdList){
         for(long eachUserId : userIdList) {
                 userRepository.setUserStatus(eachUserId);
