@@ -90,7 +90,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    /**
+    
+     /**
      * findProfessors method finds a list of Professor and Admin users
      * having statusFlag as false
      * @return a list of Professor and Admin users
