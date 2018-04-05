@@ -99,13 +99,15 @@ public class Snippet {
 
     	int lineNo = 1;
     	for(String line: lines) {
-    	    if(similarLines.containsKey(lineNo))
-                htmlStrings.append("<p class=\"red\">")
-                        .append(line).append("</p>\n");
-    	    else
-                htmlStrings.append("<p style=\"white-space\">")
-                        .append(line).append("</p>\n");
-    	    lineNo++;
+            if((line.length()) != 0 && isComment(line)){
+                if(similarLines.containsKey(lineNo))
+                    htmlStrings.append("<p class=\"red\">")
+                            .append(line).append("</p>\n");
+                else
+                    htmlStrings.append("<p style=\"white-space\">")
+                            .append(line).append("</p>\n");
+                lineNo++;
+            }
         }
 
 		return htmlStrings.toString();
