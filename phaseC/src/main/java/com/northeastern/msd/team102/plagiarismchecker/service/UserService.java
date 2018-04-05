@@ -89,7 +89,7 @@ public class UserService {
         logger.log(Level.INFO, "Updating user with username " + user.getUsername());
         return userRepository.save(user);
     }
-    
+
      /**
      * findProfessors method finds a list of Professor and Admin users
      * having statusFlag as false

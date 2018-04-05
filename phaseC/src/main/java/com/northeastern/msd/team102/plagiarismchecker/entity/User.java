@@ -32,9 +32,15 @@ public class User implements Serializable {
      * @param id id of the user
      * @param firstName firstName of the user
      * @param lastName lastName of the user
+<<<<<<< HEAD
      * @param userType userType of the user
      * @param username username of the user
      * @param password password of the user
+=======
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+>>>>>>> ac1bc55d9e57c5eeb01d9bf584b94a72d92326df
      * @param email email of the user
      * @param statusFlag indicates status of user
      */
