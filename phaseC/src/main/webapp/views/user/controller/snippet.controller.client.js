@@ -1,19 +1,20 @@
 (function(){
     angular
         .module("PlagiarismChecker")
-        .controller("ReportSummaryController", ReportSummaryController);
+        .controller("SnippetController", SnippetController);
 
-    function ReportSummaryController (ReportService, $location, $routeParams) {
+    function SnippetController (UserService, ReportService, $routeParams) {
         var vm = this;
-        vm.userId = $routeParams['uid'];
-        vm.studentId = $routeParams['userid'];
+        var userId = $routeParams['uid'];
         vm.hwId = $routeParams['hid'];
-        vm.sId = $routeParams['sid'];
+        vm.studentId = $routeParams['userid'];
         vm.courseId = $routeParams['cid'];
+        vm.fileId1 = $routeParams['fid1'];
+        vm.fileId2 = $routeParams['fid2'];
+        vm.type = $routeParams['sid'];
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.logout = logout;
-        vm.getDetailedReport = getDetailedReport;
 
         function openNav(type) {
             if(type === "Professor"){
@@ -30,6 +31,7 @@
             }
         }
 
+
         function logout() {
             UserService
                 .logout()
@@ -40,20 +42,21 @@
                 });
         }
 
-        function getDetailedReport(file1Id, file2Id) {
-            $location.url('/profile/'+ vm.userId + '/course/' + vm.courseId + '/homework/' + vm.hwId + '/submission/'
-                + vm.studentId + '/type/' + vm.sId + '/summary/file1/'+ file1Id + '/file2/' + file2Id);
-        }
+
+        UserService
+            .findUserById(userId)
+            .then(function (user) {
+                vm.user = user;
+                openNav(vm.user.userType);
+            });
+
 
         ReportService
-            .findAllReportSummary(vm.studentId, vm.hwId)
-            .then(function (reports) {
-                console.log(reports);
-                if(reports.length === 0)
-                    vm.error = "No reports.";
-                else
-                    vm.reports = reports;
-                openNav("Professor");
+            .getDetailedReport(vm.fileId1, vm.fileId2)
+            .then(function (divs) {
+                vm.myFile1 = divs[0];
+                vm.myFile2 = divs[1];
             });
     }
+
 })();

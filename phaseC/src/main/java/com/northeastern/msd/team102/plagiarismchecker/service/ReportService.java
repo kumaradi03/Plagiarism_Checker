@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
@@ -24,13 +25,7 @@ public class ReportService {
     private ReportRepository reportRepository;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private FileService fileService;
-
-    @Autowired
-    private HomeworkService homeworkService;
 
     public static final Logger logger = Logger.getLogger(ReportService.class.getName());
 
@@ -38,7 +33,7 @@ public class ReportService {
      * createReport saves the report in the database.
      * @param report
      */
-    public void createReport(Report report) {
+    private void createReport(Report report) {
         logger.log(Level.INFO, "Saving report for reportID: " + report.getId());
         reportRepository.save(report);
     }
@@ -102,6 +97,14 @@ public class ReportService {
     public List<Report> findAllReportSummary(long userId, long hwId) {
         logger.log(Level.INFO, "Returning all report summary for userid " + userId + "and hwId " + hwId);
         return reportRepository.findAllByHomeworkIdAndUserId(hwId,userId);
+    }
+
+    public String[] getDetailedReport(long file1Id, long file2Id) throws IOException {
+        logger.log(Level.INFO, "Snippet for file1: "+ file1Id + "and file2: " + file2Id);
+        byte[] file1 = fileService.findByFileId(file1Id).getFile();
+        byte[] file2 = fileService.findByFileId(file2Id).getFile();
+        Snippet snippet = new Snippet();
+        return snippet.generateSnippets(file1, file2);
     }
 
 }

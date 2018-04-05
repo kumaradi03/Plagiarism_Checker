@@ -43,6 +43,16 @@ public class FileService {
     }
 
     /**
+     * findByFileId method returns the file by a file id.
+     * @param fileId
+     * @return Fileupload for the given file.
+     */
+    public File findByFileId(long fileId) {
+        logger.log(Level.INFO, "Returning file by FileId: " + fileId );
+        return fileRepository.findById(fileId);
+    }
+
+    /**
      * uploadFile method uploads the given file.
      * @param doc File to be uploaded
      * @param userId userId for the file.
