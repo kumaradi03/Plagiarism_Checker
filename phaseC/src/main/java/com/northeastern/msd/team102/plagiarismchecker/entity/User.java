@@ -60,7 +60,10 @@ public class User implements Serializable {
      * @param lastName lastName of the user
      * @param email email of the user
      */
+<<<<<<< HEAD
 
+=======
+>>>>>>> CS102-68 #comment added test cases for User entity and new endpoints in UserController
     public User(long id, String firstName, String lastName, String userType, String username, String password, String email) {
         this.id = id;
         this.firstName = firstName;
