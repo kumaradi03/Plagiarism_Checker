@@ -35,6 +35,7 @@ public class User {
      * @param lastName lastName of the user
      * @param lastName lastName of the user
      * @param email email of the user
+     * @param statusFlag indicates status of user
      */
 
     public User(long id, String firstName, String lastName, String userType, String username, String password, String email,String statusFlag) {
@@ -48,6 +49,16 @@ public class User {
         this.statusFlag=statusFlag;
     }
 
+    /**
+     * Constructor for User class
+     * @param id id of the user
+     * @param firstName firstName of the user
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+     * @param email email of the user
+     */
     public User(long id, String firstName, String lastName, String userType, String username, String password, String email) {
         this.id = id;
         this.firstName = firstName;
@@ -57,7 +68,6 @@ public class User {
         this.password = password;
         this.email = email;
     }
-
 
 
     /**
@@ -179,10 +189,17 @@ public class User {
         this.email = email;
     }
 
+    /**
+     * Getter for User Status Flag
+     * @return current status of User
+     */
     public String getStatusFlag() {
         return statusFlag;
     }
 
+    /**
+     * Setter for User Status Flag
+     */
     public void setStatusFlag(String statusFlag) {
         this.statusFlag = statusFlag;
     }
