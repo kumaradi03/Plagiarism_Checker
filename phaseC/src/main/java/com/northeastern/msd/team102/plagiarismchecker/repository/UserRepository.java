@@ -45,9 +45,18 @@ public interface UserRepository extends JpaRepository<User, Long> {
      */
     User findByUserType(String userType);
 
+    /**
+     * findProfessors method returns a list of Professors and Admin users with status flag as false
+     * @return a list of Preofessor and Admin users
+     */
     @Query(nativeQuery=true, value="SELECT * FROM user u where u.user_type = 'Professor'  AND  u.status_flag = 'false' OR u.user_type = 'Admin'  AND  u.status_flag = 'false'")
     List<User> findProfessors();
 
+    /**
+     * setUserStatus method sets the status_flag of given userId
+     * @param userId user id
+     * @return 1 if updatation is succesfull else 0
+     */
     @Modifying
     @Transactional
     @Query(nativeQuery=true, value="UPDATE user u SET u.status_flag ='true' WHERE u.id = ?1")
