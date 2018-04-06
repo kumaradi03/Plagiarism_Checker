@@ -20,40 +20,32 @@
     </span>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#/profile/{{model.user.id}}">Profile</a>
-    <a href="#/profile/{{model.user.id}}/course" ng-if="model.user.userType === 'Professor'">Course</a>
     <a href="#/profile/{{model.user.id}}/statistics" ng-if="model.user.userType !== 'Student'">Usage Statistics</a>
     <a href="#/profile/{{model.user.id}}/systemStatistics" ng-if="model.user.userType == 'Admin'">System Statistics</a>
 </div>
 <div id="main" class="container-fluid row">
-    <div class="alert alert-danger" ng-show="model.error">
-        {{model.error}}
+    <div ng-show ="model.error1" class="alert alert-danger" role="alert">
+        {{model.error1}}
     </div>
-    <table class="table table-bordered" ng-if="model.reports.length !== 0">
-        <thead>
-        <tr>
-            <th scope="col" ng-if="model.user.userType === 'Admin'">Professor</th>
-            <th scope="col">Student</th>
-            <th scope="col">Course</th>
-            <th scope="col">Homework</th>
-            <th scope="col">Algorithm used</th>
-            <th scope="col">Number of comparisons</th>
-            <th scope="col">Date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="report in model.reports">
-            <td ng-if="model.user.userType === 'Admin'">
-                {{report.professor.firstName}} {{report.professor.lastName}}
-            </td>
-            <td>{{report.student.firstName}} {{report.student.lastName}}</td>
-            <td>{{report.course.name}}</td>
-            <td>{{report.homework.name}}</td>
-            <td>{{report.algoType}}</td>
-            <td>{{report.compareCount}}</td>
-            <td>{{report.timestamp}}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div ng-show ="model.error2" class="alert alert-danger" role="alert">
+        {{model.error2}}
+    </div>
+    <!--<div ng-show ="model.error3" class="alert alert-danger" role="alert">-->
+        <!--{{model.error3}}-->
+    <!--</div>-->
+    <span>Health Status: {{model.healthData.status}}</span><br><br>
+
+    <span>Timezone: {{model.envData.propertySources[2].properties["user.timezone"].value}}</span><br>
+    <span>Server machine specifications: {{model.envData.propertySources[3].properties.ComSpec.value}}</span><br>
+    <span>Logon server: {{model.envData.propertySources[3].properties.LOGONSERVER.value}}</span><br>
+    <span>Number of Processors: {{model.envData.propertySources[3].properties.NUMBER_OF_PROCESSORS.value}}</span><br>
+    <span>OS: {{model.envData.propertySources[3].properties.OS.value}}</span><br>
+    <span>Processor Architecture: {{model.envData.propertySources[3].properties.PROCESSOR_ARCHITECTURE.value}}</span><br>
+    <span>Session name: {{model.envData.propertySources[3].properties.SESSIONNAME.value}}</span><br>
+    <span>Spring datasource driver class name: {{model.envData.propertySources[4].properties["spring.datasource.driver-class-name"].value}}</span><br>
+    <!--<span>Spring datasource url: {{model.envData.propertySources[4].properties["spring.datasource.url"]}}</span>-->
+    <!--<span>Spring datasource username: {{model.envData.propertySources[4].properties["spring.datasource.username"]}}</span>-->
+
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">

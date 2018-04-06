@@ -190,3 +190,9 @@ pre p:before {
     font-family: Arial;
     font-weight: bolder;
 }
+
+.smallCell
+{
+    width: 1px;
+    white-space: nowrap;
+}
