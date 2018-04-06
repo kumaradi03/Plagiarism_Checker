@@ -51,7 +51,7 @@
         }
 
         /**
-         * fetch the user by ID
+         * fetch the user by ID, get system data
          */
         UserService
             .findUserById(vm.userId)
@@ -80,11 +80,7 @@
                     SystemStatisicsService
                         .getSystemInfo()
                         .then(function (infoData) {
-                            if(infoData.length === 0 || infoData.length === undefined)
-                                vm.error3 = "No system information statistics available";
-                            else {
-                                vm.infoData = infoData;
-                            }
+                            vm.infoData = infoData;
                         });
                 }
                 openNav(vm.user.userType);
