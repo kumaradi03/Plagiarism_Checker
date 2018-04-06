@@ -37,8 +37,8 @@ public class UsageStatisticsControllerTest {
         testUsageList.add(u);
         String ExpectedOutput="[{\"id\":0,\"timestamp\":"+d+",\"professor\":" +
                 "{\"id\":0,\"firstName\":null,\"lastName\":null,\"userType\":null,\"username\":null,\"password\":null," +
-                "\"email\":null},\"student\":{\"id\":0,\"firstName\":null,\"lastName\":null,\"userType\":null," +
-                "\"username\":null,\"password\":null,\"email\":null},\"course\":{\"id\":0,\"name\":null," +
+                "\"email\":null,\"statusFlag\":null},\"student\":{\"id\":0,\"firstName\":null,\"lastName\":null,\"userType\":null," +
+                "\"username\":null,\"password\":null,\"email\":null,\"statusFlag\":null},\"course\":{\"id\":0,\"name\":null," +
                 "\"description\":null,\"user\":null},\"homework\":{\"id\":0,\"name\":null,\"description\":null," +
                 "\"user\":null,\"course\":null},\"compareCount\":0.0,\"algoType\":\"HashMap\"}]";
         Mockito.when(usageStatisticsService.findAllUsageStatisticsByProfessor(2)).thenReturn(testUsageList);

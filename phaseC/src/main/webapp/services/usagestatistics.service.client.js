@@ -7,7 +7,8 @@
 
         var api = {
             "findAllUsageStatisticsByProfessor": findAllUsageStatisticsByProfessor,
-            "addStatistics": addStatistics
+            "addStatistics": addStatistics,
+            "findAllUsageStatistics": findAllUsageStatistics
         };
         return api;
 
@@ -19,6 +20,19 @@
          */
         function findAllUsageStatisticsByProfessor(userId) {
             return $http.get("/rest/usagestatistics/findAllUsageStatisticsSummary/?userId="+userId)
+                .then(function(res){
+                    return res.data;
+                });
+        }
+
+        /**
+         * finds all usage statistics for the given userId
+         * @param userId
+         * @returns {PromiseLike<T> | Promise<T>}: usage statistics of the number of plagiarism detection cases run
+         * by the respective userId
+         */
+        function findAllUsageStatistics() {
+            return $http.get("/rest/usagestatistics/findAllSummary")
                 .then(function(res){
                     return res.data;
                 });

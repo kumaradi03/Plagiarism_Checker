@@ -20,6 +20,9 @@
             if(type === "Professor"){
                 document.getElementById("mySidenav").style.width = "250px";
                 document.getElementById("main").style.marginLeft = "250px";
+            } else if (type === "Admin") {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
             }
         }
 
@@ -55,6 +58,28 @@
             .findUserById(vm.userId)
             .then(function (user) {
                 vm.user = user;
+
+                if (vm.user.userType === "Admin") {
+                    UsageStatisicsService
+                        .findAllUsageStatistics()
+                        .then(function (reports) {
+                            if(reports.length === 0)
+                                vm.error = "No usage statistics information obtained. Please run comparison on submissions!";
+                            else {
+                                vm.reports = reports;
+                            }
+                        });
+                } else {
+                    UsageStatisicsService
+                        .findAllUsageStatisticsByProfessor(vm.userId)
+                        .then(function (reports) {
+                            if(reports.length === 0)
+                                vm.error = "No usage statistics information obtained. Please run comparison on submissions!";
+                            else {
+                                vm.reports = reports;
+                            }
+                        });
+                }
                 openNav(vm.user.userType);
             });
 
@@ -62,16 +87,16 @@
          * find all usage statistics of the number of plagiarism detection cases run for the
          * current user(Professor in this case)
          */
-        UsageStatisicsService
-            .findAllUsageStatisticsByProfessor(vm.userId)
-            .then(function (reports) {
-                if(reports.length === 0)
-                    vm.error = "No usage statistics information obtained. Please run comparison on submissions!";
-                else {
-                    vm.reports = reports;
-                }
-                openNav("Professor");
-            });
+        // UsageStatisicsService
+        //     .findAllUsageStatisticsByProfessor(vm.userId)
+        //     .then(function (reports) {
+        //         if(reports.length === 0)
+        //             vm.error = "No usage statistics information obtained. Please run comparison on submissions!";
+        //         else {
+        //             vm.reports = reports;
+        //         }
+        //         openNav("Professor");
+        //     });
 
     }
 })();

@@ -59,4 +59,14 @@ public class UsageStatisticsService {
         return usageStatisticsRepository.findAllByProfessor_Id(userId);
     }
 
+    /**
+     * finds all usage statistics for the given userId
+     * @returns List<UsageStatistics>: usage statistics of the number of plagiarism detection cases run
+     * by the respective userId
+     */
+    public List<UsageStatistics> findAllUsageStatistics() {
+        logger.log(Level.INFO, "Returning all usage statistics summary for Admin");
+        return usageStatisticsRepository.findAll();
+    }
+
 }

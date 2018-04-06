@@ -19,4 +19,11 @@ public interface UsageStatisticsRepository extends JpaRepository<UsageStatistics
      */
     @Query("select s from UsageStatistics s where professor_id = ?1")
     List<UsageStatistics> findAllByProfessor_Id(long userId);
+
+    /**
+     * get list of all usage statistics for given professor Id
+     * @return list of usage statistics
+     */
+    @Query("select s from UsageStatistics s")
+    List<UsageStatistics> findAll();
 }

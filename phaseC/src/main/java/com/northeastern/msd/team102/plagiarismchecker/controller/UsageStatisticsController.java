@@ -31,6 +31,16 @@ public class UsageStatisticsController {
         return usageStatisticsService.findAllUsageStatisticsByProfessor(userID);
     }
 
+    /**
+     * get all statistics of comparisons done by Professor with given userID
+     * @return list of usage statistics of professor
+     */
+    @GetMapping("/findAllSummary")
+    public List<UsageStatistics> findAllSummary() {
+        logger.log(Level.INFO, "Usage Statistics summary for Admin");
+        return usageStatisticsService.findAllUsageStatistics();
+    }
+
     @PostMapping("/registerStats")
     public void registerStats(@RequestBody UsageStatistics data) {
         logger.log(Level.INFO, "Registering usage statistics summary for professor: "+ data.getProfessor().getFirstName());
