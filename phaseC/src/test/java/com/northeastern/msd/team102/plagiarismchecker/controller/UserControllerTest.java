@@ -16,11 +16,12 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-
 import static org.junit.Assert.*;
-import static org.springframework.data.repository.init.ResourceReader.Type.JSON;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -52,7 +53,7 @@ public class UserControllerTest {
     @Test
     public void findUserByUsername() throws Exception{
         String username = "testUser";
-        String ExpectedOutput="{\"id\":3,\"firstName\":\"testFirst\",\"lastName\":\"testLast\",\"userType\":\"student\",\"username\":\"testUser\",\"password\":\"testpassword\",\"email\":\"test@test.com\"}";
+        String ExpectedOutput="{\"id\":3,\"firstName\":\"testFirst\",\"lastName\":\"testLast\",\"userType\":\"student\",\"username\":\"testUser\",\"password\":\"testpassword\",\"email\":\"test@test.com\",\"statusFlag\":null}";
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
         Mockito.when(userService.findUserByUsername(username)).thenReturn(testUser);
         MvcResult result;
@@ -66,7 +67,7 @@ public class UserControllerTest {
     public void findUserByUserId() throws Exception{
         long userId = 3;
         String suserId ="3";
-        String ExpectedOutput="{\"id\":3,\"firstName\":\"testFirst\",\"lastName\":\"testLast\",\"userType\":\"student\",\"username\":\"testUser\",\"password\":\"testpassword\",\"email\":\"test@test.com\"}";
+        String ExpectedOutput="{\"id\":3,\"firstName\":\"testFirst\",\"lastName\":\"testLast\",\"userType\":\"student\",\"username\":\"testUser\",\"password\":\"testpassword\",\"email\":\"test@test.com\",\"statusFlag\":null}";
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
         Mockito.when(userService.findUserByUserId(userId)).thenReturn(testUser);
         MvcResult result;
@@ -78,7 +79,7 @@ public class UserControllerTest {
 
     @Test
     public void findProfessor() throws Exception{
-        String ExpectedOutput="{\"id\":3,\"firstName\":\"testFirst\",\"lastName\":\"testLast\",\"userType\":\"student\",\"username\":\"testUser\",\"password\":\"testpassword\",\"email\":\"test@test.com\"}";
+        String ExpectedOutput="{\"id\":3,\"firstName\":\"testFirst\",\"lastName\":\"testLast\",\"userType\":\"student\",\"username\":\"testUser\",\"password\":\"testpassword\",\"email\":\"test@test.com\",\"statusFlag\":null}";
         User testProfessor =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
         Mockito.when(userService.findByUserType("Professor")).thenReturn(testProfessor);
         MvcResult result;
@@ -103,4 +104,20 @@ public class UserControllerTest {
         JSONAssert.assertEquals(expected, result.getResponse()
                 .getContentAsString(), false);
     }
+
+    @Test
+    public void findProfessors() throws Exception {
+        User mockUser1 = new User(1, "Aditya","Kumar","Professor","adi", "adi","adidkool1@gmail.com","true");
+        User mockUser2 = new User(2, "Aditya","Kumar","Admin","adi", "adi","adidkool1@gmail.com","true");
+        List<User> professorAdminList = new ArrayList<>();
+        professorAdminList.add(mockUser1);
+        professorAdminList.add(mockUser2);
+        String ExpectedOutput="[{\"id\":1,\"firstName\":\"Aditya\",\"lastName\":\"Kumar\",\"userType\":\"Professor\",\"username\":\"adi\",\"password\":\"adi\",\"email\":\"adidkool1@gmail.com\",\"statusFlag\":\"true\"},{\"id\":2,\"firstName\":\"Aditya\",\"lastName\":\"Kumar\",\"userType\":\"Admin\",\"username\":\"adi\",\"password\":\"adi\",\"email\":\"adidkool1@gmail.com\",\"statusFlag\":\"true\"}]";
+        Mockito.when(userService.findProfessors()).thenReturn(professorAdminList);
+        MvcResult result=mockMvc.perform(MockMvcRequestBuilders.get("/rest/user/findProfessors"))
+                .andExpect(status().isOk())
+                .andReturn();
+        assertEquals(ExpectedOutput.toString(), result.getResponse().getContentAsString());
+    }
+
 }

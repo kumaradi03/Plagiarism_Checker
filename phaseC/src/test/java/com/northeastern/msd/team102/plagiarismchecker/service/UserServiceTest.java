@@ -9,6 +9,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
@@ -19,6 +24,7 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = UserService.class, secure = false)
 public class UserServiceTest {
+
 
     @Autowired
     private MockMvc mockMvc;
@@ -68,6 +74,18 @@ public class UserServiceTest {
         when(userRepository.findByUserType("Student")).thenReturn(mockUser);
         given(this.userService.findByUserType("Student")).willReturn(mockUser);
         assertEquals(mockUser,this.userService.findByUserType("Student"));
+    }
+
+    @Test
+    public void findProfessors() throws Exception {
+        User mockUser1 = new User(1, "Aditya","Kumar","Professor","adi", "adi","adidkool1@gmail.com","false");
+        User mockUser2 = new User(2, "Aditya","Kumar","Admin","adi", "adi","adidkool1@gmail.com","false");
+        List<User> professorAdminList = new ArrayList<>();
+        professorAdminList.add(mockUser1);
+        professorAdminList.add(mockUser2);
+        when(userRepository.findProfessors()).thenReturn(professorAdminList);
+        given(this.userService.findProfessors()).willReturn(professorAdminList);
+        assertEquals(professorAdminList.get(0).getId(), this.userService.findProfessors().get(0).getId());
     }
 
 }

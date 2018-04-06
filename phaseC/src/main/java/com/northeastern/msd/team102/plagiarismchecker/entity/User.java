@@ -24,6 +24,8 @@ public class User implements Serializable {
     private String password;
     @Column(name = "email")
     private String email;
+    @Column(name = "statusFlag")
+    private String statusFlag;
 
     /**
      * Constructor for User class
@@ -33,6 +35,41 @@ public class User implements Serializable {
      * @param userType userType of the user
      * @param username username of the user
      * @param password password of the user
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+>>>>>>> CS102-68 #comment changes to rebase with master
+=======
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+>>>>>>> 245e29c96ffb4296c8018baa2589f09e5b1988a7
+     * @param email email of the user
+     * @param statusFlag indicates status of user
+     */
+
+    public User(long id, String firstName, String lastName, String userType, String username, String password, String email,String statusFlag) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userType = userType;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.statusFlag=statusFlag;
+    }
+
+    /**
+     * Constructor for User class
+     * @param id id of the user
+     * @param firstName firstName of the user
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
      * @param email email of the user
      */
     public User(long id, String firstName, String lastName, String userType, String username, String password, String email) {
@@ -44,6 +81,7 @@ public class User implements Serializable {
         this.password = password;
         this.email = email;
     }
+
 
     /**
      * Default constructor
@@ -162,6 +200,21 @@ public class User implements Serializable {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * Getter for User Status Flag
+     * @return current status of User
+     */
+    public String getStatusFlag() {
+        return statusFlag;
+    }
+
+    /**
+     * Setter for User Status Flag
+     */
+    public void setStatusFlag(String statusFlag) {
+        this.statusFlag = statusFlag;
     }
 
 }

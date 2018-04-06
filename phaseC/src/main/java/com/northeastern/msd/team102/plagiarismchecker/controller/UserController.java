@@ -6,8 +6,8 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Controller class for User entity.
@@ -85,6 +85,28 @@ public class UserController {
     public User findProfessor() {
         logger.log(Level.INFO, "Returning professor object");
         return userService.findByUserType("Professor");
+    }
+
+
+    /**
+     * findProfessors method which receives a request for fetching professors and
+     * admin with Status flag false
+     * @return A List of Professors and Admin users
+     */
+    @GetMapping("/findProfessors")
+    public List<User> findProfessors() {
+        return userService.findProfessors();
+    }
+    
+    /**
+     * setUserStatus method receives a post for setting user status of
+     * professors and admin users
+     * @param approvedProfessorList a list of userIds of professors and admins users
+     *                              to be approved
+     */
+    @PostMapping("/setUserStatus")
+    public void setUserStatus(@RequestBody long[] approvedProfessorList) {
+        userService.setUserStatus(approvedProfessorList);
     }
 
     /**
