@@ -35,18 +35,7 @@ public class User implements Serializable {
      * @param userType userType of the user
      * @param username username of the user
      * @param password password of the user
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
      * @param lastName lastName of the user
-     * @param lastName lastName of the user
-     * @param lastName lastName of the user
->>>>>>> CS102-68 #comment changes to rebase with master
-=======
-     * @param lastName lastName of the user
-     * @param lastName lastName of the user
-     * @param lastName lastName of the user
->>>>>>> 245e29c96ffb4296c8018baa2589f09e5b1988a7
      * @param email email of the user
      * @param statusFlag indicates status of user
      */
