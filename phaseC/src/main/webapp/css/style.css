@@ -137,23 +137,9 @@ a.navbar-brand {
     .sidenav a {font-size: 18px;}
 }
 
-.table{
-    border : solid grey;
-}
-
 form.submitted .ng-invalid
 {
     border: 1px solid red;
-}
-
-.table,th{
-    font-family: "Arial Hebrew";
-    font-size: medium;
-}
-
-.table,td{
-    font-family: "Comic Sans MS";
-    font-size: medium;
 }
 
 .my-drop-zone { border: dotted 3px lightgray; }

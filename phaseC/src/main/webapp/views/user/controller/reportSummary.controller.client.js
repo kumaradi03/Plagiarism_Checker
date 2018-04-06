@@ -10,10 +10,12 @@
         vm.hwId = $routeParams['hid'];
         vm.sId = $routeParams['sid'];
         vm.courseId = $routeParams['cid'];
+        vm.orderByField = 'percentageCompareHashMap';
         vm.openNav = openNav;
         vm.closeNav = closeNav;
         vm.logout = logout;
         vm.getDetailedReport = getDetailedReport;
+
 
         function openNav(type) {
             if(type === "Professor"){
@@ -48,6 +50,7 @@
         ReportService
             .findAllReportSummary(vm.studentId, vm.hwId)
             .then(function (reports) {
+                vm.reverseSort = false;
                 console.log(reports);
                 if(reports.length === 0)
                     vm.error = "No reports.";
