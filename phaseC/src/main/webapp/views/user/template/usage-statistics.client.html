@@ -20,8 +20,9 @@
     </span>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#/profile/{{model.user.id}}">Profile</a>
-    <a href="#/profile/{{model.user.id}}/course">Course</a>
+    <a href="#/profile/{{model.user.id}}/course" ng-if="model.user.userType === 'Professor'">Course</a>
     <a href="#/profile/{{model.user.id}}/statistics" ng-if="model.user.userType !== 'Student'">Usage Statistics</a>
+    <a href="#/profile/{{model.user.id}}/systemStatistics" ng-if="model.user.userType == 'Admin'">System Statistics</a>
 </div>
 <div id="main" class="container-fluid row">
     <div class="alert alert-danger" ng-show="model.error">

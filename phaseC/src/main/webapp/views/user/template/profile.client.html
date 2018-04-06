@@ -30,6 +30,7 @@
     <a href="#/profile/{{model.user.id}}">Profile</a>
     <a href="#/profile/{{model.user.id}}/course">Course</a>
     <a href="#/profile/{{model.user.id}}/statistics" ng-if="model.user.userType !== 'Student'">Usage Statistics</a>
+    <a href="#/profile/{{model.user.id}}/systemStatistics" ng-if="model.user.userType == 'Admin'">System Statistics</a>
 </div>
 <div id="mySidenav2" class="sidenav">
     <span ng-click="model.closeNav(model.user.userType)">
@@ -45,6 +46,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav(model.user.userType)">&times;</a>
     <a href="#/profile/admin/{{model.user.id}}">Admin Panel</a>
     <a href="#/profile/{{model.user.id}}/statistics">Usage Statistics</a>
+    <a href="#/profile/{{model.user.id}}/systemStatistics" ng-if="model.user.userType == 'Admin'">System Statistics</a>
 </div>
 <!-- Use any element to open the sidenav -->
 <div id="main" class="container-fluid ">
