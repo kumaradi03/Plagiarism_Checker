@@ -111,6 +111,28 @@ public class UserController {
     }
 
     /**
+     * findProfessors method which receives a request for fetching professors and
+     * admin with Status flag false
+     * @return A List of Professors and Admin users
+     */
+    @GetMapping("/findProfessors")
+    public List<User> findProfessors() {
+        return userService.findProfessors();
+    }
+
+
+    /**
+     * setUserStatus method receives a post for setting user status of
+     * professors and admin users
+     * @param approvedProfessorList a list of userIds of professors and admins users
+     *                              to be approved
+     */
+    @PostMapping("/setUserStatus")
+    public void setUserStatus(@RequestBody long[] approvedProfessorList) {
+        userService.setUserStatus(approvedProfessorList);
+    }
+
+    /**
      * registerUser method for registering a user.
      * @param user
      * @return returns the user object that is registered.

@@ -36,11 +36,17 @@ public class User implements Serializable {
      * @param username username of the user
      * @param password password of the user
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
      * @param lastName lastName of the user
      * @param lastName lastName of the user
      * @param lastName lastName of the user
 >>>>>>> CS102-68 #comment changes to rebase with master
+=======
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+     * @param lastName lastName of the user
+>>>>>>> 245e29c96ffb4296c8018baa2589f09e5b1988a7
      * @param email email of the user
      * @param statusFlag indicates status of user
      */
@@ -196,7 +202,6 @@ public class User implements Serializable {
         this.email = email;
     }
 
-
     /**
      * Getter for User Status Flag
      * @return current status of User
@@ -204,7 +209,6 @@ public class User implements Serializable {
     public String getStatusFlag() {
         return statusFlag;
     }
-
 
     /**
      * Setter for User Status Flag
