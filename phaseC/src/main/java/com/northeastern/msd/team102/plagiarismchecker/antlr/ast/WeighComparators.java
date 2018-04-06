@@ -29,21 +29,6 @@ public class WeighComparators {
 	private List<ArrayList<Double>> dataX;
 	
 	/**
-	 * dataXHashMap - to store input feature data from TrainingData.csv file (refer columns index: 2)
-	 */
-	private List<Double> dataXHashMap;
-	
-	/**
-	 * dataXLevenshtein - to store input feature data from TrainingData.csv file (refer columns index: 3)
-	 */
-	private List<Double> dataXLevenshtein;
-	
-	/**
-	 * dataXTree - to store input feature data from TrainingData.csv file (refer columns index: 4)
-	 */
-	private List<Double> dataXTree;
-	
-	/**
 	 * dataY - to store output class data from TrainingData.csv file (refer columns index: 5)
 	 */
 	private List<Double> dataY;
@@ -77,9 +62,6 @@ public class WeighComparators {
 	WeighComparators() throws URISyntaxException {
 		logger = Logger.getLogger(WeighComparators.class.getName());
 		this.dataX = new ArrayList<>();
-		this.dataXHashMap = new ArrayList<>();
-		this.dataXLevenshtein = new ArrayList<>();
-		this.dataXTree = new ArrayList<>();
 		this.dataY = new ArrayList<>();
 		this.noOfComparators = 0;
 		this.weightsHashMap = 0;
@@ -88,9 +70,6 @@ public class WeighComparators {
 		readCSV();
 		
 		this.weightsAll = computeMatrixAll(dataX);
-		this.weightsHashMap = computeMatrixAlgoSpecific(dataXHashMap);
-		this.weightsLevenshtein = computeMatrixAlgoSpecific(dataXLevenshtein);
-		this.weightsTree = computeMatrixAlgoSpecific(dataXTree);
 	}
 	
 	/**
@@ -111,9 +90,6 @@ public class WeighComparators {
                 	row.add(Double.parseDouble(trainRow[i]));
                 }
                 this.dataX.add((ArrayList<Double>) row);
-                this.dataXHashMap.add(Double.parseDouble(trainRow[2]));
-                this.dataXLevenshtein.add(Double.parseDouble(trainRow[3]));
-                this.dataXTree.add(Double.parseDouble(trainRow[4]));
                 this.dataY.add(Double.parseDouble(trainRow[trainRow.length-1]));
             }
         } catch (Exception e) {
@@ -140,49 +116,17 @@ public class WeighComparators {
 		for (Double d : dataY) {
 			dataYArr[i][0] = d;
 			i++;
-		}		
-		Matrix x = new Matrix(dataXArr);
+		}
+		Matrix x = new Matrix(dataXArr); 
 		Matrix y = new Matrix(dataYArr);
-		Matrix xTranspose = x.transpose();
-		Matrix xMul = xTranspose.times(x);
-		Matrix xInverse = xMul.inverse();
-		Matrix xMul2 = xInverse.times(xTranspose);
-		Matrix wTrain = xMul2.times(y);
+		Matrix xMul2 = x.transpose().times(x).inverse().times(x.transpose());
+		Matrix wTrain = xMul2.times(y);		
 		double[][] w = wTrain.getArray();
 		double[] weights = new double[this.noOfComparators];
 		for (int p = 0; p< w.length; p++) {
 			weights[p] = w[p][0];
 		}
 		return weights;
-	}
-	
-	/**
-	 * @param data : List - input training feature data of a specific algorithm
-	 * @return weight for that specific algorithm
-	 */
-	private double computeMatrixAlgoSpecific (List<Double> data) {		
-		double[][] dataXArr = new double[data.size()][1];
-		int i = 0;
-		for (Double d : data) {
-			dataXArr[i++][0] = d;
-		}
-		
-		double[][] dataYArr = new double[dataY.size()][1];
-		i = 0;
-		for (Double d : dataY) {
-			dataYArr[i][0] = d;
-			i++;
-		}
-		
-		Matrix x = new Matrix(dataXArr);
-		Matrix y = new Matrix(dataYArr);
-		Matrix xTranspose = x.transpose();
-		Matrix xMul = xTranspose.times(x);
-		Matrix xInverse = xMul.inverse();
-		Matrix xMul2 = xInverse.times(xTranspose);
-		Matrix wTrain = xMul2.times(y);
-		double[][] wHashMap = wTrain.getArray();
-		return wHashMap[0][0];
 	}
 	
 	/**
@@ -197,20 +141,4 @@ public class WeighComparators {
 		return (output > 100) ? 100.00 : output;
 	}
 	
-	/**
-	 * @param total : double
-	 * @return final adjusted output after applying weights learnt by training data
-	 */
-	public double getFinalPredictedOutput(double total, int type) {
-		double output = 0;
-		switch(type) {
-		case 1 : output = total * this.weightsHashMap;
-				break;
-		case 2 : output = total * this.weightsLevenshtein;
-				break;
-		default : output = total * this.weightsTree;
-				break;
-		}
-		return (output > 100) ? 100.00 : output;
-	}
 }
