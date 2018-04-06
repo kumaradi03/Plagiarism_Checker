@@ -113,6 +113,14 @@
                 resolve: {
                     loggedIn: checkLoggedIn
                 }
+            })
+            .when("/profile/:uid/systemStatistics", {
+            templateUrl: 'views/user/template/system-statistics.client.html',
+            controller: 'SystemStatisticsController',
+            controllerAs: 'model',
+            resolve: {
+                loggedIn: checkLoggedIn
+            }
             });
 
         function checkLoggedIn(UserService, $location, $q) {
