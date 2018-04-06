@@ -1,5 +1,6 @@
 package com.northeastern.msd.team102.plagiarismchecker.service;
 
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.Snippet;
 import com.northeastern.msd.team102.plagiarismchecker.entity.Report;
 import com.northeastern.msd.team102.plagiarismchecker.repository.ReportRepository;
 import org.junit.Test;
@@ -36,6 +37,9 @@ public class ReportServiceTest {
     @MockBean
     private UserService userService;
 
+//    @MockBean
+//    private ReportService reportService;
+
     @MockBean
     private FileService fileService;
 
@@ -66,5 +70,14 @@ public class ReportServiceTest {
         given(this.reportService.findAllReportSummary(3,1)).willReturn(testReportList);
         assertEquals(testReportList,this.reportService.findAllReportSummary(3,1));
     }
+
+//    @Test
+//    public void getDetailedReport() throws Exception {
+//        String[] testString = {"testFile","testPythonFile"};
+//        byte[] testFile1Byte = new byte[3];
+//        byte[] testFile2Byte = new byte[3];
+//        given(this.reportService.getDetailedReport(1,2)).willReturn(testString);
+//        assertEquals(testString,this.reportService.getDetailedReport(1,2).toString());
+//    }
 
 }
