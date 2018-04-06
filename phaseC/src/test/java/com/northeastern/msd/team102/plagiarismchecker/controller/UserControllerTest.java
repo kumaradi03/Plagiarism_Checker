@@ -15,12 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -28,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = UserController.class, secure = false)
 public class UserControllerTest {
+
 
     @Autowired
     private MockMvc mockMvc;
@@ -120,4 +117,17 @@ public class UserControllerTest {
         assertEquals(ExpectedOutput.toString(), result.getResponse().getContentAsString());
     }
 
+    @Test
+    public void setUserStatus() throws Exception {
+        String stringTestC = "{\"id\":1,\"name\":null,\"description\":null}";
+        long[] profList = {1,2};
+        String profListString = "[1,2]";
+        Mockito.doNothing().when(userService).setUserStatus(profList);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                "/rest/user/setUserStatus").accept(MediaType.APPLICATION_JSON)
+                .content(profListString)
+                .contentType(MediaType.APPLICATION_JSON);
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        assertEquals(200, result.getResponse().getStatus());
+    }
 }

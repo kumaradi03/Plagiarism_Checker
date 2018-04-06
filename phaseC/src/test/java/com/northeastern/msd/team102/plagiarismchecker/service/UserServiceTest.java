@@ -88,4 +88,12 @@ public class UserServiceTest {
         assertEquals(professorAdminList.get(0).getId(), this.userService.findProfessors().get(0).getId());
     }
 
+    @Test
+    public void updateUser() throws Exception {
+        User mockUser1 = new User(1, "Aditya","Kumar","Professor","adi", "adi","adidkool1@gmail.com","false");
+        when(userRepository.save(mockUser1)).thenReturn(mockUser1);
+        given(this.userService.updateUser(mockUser1)).willReturn(mockUser1);
+        assertEquals(mockUser1.getId(),this.userService.updateUser(mockUser1).getId());
+    }
+
 }
