@@ -3,7 +3,7 @@
         .module("PlagiarismChecker")
         .controller("SnippetController", SnippetController);
 
-    function SnippetController (UserService, ReportService, $routeParams) {
+    function SnippetController (UserService, ReportService, $routeParams, $location) {
         var vm = this;
         var userId = $routeParams['uid'];
         vm.hwId = $routeParams['hid'];
