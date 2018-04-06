@@ -22,15 +22,6 @@
                 controllerAs: 'model',
             })
 
-<<<<<<< HEAD
-=======
-            .when("/profile/admin/:aid",{
-                templateUrl: 'views/user/template/admin.client.html',
-                controller: 'AdminController',
-                controllerAs: 'model',
-            })
-
->>>>>>> ac1bc55d9e57c5eeb01d9bf584b94a72d92326df
             .when("/profile/:uid/course/:cid/homework/:hid/fileupload",{
                 templateUrl: 'views/user/template/fileUpload.client.html',
                 controller: 'FileUploadController',

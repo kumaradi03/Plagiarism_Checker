@@ -12,13 +12,9 @@
             "register": register,
             "findUserById": findUserById,
             "findProfessor": findProfessor,
-<<<<<<< HEAD
             "updateUser": updateUser,
             "getDistinctUsersForHw":getDistinctUsersForHw,
             "loggedIn":loggedIn,
-=======
-            "getDistinctUsersForHw":getDistinctUsersForHw,
->>>>>>> ac1bc55d9e57c5eeb01d9bf584b94a72d92326df
             "getProfessors":getProfessors,
             "approveProfessors":approveProfessors
         };
