@@ -105,6 +105,14 @@
                 resolve: {
                     loggedIn: checkLoggedIn
                 }
+            })
+            .when("/profile/:uid/statistics", {
+                templateUrl: 'views/user/template/usage-statistics.client.html',
+                controller: 'UsageStatisticsController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             });
 
         function checkLoggedIn(UserService, $location, $q) {

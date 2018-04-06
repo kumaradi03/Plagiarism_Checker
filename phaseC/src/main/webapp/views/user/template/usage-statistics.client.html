@@ -20,28 +20,39 @@
     </span>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#/profile/{{model.user.id}}">Profile</a>
-    <a href="#/profile/{{model.user.id}}/course/{{model.courseId}}/homework">Homework</a>
-    <a href="#/profile/{{model.user.id}}/course/{{model.courseId}}/homework/{{model.hwId}}/submission">Submission</a>
+    <a href="#/profile/{{model.user.id}}/course">Course</a>
     <a href="#/profile/{{model.user.id}}/statistics" ng-if="model.user.userType !== 'Student'">Usage Statistics</a>
 </div>
-<div class="alert alert-danger" ng-show="model.error">
-    {{model.error}}
-</div>
-<div id="main" class="container-fluid ">
-    <div>
-        <div class="col-xs-6">
-            <div id="fileHeader">File 1</div>
-            <pre>
-                <div ng-bind-html="model.myFile1"></div>
-            </pre>
-        </div>
-        <div class="col-xs-6">
-            <div id="fileHeader1">File 2</div>
-            <pre>
-                <div ng-bind-html="model.myFile2"></div>
-            </pre>
-        </div>
+<div id="main" class="container-fluid row">
+    <div class="alert alert-danger" ng-show="model.error">
+        {{model.error}}
     </div>
+    <table class="table table-bordered" ng-if="model.reports.length !== 0">
+        <thead>
+        <tr>
+            <th scope="col" ng-if="model.user.userType === 'Admin'">Professor</th>
+            <th scope="col">Student</th>
+            <th scope="col">Course</th>
+            <th scope="col">Homework</th>
+            <th scope="col">Algorithm used</th>
+            <th scope="col">Number of comparisons</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="report in model.reports">
+            <td ng-if="model.user.userType === 'Admin'">
+                {{report.professor.firstName}} {{report.professor.lastName}}
+            </td>
+            <td>{{report.student.firstName}} {{report.student.lastName}}</td>
+            <td>{{report.course.name}}</td>
+            <td>{{report.homework.name}}</td>
+            <td>{{report.algoType}}</td>
+            <td>{{report.compareCount}}</td>
+            <td>{{report.timestamp}}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">

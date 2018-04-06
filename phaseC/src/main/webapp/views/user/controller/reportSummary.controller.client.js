@@ -3,7 +3,7 @@
         .module("PlagiarismChecker")
         .controller("ReportSummaryController", ReportSummaryController);
 
-    function ReportSummaryController (ReportService, $location, $routeParams) {
+    function ReportSummaryController (ReportService, $location, $routeParams, UserService, UsageStatisicsService) {
         var vm = this;
         vm.userId = $routeParams['uid'];
         vm.studentId = $routeParams['userid'];
@@ -15,6 +15,17 @@
         vm.closeNav = closeNav;
         vm.logout = logout;
         vm.getDetailedReport = getDetailedReport;
+        vm.algoType = "HashMap";
+        switch (vm.sId) {
+            case "2": vm.algoType = "Trees";
+                break;
+            case "3": vm.algoType = "LevenshteinDistance";
+                break;
+            case "4": vm.algoType = "All";
+                break;
+            default: vm.algoType = "HashMap";
+                break;
+        }
 
 
         function openNav(type) {
@@ -47,6 +58,11 @@
                 + vm.studentId + '/type/' + vm.sId + '/summary/file1/'+ file1Id + '/file2/' + file2Id);
         }
 
+        /**
+         * find plagiarism report summary by comparing the current student's homework with all other student's
+         * who have submitted the same homework assignment for the registered course.
+         * the generated report is then saved as usage statistics
+         */
         ReportService
             .findAllReportSummary(vm.studentId, vm.hwId)
             .then(function (reports) {
@@ -54,8 +70,12 @@
                 console.log(reports);
                 if(reports.length === 0)
                     vm.error = "No reports.";
-                else
+                else {
                     vm.reports = reports;
+                    UsageStatisicsService.addStatistics(vm.reports["0"].file1.course.user,
+                        vm.reports["0"].file1.user, vm.reports["0"].file1.course,
+                        vm.reports["0"].file1.homework, vm.reports.length, vm.algoType);
+                }
                 openNav("Professor");
             });
     }
