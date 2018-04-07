@@ -106,7 +106,7 @@ public class SnippetTest {
 	public void CompareEmptyFile() throws IOException {
 		Snippet s = new Snippet();
 		File file1 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/empty.py");
-		File file2 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/samplePythonFile1.py");
+		File file2 = new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/SamplePythonFile1.py");
         FileInputStream fis1 = new FileInputStream(file1);
         FileInputStream fis2 = new FileInputStream(file2);
         byte[] byteArray1 = new byte[(int)file1.length()];
