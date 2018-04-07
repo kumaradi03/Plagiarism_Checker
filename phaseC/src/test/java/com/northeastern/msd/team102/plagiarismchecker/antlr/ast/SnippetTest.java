@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import org.junit.Test;
 
-public class SnippeTests {
+public class SnippetTest {
 
 	/**
 	 * Compares similar files.

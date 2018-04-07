@@ -9,7 +9,7 @@ import org.junit.Test;
  * To check functionality of SendEmail
  *
  */
-public class SendEmailTests {
+public class SendEmailTest {
 
 	/**
 	 * Try Sending an Email. 

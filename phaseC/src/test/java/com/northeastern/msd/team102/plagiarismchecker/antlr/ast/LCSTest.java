@@ -10,7 +10,7 @@ import org.junit.Test;
  * Test cases for LCS.java
  *
  */
-public class LCSTests {
+public class LCSTest {
 
 	/**
 	 * To check longest common subsequence.
