@@ -16,13 +16,13 @@ import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.CompareStrategyT
 public class DisimilarFilesTest {
 
 	/**
-	 * Comparison of identifierRenaming1.py and DisimilarFile.py.
+	 * Comparison of IdentifierRenaming1.py and DisimilarFile.py.
 	 * @throws IOException
 	 */
 	@Test
 	public void test_CompareStrategyAll() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyAll();
-	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/identifierRenaming1.py");
+	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/DisimilarFile.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
@@ -30,7 +30,7 @@ public class DisimilarFilesTest {
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and DisimilarFile.py.
+	 * Comparison of IdentifierRenaming1.py and DisimilarFile.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -38,19 +38,19 @@ public class DisimilarFilesTest {
 		CompareStrategy c = new CompareStrategyAll();
 	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/DisimilarFile.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
-	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/identifierRenaming1.py");
+	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
 	    assertEquals(19.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and DisimilarFile.py.
+	 * Comparison of IdentifierRenaming1.py and DisimilarFile.py.
 	 * @throws IOException
 	 */
 	@Test
 	public void test_CompareStrategyHashMap() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyHashMap();
-	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/identifierRenaming1.py");
+	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/DisimilarFile.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
@@ -58,7 +58,7 @@ public class DisimilarFilesTest {
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and DisimilarFile.py.
+	 * Comparison of IdentifierRenaming1.py and DisimilarFile.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -66,19 +66,19 @@ public class DisimilarFilesTest {
 		CompareStrategy c = new CompareStrategyHashMap();
 	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/DisimilarFile.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
-	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/identifierRenaming1.py");
+	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
 	    assertEquals(19.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and DisimilarFile.py.
+	 * Comparison of IdentifierRenaming1.py and DisimilarFile.py.
 	 * @throws IOException
 	 */
 	@Test
 	public void test_CompareStrategyLevenshteinDist() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyLevenshteinDist();
-	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/identifierRenaming1.py");
+	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/DisimilarFile.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
@@ -86,7 +86,7 @@ public class DisimilarFilesTest {
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and DisimilarFile.py.
+	 * Comparison of IdentifierRenaming1.py and DisimilarFile.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -94,19 +94,19 @@ public class DisimilarFilesTest {
 		CompareStrategy c = new CompareStrategyLevenshteinDist();
 	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/DisimilarFile.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
-	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/identifierRenaming1.py");
+	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
 	    assertEquals(34.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and DisimilarFile.py.
+	 * Comparison of IdentifierRenaming1.py and DisimilarFile.py.
 	 * @throws IOException
 	 */
 	@Test
 	public void test_CompareStrategyTrees() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyTrees();
-	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/identifierRenaming1.py");
+	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/DisimilarFile.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
@@ -114,7 +114,7 @@ public class DisimilarFilesTest {
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and DisimilarFile.py.
+	 * Comparison of IdentifierRenaming1.py and DisimilarFile.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -122,7 +122,7 @@ public class DisimilarFilesTest {
 		CompareStrategy c = new CompareStrategyTrees();
 	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/DisimilarFile.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
-	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/identifierRenaming1.py");
+	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
 	    assertEquals(17.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}

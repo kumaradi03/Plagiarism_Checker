@@ -16,7 +16,7 @@ import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.CompareStrategyT
 public class IdentifierRenamingTest {
 
 	/**
-	 * Comparison of identifierRenaming1.py and identifierRenaming2.py.
+	 * Comparison of IdentifierRenaming1.py and IdentifierRenaming2.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -30,7 +30,7 @@ public class IdentifierRenamingTest {
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and identifierRenaming2.py.
+	 * Comparison of IdentifierRenaming1.py and IdentifierRenaming2.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -44,7 +44,7 @@ public class IdentifierRenamingTest {
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and identifierRenaming2.py.
+	 * Comparison of IdentifierRenaming1.py and IdentifierRenaming2.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -58,7 +58,7 @@ public class IdentifierRenamingTest {
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and identifierRenaming2.py.
+	 * Comparison of IdentifierRenaming1.py and IdentifierRenaming2.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -72,7 +72,7 @@ public class IdentifierRenamingTest {
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and identifierRenaming2.py.
+	 * Comparison of IdentifierRenaming1.py and IdentifierRenaming2.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -86,7 +86,7 @@ public class IdentifierRenamingTest {
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and identifierRenaming2.py.
+	 * Comparison of IdentifierRenaming1.py and IdentifierRenaming2.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -100,7 +100,7 @@ public class IdentifierRenamingTest {
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and identifierRenaming2.py.
+	 * Comparison of IdentifierRenaming1.py and IdentifierRenaming2.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -114,7 +114,7 @@ public class IdentifierRenamingTest {
 	}
 	
 	/**
-	 * Comparison of identifierRenaming1.py and identifierRenaming2.py.
+	 * Comparison of IdentifierRenaming1.py and IdentifierRenaming2.py.
 	 * @throws IOException
 	 */
 	@Test
