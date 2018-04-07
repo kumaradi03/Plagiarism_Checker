@@ -1,6 +1,7 @@
 package com.northeastern.msd.team102.plagiarismchecker.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
@@ -21,11 +22,8 @@ import com.northeastern.msd.team102.plagiarismchecker.entity.UsageStatistics;
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.repository.UsageStatisticsRepository;
 
-/**
- * Test Suite for Report Services
- */
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = UsageStatisticsServiceTest.class, secure = false)
+@WebMvcTest(value = UsageStatisticsService.class, secure = false)
 public class UsageStatisticsServiceTest {
 
     @Autowired
@@ -34,7 +32,7 @@ public class UsageStatisticsServiceTest {
     @MockBean
     private UsageStatisticsRepository usageStatisticsRepository;
 
-    @MockBean
+    @Autowired
     private UsageStatisticsService usageStatisticsService;
 
     @MockBean
@@ -45,9 +43,20 @@ public class UsageStatisticsServiceTest {
     	UsageStatistics u = new UsageStatistics(null, new User(), new User(), 
         		new Course(), new Homework(), 0, "HashMap");
         List<UsageStatistics> testList=new ArrayList<>();
+        testList.add(u);
         when(usageStatisticsRepository.findAllByProfessor_Id(2)).thenReturn(testList);
         given(this.usageStatisticsService.findAllUsageStatisticsByProfessor(2)).willReturn(testList);
         assertEquals(testList,this.usageStatisticsService.findAllUsageStatisticsByProfessor(2));
     }
-
+    
+    @Test
+    public void findAllUsageStatistics() throws Exception {
+        UsageStatistics u = new UsageStatistics(null, new User(), new User(),
+                new Course(), new Homework(), 0, "HashMap");
+        List<UsageStatistics> testList=new ArrayList<>();
+        testList.add(u);
+        when(usageStatisticsRepository.findAll()).thenReturn(testList);
+        given(this.usageStatisticsService.findAllUsageStatistics()).willReturn(testList);
+        assertEquals(testList,this.usageStatisticsService.findAllUsageStatistics());
+    }
 }
