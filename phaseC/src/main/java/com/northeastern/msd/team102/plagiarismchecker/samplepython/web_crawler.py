@@ -30,7 +30,7 @@ print(count)
 #txt = soup.find('div', {'class' : 'body'})
 
 #print(txt)
-'''href ="https://en.wikipedia.org/wiki/"+ link.get("href")
+''' href ="https://en.wikipedia.org/wiki/"+ link.get("href")
         if "#" in href:
             f1=open("C:\Python\program1.txt",'a+')
             f1.write(link["href"]+'\n')
