@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 /**
  * @author mrunal
@@ -13,6 +15,11 @@ import java.util.Map;
  *
  */
 public class Snippet {
+	
+	public static final Logger logger = Logger.getLogger(SendEmail.class.getName());
+	
+	//Empty Constructor : for initialization.
+	public Snippet() {}
 
     /**
      *
@@ -29,12 +36,12 @@ public class Snippet {
         try {
             while ((pyLine = br.readLine()) != null) {
 
-            	if ((pyLine.length()) != 0 && isComment(pyLine)) {
+            	if ((pyLine.length()) != 0 && isNotComment(pyLine)) {
             		programLines.add(pyLine);
             	}
-                }
+             }
             } catch (IOException e) {
-            	e.printStackTrace();
+            	logger.log(Level.INFO, e.getMessage());
         } finally {
             br.close();
         }
@@ -46,7 +53,7 @@ public class Snippet {
      * @param pyLine String to check.
      * @return true if String passed is not a comment.
      */   
-    private Boolean isComment(String pyLine) {
+    private Boolean isNotComment(String pyLine) {
         String comment = "'''";
         String oneLineComment = "#";
         return (!((pyLine.startsWith(comment)) || (pyLine.startsWith(oneLineComment))));
@@ -93,13 +100,19 @@ public class Snippet {
     	return similarFiles; 	
     }
     
+	/**
+	 * 
+	 * @param similarLines HashMap  suspested plagiarised lines and their line numbers in File 
+	 * @param file ByteArray    	Python file 
+	 * @return String   A python file in form of Htmldiv string in order to highlight plagiarised lines in file red.
+	 */
     private String generateHtmlDiv(Map<Integer, String> similarLines, byte[] file)  {
     	StringBuilder htmlStrings = new StringBuilder();
     	String[] lines = new String(file).split("\r?\n");
 
     	int lineNo = 1;
     	for(String line: lines) {
-            if((line.length()) != 0 && isComment(line)){
+            if((line.length()) != 0 && isNotComment(line)){
                 if(similarLines.containsKey(lineNo))
                     htmlStrings.append("<p class=\"red\">")
                             .append(line).append("</p>\n");
@@ -109,10 +122,16 @@ public class Snippet {
                 lineNo++;
             }
         }
-
 		return htmlStrings.toString();
     }
     
+    /**
+     * 
+     * @param file1  byteArray : suspected  python File1
+     * @param file2  byteArray : suspected  python File1
+     * @return Array of Strings with Report showing similar lines of code in both files.
+     * @throws IOException
+     */
     public String[] generateSnippets(byte[] file1, byte[] file2) throws IOException {
     	List<Map<Integer, String>> similarFiles = findSimilarLines(file1, file2);
     	Map<Integer, String> similarLines1 = similarFiles.get(0);
