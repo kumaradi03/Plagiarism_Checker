@@ -61,8 +61,10 @@
                     .then(function (files) {
                         if (files.length === 0)
                             vm.fileExists = false;
-                        else
+                        else {
                             vm.fileExists = true;
+                            vm.message = "Homework already uploaded."
+                        }
                     });
             });
     }

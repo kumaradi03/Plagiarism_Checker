@@ -33,11 +33,15 @@
         }
 
         function createCourse(course) {
-            CourseService
-                .createCourse(course, vm.user.id)
-                .then(function (course) {
-                    $location.url("/profile/"+vm.user.id+"/course");
-                });
+            if(course === undefined || course.name === undefined )
+                vm.error = "Course name not provided.";
+            else{
+                CourseService
+                    .createCourse(course, vm.user.id)
+                    .then(function (course) {
+                        $location.url("/profile/"+vm.user.id+"/course");
+                    });
+            }
         }
 
         UserService

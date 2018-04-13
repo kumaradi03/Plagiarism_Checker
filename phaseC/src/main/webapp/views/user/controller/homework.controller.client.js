@@ -24,11 +24,15 @@
         }
 
         function createHomework(homework) {
-            HomeworkService
-                .createHomework(homework, vm.user.id, vm.courseId)
-                .then(function (homework) {
-                    $location.url("/profile/"+vm.user.id+"/course/"+vm.courseId+"/homework");
-                });
+            if(homework === undefined || homework.name === undefined )
+                vm.error = "Homework name not provided.";
+            else {
+                HomeworkService
+                    .createHomework(homework, vm.user.id, vm.courseId)
+                    .then(function (homework) {
+                        $location.url("/profile/"+vm.user.id+"/course/"+vm.courseId+"/homework");
+                    });
+            }
         }
 
         function logout() {
