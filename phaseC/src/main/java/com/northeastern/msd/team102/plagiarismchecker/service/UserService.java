@@ -63,10 +63,14 @@ public class UserService {
     public User createUser(User user) {
 
         logger.log(Level.INFO, "Creating user with username " + user.getUsername());
-        if(user.getUserType().equals("Student")){
-            user.setStatusFlag("true");
-        }else{user.setStatusFlag("false");}
-        return userRepository.save(user);
+        User u = findUserByUsername(user.getUsername());
+        if( u == null) {
+            if(user.getUserType().equals("Student")){
+                user.setStatusFlag("true");
+            }else{user.setStatusFlag("false");}
+            return userRepository.save(user);
+        }
+        return null;
     }
 
     /**
