@@ -117,8 +117,10 @@ public class UserController {
     @PostMapping("/registerUser")
     public User registerUser(@RequestBody User user, HttpSession session) {
         logger.log(Level.INFO, "Registering User with username: " + user.getUsername());
-        session.setAttribute("User", user);
-        return userService.createUser(user);
+        User u = userService.createUser(user);
+        if(u != null)
+            session.setAttribute("User", user);
+        return u;
     }
 
     /**
