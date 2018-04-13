@@ -8,14 +8,18 @@
         vm.login = login;
 
         function login(user) {
-            UserService
-                .login(user)
-                .then(function (loginUser) {
-                    if(loginUser !== "")
+            if(user === undefined || user.username === undefined || user.password === undefined)
+                vm.error = "All fields are mandatory.";
+            else {
+                UserService
+                    .login(user)
+                    .then(function (loginUser) {
+                        if(loginUser !== "")
                             $location.url('/profile/'+ loginUser.id);
                         else
                             vm.error = "User not found."
-                });
+                    });
+            }
         }
     }
 })();
