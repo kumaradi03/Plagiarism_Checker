@@ -1,19 +1,23 @@
 package com.northeastern.msd.team102.plagiarismchecker.service;
 
-import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.*;
-import com.northeastern.msd.team102.plagiarismchecker.entity.File;
-import com.northeastern.msd.team102.plagiarismchecker.entity.Homework;
-import com.northeastern.msd.team102.plagiarismchecker.entity.Report;
-import com.northeastern.msd.team102.plagiarismchecker.entity.User;
-import com.northeastern.msd.team102.plagiarismchecker.repository.ReportRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.CompareStrategyAll;
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.CompareStrategyHashMap;
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.CompareStrategyLevenshteinDist;
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.CompareStrategyTrees;
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.Context;
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.Snippet;
+import com.northeastern.msd.team102.plagiarismchecker.entity.File;
+import com.northeastern.msd.team102.plagiarismchecker.entity.Report;
+import com.northeastern.msd.team102.plagiarismchecker.repository.ReportRepository;
 
 /**
  * Service class for Report entity.

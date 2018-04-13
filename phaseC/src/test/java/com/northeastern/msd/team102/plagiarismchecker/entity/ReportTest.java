@@ -85,7 +85,6 @@ public class ReportTest {
         byte[] testBytes=new byte[2];
         File testFile1 = new File("testFileName",testBytes,"testMimeType");
         File testFile2 = new File("testFileNam2",testBytes,"testMimeType");
-        Homework testHomeWork = new Homework();
         Report testReport = new Report(testFile1, testFile2,12,12,12,12);
         testReport.setPercentageCompareAll(12);
         assertEquals(12,testReport.getPercentageCompareAll(),2);

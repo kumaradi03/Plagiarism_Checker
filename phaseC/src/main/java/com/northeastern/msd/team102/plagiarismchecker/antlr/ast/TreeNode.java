@@ -9,17 +9,17 @@ public class TreeNode implements Comparable<TreeNode>{
 	/**
 	 * currentNodeName: name of current AST node
 	 */
-	private String currentNodeName = null;
+	private String currentNodeName;
 	
 	/**
 	 *  parentNodeName: name of parent AST node
 	 */
-	private String parentNodeName = null;
+	private String parentNodeName;
 	
 	/**
 	 * depth: depth of current node
 	 */
-	private int depth = -1;
+	private int depth;
 	
 	/**
 	 * @param currentNodeName: name of current AST node
