@@ -26,6 +26,12 @@
 <!-- Use any element to open the sidenav -->
 <!-- 1. nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
 <div class="container-fluid panel panel-default" id="main" filters = "queueLimit, customFilter">
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
+    </div>
+    <div ng-show ="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
     <div class="row">
         <div style="margin-bottom: 40px">
             <h3>Upload</h3>
