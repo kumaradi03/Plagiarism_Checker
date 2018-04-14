@@ -10,19 +10,23 @@
 
         function createUser (user) {
             if($scope.registerNew.$valid){
-                if(user.password === user.verifypassword)
-                {
-                    UserService
-                        .register(user)
-                        .then(function (usr) {
-                            if(usr !== "")
-                                $location.url('/profile/'+ usr.id);
-                            else
-                                vm.error = "User with username already exists";
-                        });
+                if(user.password.length > 5) {
+                    if(user.password === user.verifypassword)
+                    {
+                        UserService
+                            .register(user)
+                            .then(function (usr) {
+                                if(usr !== "")
+                                    $location.url('/profile/'+ usr.id);
+                                else
+                                    vm.error = "User with username already exists";
+                            });
+                    }
+                    else
+                        vm.error = "Passwords mismatch.";
                 }
                 else
-                    vm.error = "Passwords mismatch.";
+                    vm.error = "Min length of the password should be 5."
             }
             else{
                 $scope.registerNew.submitted = true;
