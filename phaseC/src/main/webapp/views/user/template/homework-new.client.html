@@ -20,7 +20,7 @@
     </span>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#/profile/{{model.user.id}}">Profile</a>
-    <a href="#/profile/{{model.user.id}}/homework">Homework</a>
+    <a href="#/profile/{{model.user.id}}/course/{{model.courseId}}/homework">Homework</a>
     <a href="#/profile/{{model.user.id}}/statistics" ng-if="model.user.userType !== 'Student'">Usage Statistics</a>
 </div>
 <div id="mySidenav1" class="sidenav">
