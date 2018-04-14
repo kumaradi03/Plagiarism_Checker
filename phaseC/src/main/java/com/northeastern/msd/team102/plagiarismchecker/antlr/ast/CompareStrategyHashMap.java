@@ -1,13 +1,12 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 /**
  * @version 1.0
@@ -27,7 +26,7 @@ public class CompareStrategyHashMap implements CompareStrategy {
 	 * @return percent similarity with keeping file1 as base, maps how similar is file2 with file1
 	 * 			i.e it tells how much portion of code in file1 is present in file2
 	 */
-	public double compareFiles(byte[] file1, byte[] file2) throws URISyntaxException {
+	public double compareFiles(byte[] file1, byte[] file2) {
 		logger.log(Level.INFO,"Comparing files using HashMap strategy.");
 		ASTGenerator astPrinter1 = new ASTGenerator(file1);
 		int total = astPrinter1.getTotalCountOfNodes();

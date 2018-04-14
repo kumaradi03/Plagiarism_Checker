@@ -2,8 +2,6 @@ package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-import java.net.URISyntaxException;
-
 /**
  * @version 1.0
  * @description compares 2 python files using Levenshtein strategy
@@ -22,7 +20,7 @@ public class CompareStrategyLevenshteinDist implements CompareStrategy {
      * @param file2: byte array
      * @return percent similarity with keeping file1 as base, maps how similar is file2 with file1
      */
-    public double compareFiles(byte[] file1, byte[] file2) throws URISyntaxException {
+    public double compareFiles(byte[] file1, byte[] file2) {
         logger.log(Level.INFO,"Comparing files using Levenshtein Distance strategy.");
         ASTGenerator astPrinter1 = new ASTGenerator(file1);
         int total = astPrinter1.getTotalCountOfNodes();

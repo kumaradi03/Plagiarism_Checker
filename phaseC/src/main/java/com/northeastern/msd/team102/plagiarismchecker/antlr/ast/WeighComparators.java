@@ -40,21 +40,6 @@ public class WeighComparators {
 	private double[] weightsAll;
 	
 	/**
-	 * weightsHashMap - to store weight to be assigned to HashMap algorithm
-	 */
-	private double weightsHashMap;
-	
-	/**
-	 * weightsLevenshtein - to store weight to be assigned to Levenshtein algorithm
-	 */
-	private double weightsLevenshtein;
-	
-	/**
-	 * weightsTree - to store weight to be assigned to Tree algorithm
-	 */
-	private double weightsTree;
-	
-	/**
 	 * noOfComparators - to store count of total number of comparators in the system
 	 */
 	private int noOfComparators;
@@ -64,11 +49,7 @@ public class WeighComparators {
 		this.dataX = new ArrayList<>();
 		this.dataY = new ArrayList<>();
 		this.noOfComparators = 0;
-		this.weightsHashMap = 0;
-		this.weightsLevenshtein = 0;
-		this.weightsTree = 0;
 		readCSV();
-		
 		this.weightsAll = computeMatrixAll(dataX);
 	}
 	
