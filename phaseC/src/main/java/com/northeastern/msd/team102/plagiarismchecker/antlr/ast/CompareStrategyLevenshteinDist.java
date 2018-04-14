@@ -40,7 +40,7 @@ public class CompareStrategyLevenshteinDist implements CompareStrategy {
      * @param rawsecondString second String
      * @return Edit distance similarity between rawfirstString and rawsecondString
      */
-    public double compareFilesUsingLD(String rawfirstString, String rawsecondString) {
+    private double compareFilesUsingLD(String rawfirstString, String rawsecondString) {
         String firstString = rawfirstString.trim().replaceAll(" +", " ");
         String secondString = rawsecondString.trim().replaceAll(" +", " ");
         int len0 = firstString.length() + 1;

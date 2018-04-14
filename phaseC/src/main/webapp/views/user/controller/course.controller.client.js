@@ -34,7 +34,7 @@
 
         function createCourse(course) {
             if(course === undefined || course.name === undefined )
-                vm.error = "Course name not provided.";
+                vm.error1 = "Course name not provided.";
             else{
                 CourseService
                     .createCourse(course, vm.user.id)

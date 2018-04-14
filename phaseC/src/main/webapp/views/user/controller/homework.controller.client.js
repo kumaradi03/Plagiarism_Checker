@@ -25,7 +25,7 @@
 
         function createHomework(homework) {
             if(homework === undefined || homework.name === undefined )
-                vm.error = "Homework name not provided.";
+                vm.error1 = "Homework name not provided.";
             else {
                 HomeworkService
                     .createHomework(homework, vm.user.id, vm.courseId)
