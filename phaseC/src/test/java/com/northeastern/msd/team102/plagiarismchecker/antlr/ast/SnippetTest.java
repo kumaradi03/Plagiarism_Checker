@@ -35,6 +35,8 @@ public class SnippetTest {
 				"<p class=\"red\">if __name__ == \"__main__\": main()</p>\n";
 		assertEquals(file1Report, detailedReport[0]);
 		assertEquals(file2Report, detailedReport[1]);
+		fis1.close();
+		fis2.close();
 	}
 	
 	/**
@@ -95,6 +97,8 @@ public class SnippetTest {
 		
 		assertEquals(file1Report, detailedReport[0]);
 		assertEquals(file2Report, detailedReport[1]);
+		fis1.close();
+		fis2.close();
 	}
 	
 	
@@ -123,6 +127,8 @@ public class SnippetTest {
 		
 		assertEquals(file1Report, detailedReport[0]);
 		assertEquals(file2Report, detailedReport[1]);
+		fis1.close();
+		fis2.close();
 	}
 	
 	

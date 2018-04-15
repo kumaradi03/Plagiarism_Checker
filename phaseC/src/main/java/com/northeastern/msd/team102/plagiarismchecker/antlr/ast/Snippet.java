@@ -41,7 +41,7 @@ public class Snippet {
             	}
              }
             } catch (IOException e) {
-            	logger.log(Level.INFO, e.getMessage());
+            	logger.log(Level.ERROR, e.getMessage());
         } finally {
             br.close();
         }

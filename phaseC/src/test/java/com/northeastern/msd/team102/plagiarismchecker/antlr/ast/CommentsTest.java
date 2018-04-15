@@ -1,3 +1,4 @@
+package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -13,10 +14,10 @@ import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.CompareStrategyH
 import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.CompareStrategyLevenshteinDist;
 import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.CompareStrategyTrees;
 
-public class SpecialCharsTest {
+public class CommentsTest {
 
 	/**
-	 * Comparison of IdentifierRenaming1.py and SpecialChars.py.
+	 * Comparison of IdentifierRenaming1.py and Comments.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -24,27 +25,27 @@ public class SpecialCharsTest {
 		CompareStrategy c = new CompareStrategyAll();
 	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
-	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/SpecialChars.py");
+	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/Comments.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
-	    assertEquals(42.00, c.compareFiles(encodedFile1, encodedFile2),2);
+	    assertEquals(65.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	
 	/**
-	 * Comparison of IdentifierRenaming1.py and SpecialChars.py.
+	 * Comparison of IdentifierRenaming1.py and Comments.py.
 	 * @throws IOException
 	 */
 	@Test
 	public void test_CompareStrategyAll2() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyAll();
-	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/SpecialChars.py");
+	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/Comments.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
-	    assertEquals(38.00, c.compareFiles(encodedFile1, encodedFile2),2);
+	    assertEquals(100.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	
 	/**
-	 * Comparison of IdentifierRenaming1.py and SpecialChars.py.
+	 * Comparison of IdentifierRenaming1.py and Comments.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -52,27 +53,27 @@ public class SpecialCharsTest {
 		CompareStrategy c = new CompareStrategyHashMap();
 	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
-	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/SpecialChars.py");
+	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/Comments.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
-	    assertEquals(37.00, c.compareFiles(encodedFile1, encodedFile2),2);
+	    assertEquals(65.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	
 	/**
-	 * Comparison of IdentifierRenaming1.py and SpecialChars.py.
+	 * Comparison of IdentifierRenaming1.py and Comments.py.
 	 * @throws IOException
 	 */
 	@Test
 	public void test_CompareStrategyHashMap2() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyHashMap();
-	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/SpecialChars.py");
+	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/Comments.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
-	    assertEquals(32.00, c.compareFiles(encodedFile1, encodedFile2),2);
+	    assertEquals(100.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	
 	/**
-	 * Comparison of IdentifierRenaming1.py and SpecialChars.py.
+	 * Comparison of IdentifierRenaming1.py and Comments.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -80,27 +81,27 @@ public class SpecialCharsTest {
 		CompareStrategy c = new CompareStrategyLevenshteinDist();
 	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
-	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/SpecialChars.py");
+	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/Comments.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
-	    assertEquals(82.00, c.compareFiles(encodedFile1, encodedFile2),2);
+	    assertEquals(47.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	
 	/**
-	 * Comparison of IdentifierRenaming1.py and SpecialChars.py.
+	 * Comparison of IdentifierRenaming1.py and Comments.py.
 	 * @throws IOException
 	 */
 	@Test
 	public void test_CompareStrategyLevenshteinDist2() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyLevenshteinDist();
-	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/SpecialChars.py");
+	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/Comments.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
-	    assertEquals(82.00, c.compareFiles(encodedFile1, encodedFile2),2);
+	    assertEquals(47.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	
 	/**
-	 * Comparison of IdentifierRenaming1.py and SpecialChars.py.
+	 * Comparison of IdentifierRenaming1.py and Comments.py.
 	 * @throws IOException
 	 */
 	@Test
@@ -108,23 +109,23 @@ public class SpecialCharsTest {
 		CompareStrategy c = new CompareStrategyTrees();
 	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
-	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/SpecialChars.py");
+	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/Comments.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
-	    assertEquals(36.00, c.compareFiles(encodedFile1, encodedFile2),2);
+	    assertEquals(64.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 	
 	/**
-	 * Comparison of IdentifierRenaming1.py and SpecialChars.py.
+	 * Comparison of IdentifierRenaming1.py and Comments.py.
 	 * @throws IOException
 	 */
 	@Test
 	public void test_CompareStrategyTrees2() throws IOException, URISyntaxException {
 		CompareStrategy c = new CompareStrategyTrees();
-	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/SpecialChars.py");
+	    File file1=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/Comments.py");
 		byte[] encodedFile1 = Files.readAllBytes(file1.toPath());
 	    File file2=new File("src/main/java/com/northeastern/msd/team102/plagiarismchecker/samplepython/sprint3Test/IdentifierRenaming1.py");
 		byte[] encodedFile2 = Files.readAllBytes(file2.toPath());		
-	    assertEquals(32.00, c.compareFiles(encodedFile1, encodedFile2),2);
+	    assertEquals(100.00, c.compareFiles(encodedFile1, encodedFile2),2);
 	}
 
 }

@@ -126,11 +126,6 @@ tokens { INDENT, DEDENT }
  * parser rules
  */
 
-comments: (SingleLineComment | MultiLineComment)*;
-
-SingleLineComment: '#' ~('\r' | '\n')*;
-
-MultiLineComment: ''''' .* ''''';
 single_input: NEWLINE | simple_stmt | compound_stmt NEWLINE;
 file_input: (NEWLINE | stmt)* EOF;
 eval_input: testlist NEWLINE* EOF;
@@ -464,7 +459,7 @@ POWER_ASSIGN : '**=';
 IDIV_ASSIGN : '//=';
 
 SKIP_
- : ( SPACES | LINE_JOINING ) -> skip
+ : ( SPACES | COMMENT | LINE_JOINING ) -> skip
  ;
 
 UNKNOWN_CHAR
@@ -605,6 +600,10 @@ fragment BYTES_ESCAPE_SEQ
 
 fragment SPACES
  : [ \t]+
+ ;
+ 
+fragment COMMENT
+ : '#' ~[\r\n\f]*
  ;
 
 fragment LINE_JOINING
