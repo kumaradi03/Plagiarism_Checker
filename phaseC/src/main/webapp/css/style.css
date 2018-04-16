@@ -196,3 +196,18 @@ pre p:before {
     width: 1px;
     white-space: nowrap;
 }
+
+.red1
+{
+    background-color: lightcoral;
+}
+
+.yellow
+ {
+    background-color: yellow;
+ }
+
+.green
+{
+    background-color: lightgreen;
+}

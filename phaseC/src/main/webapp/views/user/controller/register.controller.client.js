@@ -10,7 +10,7 @@
 
         function createUser (user) {
             if($scope.registerNew.$valid){
-                if(user.password.length > 5) {
+                if(user.password.length > 4) {
                     if(user.password === user.verifypassword)
                     {
                         UserService
