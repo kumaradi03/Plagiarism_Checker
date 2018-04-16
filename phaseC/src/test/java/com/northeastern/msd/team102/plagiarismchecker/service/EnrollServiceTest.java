@@ -35,6 +35,10 @@ public class EnrollServiceTest {
     @Autowired
     private EnrollService enrollService;
 
+    /**
+     * This test verifies functionality of retrieving all courses enrolled for given User
+     * @throws Exception
+     */
     @Test
     public void findAllByUserId() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -47,6 +51,10 @@ public class EnrollServiceTest {
         assertArrayEquals(enrollList.toArray(),this.enrollService.findAllByUserId(3).toArray());
     }
 
+    /**
+     * This test verifies functionality of enrollment of given user to specified course
+     * @throws Exception
+     */
     @Test
     public void createEnroll() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");

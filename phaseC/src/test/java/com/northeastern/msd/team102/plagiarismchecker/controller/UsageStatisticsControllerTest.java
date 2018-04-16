@@ -22,6 +22,9 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * This test suite verifies functionalities provided by Usage Statistics Controller
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = UsageStatisticsController.class, secure = false)
 public class UsageStatisticsControllerTest {
@@ -32,6 +35,10 @@ public class UsageStatisticsControllerTest {
     @MockBean
     private UsageStatisticsService usageStatisticsService;
 
+    /**
+     * This test verifies the functionality of finding all usage Statistics by Professor Id
+     * @throws Exception
+     */
     @Test
     public void findAllUsageStatisticsByProfessor() throws Exception{
         Date d = null;
@@ -52,6 +59,10 @@ public class UsageStatisticsControllerTest {
         assertEquals(ExpectedOutput, result.getResponse().getContentAsString());
     }
 
+    /**
+     * This test verifies the functionality of finding all usage statistics summary by Professor Id
+     * @throws Exception
+     */
     @Test
     public void findAllUsageStatisticsSummary() throws Exception {
         UsageStatistics testUserStats1 = new UsageStatistics();
@@ -70,6 +81,10 @@ public class UsageStatisticsControllerTest {
 
     }
 
+    /**
+     * This test verifies the functionality of finding all usage statistics summary
+     * @throws Exception
+     */
     @Test
     public void findAllSummary() throws Exception {
         UsageStatistics testUserStats1 = new UsageStatistics();
@@ -84,9 +99,12 @@ public class UsageStatisticsControllerTest {
         assertEquals(ExpectedOutput, result.getResponse().getContentAsString());
     }
 
+    /**
+     * This test verifies the functionality of finding all register statistics summary
+     * @throws Exception
+     */
     @Test
     public void registerStats() throws Exception {
-
         Date timestamp = new Date();
         Date d = null;
         String ExpectedOutput="{\"id\":0,\"timestamp\":"+d+",\"professor\":" +

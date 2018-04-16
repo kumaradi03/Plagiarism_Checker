@@ -23,6 +23,9 @@ import java.util.List;
 import java.util.Set;
 
 
+/**
+ * This test suite verifies functionalities provided by File Controller
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = FileController.class, secure = false)
 public class FileControllerTest {
@@ -35,7 +38,11 @@ public class FileControllerTest {
 
     @MockBean
     ReportService reportService;
-    
+
+    /**
+     * This method verifies functionality of finding all users for given HomeWork Id
+     * @throws Exception
+     */
     @Test
     public void getDistinctUsersForHw() throws Exception {
         String testHWId = "3";
@@ -52,6 +59,10 @@ public class FileControllerTest {
         assertEquals(ExpectedOutput, result.getResponse().getContentAsString());
     }
 
+    /**
+     * This function upload homework file for given User id,HomeWork Id and Course Id
+     * @throws Exception
+     */
     @Test
     public void uploadFile() throws Exception {
         File testFile = new File();

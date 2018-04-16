@@ -9,6 +9,10 @@ import static org.junit.Assert.*;
  */
 public class CourseTest {
 
+    /**
+     * This test case verifies functionality of retrieving Id of given Course
+     * @throws Exception
+     */
     @Test
     public void getId() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -16,6 +20,10 @@ public class CourseTest {
         assertEquals(0,testCourse.getId());
     }
 
+    /**
+     * This test case verifies functionality of assigning Id to given Course
+     * @throws Exception
+     */
     @Test
     public void setId() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -24,6 +32,10 @@ public class CourseTest {
         assertEquals(4,testCourse.getId());
     }
 
+    /**
+     * This test case verifies functionality of retrieving course name of given Course
+     * @throws Exception
+     */
     @Test
     public void getName() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -31,6 +43,10 @@ public class CourseTest {
         assertEquals("courseName",testCourse.getName());
     }
 
+    /**
+     * This test case verifies functionality of assigning course name to given Course
+     * @throws Exception
+     */
     @Test
     public void setName() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -39,6 +55,10 @@ public class CourseTest {
         assertEquals("dummyCourseName",testCourse.getName());
     }
 
+    /**
+     * This test case verifies functionality of retrieving course description of given Course
+     * @throws Exception
+     */
     @Test
     public void getDescription() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -46,6 +66,10 @@ public class CourseTest {
         assertEquals("courseDescrition",testCourse.getDescription());
     }
 
+    /**
+     * This test case verifies functionality of assigning course description to given Course
+     * @throws Exception
+     */
     @Test
     public void setDescription() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -54,6 +78,10 @@ public class CourseTest {
         assertEquals("DummyDescription",testCourse.getDescription());
     }
 
+    /**
+     * This test case verifies functionality of retrieving User of given Course
+     * @throws Exception
+     */
     @Test
     public void getUser() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -61,6 +89,10 @@ public class CourseTest {
         assertEquals(testUser,testCourse.getUser());
     }
 
+    /**
+     * This test case verifies functionality of assigning User to given Course
+     * @throws Exception
+     */
     @Test
     public void setUser() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -70,6 +102,10 @@ public class CourseTest {
         assertEquals(testUser1,testCourse.getUser());
     }
 
+    /**
+     * This test case verifies functionality of default Course constructor
+     * @throws Exception
+     */
     @Test
     public void testDefaultConstructor() throws Exception {
         Course testCourse = new Course();

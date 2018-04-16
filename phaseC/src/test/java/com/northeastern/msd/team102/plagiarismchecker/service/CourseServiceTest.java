@@ -40,7 +40,10 @@ public class CourseServiceTest {
     @MockBean
     private UserService userService;
 
-
+    /**
+     * This test verifies functionality of retrieving all enrolled courses by given User
+     * @throws Exception
+     */
     @Test
     public void findAllByUserId() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -55,6 +58,10 @@ public class CourseServiceTest {
 
     }
 
+    /**
+     * This test verifies functionality of retrieving all courses not enrolled by given User
+     * @throws Exception
+     */
     @Test
     public void findAllCoursesNotEnrolledByUser() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -68,6 +75,10 @@ public class CourseServiceTest {
         assertArrayEquals(listOfCourses.toArray(),this.courseService.findAllCoursesNotEnrolledByUser(testUser).toArray());
     }
 
+    /**
+     * This test verifies functionality of retrieving Course by Course Id
+     * @throws Exception
+     */
     @Test
     public void findById() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");
@@ -77,6 +88,10 @@ public class CourseServiceTest {
         assertEquals(testCourse1,this.courseService.findById(3));
     }
 
+    /**
+     * This test verifies functionality of adding new Course
+     * @throws Exception
+     */
     @Test
     public void createCourse() throws Exception {
         User testUser =new User(3,"testFirst","testLast","student","testUser","testpassword","test@test.com");

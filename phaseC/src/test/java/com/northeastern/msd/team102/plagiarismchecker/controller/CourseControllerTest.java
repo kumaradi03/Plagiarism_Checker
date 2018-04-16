@@ -34,7 +34,7 @@ public class CourseControllerTest {
     private CourseService courseService;
 
     /**
-     * This method verifies functionality of finding all courses available for given user
+     * This test verifies functionality of finding all courses available for given user
      * @throws Exception
      */
     @Test

@@ -20,7 +20,9 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
+/**
+ * This test suite verifies functionalities provided by User Controller
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = UserController.class, secure = false)
 public class UserControllerTest {
@@ -32,6 +34,10 @@ public class UserControllerTest {
     @MockBean
     private UserService userService;
 
+    /**
+     * This test verifies the functionality of user login
+     * @throws Exception
+     */
     @Test
     public void login() throws Exception {
         User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
@@ -47,6 +53,10 @@ public class UserControllerTest {
                 .getContentAsString(), false);
     }
 
+    /**
+     * This test verifies the functionality of finding user based on username
+     * @throws Exception
+     */
     @Test
     public void findUserByUsername() throws Exception{
         String username = "testUser";
@@ -60,6 +70,10 @@ public class UserControllerTest {
         assertEquals(ExpectedOutput, result.getResponse().getContentAsString());
     }
 
+    /**
+     * This test verifies the functionality of finding user based on User Id
+     * @throws Exception
+     */
     @Test
     public void findUserByUserId() throws Exception{
         long userId = 3;
@@ -74,6 +88,10 @@ public class UserControllerTest {
         assertEquals(ExpectedOutput, result.getResponse().getContentAsString());
     }
 
+    /**
+     * This test verifies the functionality of finding professor
+     * @throws Exception
+     */
     @Test
     public void findProfessor() throws Exception{
         String ExpectedOutput="{\"id\":3,\"firstName\":\"testFirst\",\"lastName\":\"testLast\",\"userType\":\"student\",\"username\":\"testUser\",\"password\":\"testpassword\",\"email\":\"test@test.com\",\"statusFlag\":null}";
@@ -86,6 +104,10 @@ public class UserControllerTest {
         assertEquals(ExpectedOutput, result.getResponse().getContentAsString());
     }
 
+    /**
+     * This test verifies the functionality of registering new user
+     * @throws Exception
+     */
     @Test
     public void registerUser() throws Exception {
         User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
@@ -102,6 +124,10 @@ public class UserControllerTest {
                 .getContentAsString(), false);
     }
 
+    /**
+     * This test verifies the functionality of finding all unapproved professors and admins
+     * @throws Exception
+     */
     @Test
     public void findProfessors() throws Exception {
         User mockUser1 = new User(1, "Aditya","Kumar","Professor","adi", "adi","adidkool1@gmail.com","true");
@@ -117,6 +143,10 @@ public class UserControllerTest {
         assertEquals(ExpectedOutput.toString(), result.getResponse().getContentAsString());
     }
 
+    /**
+     * This test verifies the functionality of approving professor and admin users
+     * @throws Exception
+     */
     @Test
     public void setUserStatus() throws Exception {
         String stringTestC = "{\"id\":1,\"name\":null,\"description\":null}";

@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -25,7 +24,6 @@ import static org.mockito.Mockito.when;
 @WebMvcTest(value = UserService.class, secure = false)
 public class UserServiceTest {
 
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -35,6 +33,11 @@ public class UserServiceTest {
     @MockBean
     private UserRepository userRepository;
 
+    /**
+     * This test verifies functionality of finding User by user credentials which is combination of Username and
+     * password
+     * @throws Exception
+     */
     @Test
     public void findUserByCredentials() throws Exception {
         User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
@@ -43,6 +46,10 @@ public class UserServiceTest {
         assertEquals(mockUser,this.userService.findUserByCredentials(mockUser));
     }
 
+    /**
+     * This test verifies functionality of finding User by user name
+     * @throws Exception
+     */
     @Test
     public void findUserByUsername() throws Exception {
         User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
@@ -52,6 +59,10 @@ public class UserServiceTest {
 
     }
 
+    /**
+     * This test verifies functionality of retrieving  User by user Id
+     * @throws Exception
+     */
     @Test
     public void findUserByUserId() throws Exception {
         User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
@@ -60,6 +71,10 @@ public class UserServiceTest {
         assertEquals(mockUser,this.userService.findUserByUserId(1));
     }
 
+    /**
+     * This test verifies functionality of new User creation
+     * @throws Exception
+     */
     @Test
     public void createUser() throws Exception {
         User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
@@ -68,6 +83,11 @@ public class UserServiceTest {
         assertEquals(mockUser,this.userService.createUser(mockUser));
     }
 
+    /**
+     * This test verifies functionality of retrieving of Users of specific User type (Legal User Types : Student,
+     * Admin,Professor)
+     * @throws Exception
+     */
     @Test
     public void findByUserType() throws Exception {
         User mockUser = new User(1, "Aditya","Kumar","Student","adi", "adi","adidkool1@gmail.com");
@@ -76,6 +96,10 @@ public class UserServiceTest {
         assertEquals(mockUser,this.userService.findByUserType("Student"));
     }
 
+    /**
+     * This test verifies functionality of retrieving of unapproved Professors and Admin users
+     * @throws Exception
+     */
     @Test
     public void findProfessors() throws Exception {
         User mockUser1 = new User(1, "Aditya","Kumar","Professor","adi", "adi","adidkool1@gmail.com","false");
@@ -88,6 +112,10 @@ public class UserServiceTest {
         assertEquals(professorAdminList.get(0).getId(), this.userService.findProfessors().get(0).getId());
     }
 
+    /**
+     * This test verifies functionality of approving Professors and Admin user approval requests
+     * @throws Exception
+     */
     @Test
     public void updateUser() throws Exception {
         User mockUser1 = new User(1, "Aditya","Kumar","Professor","adi", "adi","adidkool1@gmail.com","false");
