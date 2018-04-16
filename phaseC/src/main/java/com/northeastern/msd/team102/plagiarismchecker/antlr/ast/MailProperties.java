@@ -7,6 +7,10 @@ import java.util.Properties;
  * e-mail needs to address.
  */
 public class MailProperties {
+	
+	private MailProperties() {
+		//private constructor
+	}
 
 	/**
 	 * email-id of sender.
@@ -15,7 +19,7 @@ public class MailProperties {
 	/**
 	 * password of a sender
 	 */
-	static String teamPassword =  "msd@team102";
+	static String teamPd =  "msd@team102";
 	
 	/**
 	 * 
@@ -41,7 +45,7 @@ public class MailProperties {
 	
 	/**
 	 * 
-	 * @return username of sender
+	 * @return User name  of sender
 	 */
 	public static String getUsername() {
 		
@@ -53,7 +57,7 @@ public class MailProperties {
 	 * @return password of sender
 	 */
 	public static String getPassword() {
-		  return teamPassword;
+		  return teamPd;
 	  
 	
 	}

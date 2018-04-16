@@ -17,9 +17,6 @@ import org.apache.log4j.Logger;
 public class Snippet {
 	
 	public static final Logger logger = Logger.getLogger(SendEmail.class.getName());
-	
-	//Empty Constructor : for initialization.
-	public Snippet() {}
 
     /**
      *
