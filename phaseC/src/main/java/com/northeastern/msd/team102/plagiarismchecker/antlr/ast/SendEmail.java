@@ -16,12 +16,8 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * This code is refenrenced from :
+ * This code is referenced from :
  * https://www.tutorialspoint.com/java/java_sending_email.htm
- * 
- * https://stackoverflow.com/questions/19493904
- * /javax-mail-messagingexception-could-not-connect-to-smtp-host-localhost-port
- *
  */
 public class SendEmail {
 
@@ -51,28 +47,24 @@ public class SendEmail {
 	 */
 	private static void email (String errorMessage) {
 		
-		final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-		Properties props = System.getProperties();
-		props.setProperty("mail.smtp.host", "smtp.gmail.com");
-		props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
-		props.setProperty("mail.smtp.socketFactory.fallback", "false");
-		props.setProperty("mail.smtp.port", "465");
-		props.setProperty("mail.smtp.socketFactory.port", "465");
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.debug", "true");
-		props.put("mail.store.protocol", "pop3");
-		props.put("mail.transport.protocol", "smtp");
-		final String username = "msdAtTeam102@gmail.com";
-		final String pass = "msd@team102";
+		Properties mailProperty = MailProperties.getProperties();
+		String username = MailProperties.getUsername();
+		String password = MailProperties.getPassword();
+		
 		
 		try {
-			Session session = Session.getDefaultInstance(props, new Authenticator() {
+			Session session = Session.getDefaultInstance(mailProperty, new Authenticator() {
 			    @Override
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(username, pass);
+					return new PasswordAuthentication(username, password);
 				}
 			});
+		
 			
+		/*Mime message properties to include into an email.
+		 * setting address of a sender, receiver, subject and error message.
+		 * Sends an email on common team email-id.	
+		 */
 		Message msg = new MimeMessage(session);
 		msg.setFrom(new InternetAddress(username));
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(username, false));
@@ -82,7 +74,7 @@ public class SendEmail {
 		Transport.send(msg);
 		logger.log(Level.INFO,"Message sent.");
 		} catch (MessagingException e1) {
-			email(e1.getMessage());
+			logger.log(Level.ERROR, e1.getMessage());
 		}
 	}
 }

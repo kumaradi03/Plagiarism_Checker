@@ -34,7 +34,8 @@ public class LCS {
          * maximum value. This cell's index helps in building 
          * up the longest common substring from right to left.
          */
-         int row = 0, column = 0;
+         int row = 0;
+         int column = 0;
         
          /**
           * Longest Common Substring.
