@@ -125,6 +125,7 @@ tokens { INDENT, DEDENT }
 /*
  * parser rules
  */
+
 single_input: NEWLINE | simple_stmt | compound_stmt NEWLINE;
 file_input: (NEWLINE | stmt)* EOF;
 eval_input: testlist NEWLINE* EOF;
@@ -600,7 +601,7 @@ fragment BYTES_ESCAPE_SEQ
 fragment SPACES
  : [ \t]+
  ;
-
+ 
 fragment COMMENT
  : '#' ~[\r\n\f]*
  ;

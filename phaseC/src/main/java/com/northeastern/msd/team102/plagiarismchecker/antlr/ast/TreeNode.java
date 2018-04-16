@@ -51,6 +51,9 @@ public class TreeNode implements Comparable<TreeNode>{
 	 */
 	@Override
 	public int compareTo(TreeNode t) {
+		if ((t == null) || (this.getClass() != t.getClass())) {
+			return -1;
+		}
 		return (this.currentNodeName!=null && t.currentNodeName!=null && this.parentNodeName!=null && t.parentNodeName!=null && 
 				 this.parentNodeName.equals(t.parentNodeName) && this.depth==t.depth) ? this.currentNodeName.compareTo(t.currentNodeName) : -1;
 	}

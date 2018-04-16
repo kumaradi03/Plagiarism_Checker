@@ -41,6 +41,10 @@ public class UsageStatisticsController {
         return usageStatisticsService.findAllUsageStatistics();
     }
 
+    /**
+     * save all usage statistics data
+     * @param data
+     */
     @PostMapping("/registerStats")
     public void registerStats(@RequestBody UsageStatistics data) {
         logger.log(Level.INFO, "Registering usage statistics summary for professor: "+ data.getProfessor().getFirstName());

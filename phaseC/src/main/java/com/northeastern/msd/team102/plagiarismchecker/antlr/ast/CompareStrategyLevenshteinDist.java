@@ -25,7 +25,7 @@ public class CompareStrategyLevenshteinDist implements CompareStrategy {
         ASTGenerator astPrinter1 = new ASTGenerator(file1);
         int total = astPrinter1.getTotalCountOfNodes();
         if (total <= 1) {
-        	logger.log(Level.INFO,"WARNING: Empty base file submitted for Levenshtein comparison.");
+        	logger.log(Level.WARN,"WARNING: Empty base file submitted for Levenshtein comparison.");
             return 0;
         }
         ASTGenerator astPrinter2 = new ASTGenerator(file2);

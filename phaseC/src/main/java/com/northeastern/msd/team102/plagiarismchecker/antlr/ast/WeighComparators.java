@@ -74,7 +74,7 @@ public class WeighComparators {
                 this.dataY.add(Double.parseDouble(trainRow[trainRow.length-1]));
             }
         } catch (Exception e) {
-        	logger.log(Level.INFO, "Exception : {0}",e);
+        	logger.log(Level.SEVERE, "Exception : {0}",e);
         } 
         this.weightsAll = new double[noOfComparators];
 	}
