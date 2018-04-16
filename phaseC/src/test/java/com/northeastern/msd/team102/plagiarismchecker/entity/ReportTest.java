@@ -9,7 +9,10 @@ import static org.junit.Assert.*;
  */
 public class ReportTest {
 
-
+    /**
+     * This test case verifies functionality of retrieving Id of given Report
+     * @throws Exception
+     */
     @Test
     public void getSetId() throws Exception {
         byte[] testBytes=new byte[2];
@@ -20,6 +23,11 @@ public class ReportTest {
         assertEquals(1,testReport.getId());
     }
 
+    /**
+     * This test case verifies functionality of retrieving and setting Report generated after using HashMap plagiarism
+     * detection strategy
+     * @throws Exception
+     */
     @Test
     public void getSetHashMapPercentage() throws Exception {
         byte[] testBytes=new byte[2];
@@ -30,6 +38,11 @@ public class ReportTest {
         assertEquals(12,testReport.getPercentageCompareHashMap(),2);
     }
 
+    /**
+     * This test case verifies functionality of retrieving and setting Report generated after using Tree plagiarism
+     * detection strategy
+     * @throws Exception
+     */
     @Test
     public void getSetTreesPercentage() throws Exception { ;
         byte[] testBytes=new byte[2];
@@ -40,6 +53,11 @@ public class ReportTest {
         assertEquals(12,testReport.getpercentageCompareTrees(),2);
     }
 
+    /**
+     * This test case verifies functionality of retrieving and setting Report generated after using Levenshtein Distance
+     * plagiarism detection strategy
+     * @throws Exception
+     */
     @Test
     public void getSetLDPercentage() throws Exception {
         byte[] testBytes=new byte[2];
@@ -50,7 +68,10 @@ public class ReportTest {
         assertEquals(12,testReport.getpercentageCompareLevenshteinDistance(),2);
     }
 
-
+    /**
+     * This test case verifies functionality of retrieving first file from the Report
+     * @throws Exception
+     */
     @Test
     public void getFileUpload1() throws Exception {
         byte[] testBytes=new byte[2];
@@ -60,6 +81,10 @@ public class ReportTest {
         assertEquals(testFile1,testReport.getFile1());
     }
 
+    /**
+     * This test case verifies functionality of setting first file from the Report
+     * @throws Exception
+     */
     @Test
     public void setFileUpload1() throws Exception {
         byte[] testBytes=new byte[2];
@@ -70,6 +95,10 @@ public class ReportTest {
         assertEquals(testFile2,testReport.getFile1());
     }
 
+    /**
+     * This test case verifies functionality of retrieving second file from the Report
+     * @throws Exception
+     */
     @Test
     public void getSetFileUpload2() throws Exception {
         byte[] testBytes=new byte[2];
@@ -80,6 +109,11 @@ public class ReportTest {
         assertEquals(testFile1,testReport.getFile2());
     }
 
+    /**
+     * This test case verifies functionality of retrieving and setting Report generated after using Levenshtein Distance,
+     * HashMap and Trees plagiarism detection strategy
+     * @throws Exception
+     */
     @Test
     public void getSetCompareAllPercentage() throws Exception {
         byte[] testBytes=new byte[2];

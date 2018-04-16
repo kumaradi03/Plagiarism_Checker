@@ -1,5 +1,4 @@
 package com.northeastern.msd.team102.plagiarismchecker.controller;
-
 import com.northeastern.msd.team102.plagiarismchecker.entity.Course;
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.service.CourseService;
@@ -16,13 +15,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * This test suite verifies functionalities provided by Course Controller
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = CourseController.class, secure = false)
 public class CourseControllerTest {
@@ -33,6 +33,10 @@ public class CourseControllerTest {
     @MockBean
     private CourseService courseService;
 
+    /**
+     * This test verifies functionality of finding all courses available for given user
+     * @throws Exception
+     */
     @Test
     public void findAllCoursesForUser() throws Exception {
         Course testCourse1 = new Course();
@@ -53,6 +57,10 @@ public class CourseControllerTest {
 
     }
 
+    /**
+     * This method verifies functionality of finding all users got particular course
+     * @throws Exception
+     */
     @Test
     public void findAllCoursesNotEnrolledByUser() throws Exception {
         Course testCourse1 = new Course();

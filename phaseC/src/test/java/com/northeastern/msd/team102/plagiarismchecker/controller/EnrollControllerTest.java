@@ -6,7 +6,6 @@ import com.northeastern.msd.team102.plagiarismchecker.service.EnrollService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -16,13 +15,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
+/**
+ * This test suite verifies functionalities provided by Enroll Controller
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = EnrollController.class, secure = false)
 public class EnrollControllerTest {
@@ -33,6 +34,10 @@ public class EnrollControllerTest {
     @MockBean
     private EnrollService enrollService;
 
+    /**
+     * This test case verifies the functionality of finding Enrollment for given user
+     * @throws Exception
+     */
     @Test
     public void findAllEnrollmentForUser() throws Exception {
         String suserId ="3";
@@ -50,6 +55,10 @@ public class EnrollControllerTest {
         assertEquals(ExpectedOutput, result.getResponse().getContentAsString());
     }
 
+    /**
+     * This test case verifies the functionality of creating new  enrollment for given user Id
+     * @throws Exception
+     */
     @Test
     public void createEnrollment() throws Exception {
         Enroll testEnroll1 = new Enroll();

@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.northeastern.msd.team102.plagiarismchecker.antlr.ast.Snippet;
+import com.northeastern.msd.team102.plagiarismchecker.entity.File;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class ReportServiceTest {
 
     @MockBean
     private UserService userService;
+
+    @MockBean
+    private Snippet snippet;
 
 //    @MockBean
 //    private ReportService reportService;
@@ -72,7 +77,11 @@ public class ReportServiceTest {
 //        String[] testString = {"testFile","testPythonFile"};
 //        byte[] testFile1Byte = new byte[3];
 //        byte[] testFile2Byte = new byte[3];
-//        given(this.reportService.getDetailedReport(1,2)).willReturn(testString);
+//        File test1File = new File();
+//        File test2File = new File();
+//        when(this.fileService.findByFileId(1)).thenReturn(test1File);
+//        when(this.fileService.findByFileId(2)).thenReturn(test2File);
+//        when(this.snippet.generateSnippets(testFile1Byte,testFile2Byte)).thenReturn(testString);
 //        assertEquals(testString,this.reportService.getDetailedReport(1,2).toString());
 //    }
 

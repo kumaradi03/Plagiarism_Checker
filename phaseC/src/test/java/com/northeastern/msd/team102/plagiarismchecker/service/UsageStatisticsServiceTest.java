@@ -22,6 +22,9 @@ import com.northeastern.msd.team102.plagiarismchecker.entity.UsageStatistics;
 import com.northeastern.msd.team102.plagiarismchecker.entity.User;
 import com.northeastern.msd.team102.plagiarismchecker.repository.UsageStatisticsRepository;
 
+/**
+ * Test Suite for Usage Statistics service
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = UsageStatisticsService.class, secure = false)
 public class UsageStatisticsServiceTest {
@@ -38,25 +41,33 @@ public class UsageStatisticsServiceTest {
     @MockBean
     private UserService userService;
 
+    /**
+     * This test verifies functionality of finding Usage Statistics summary for given Professor Id
+     * @throws Exception
+     */
     @Test
     public void findAllUsageStatisticsByProfessorSummary() throws Exception {
-    	UsageStatistics u = new UsageStatistics(null, new User(), new User(), 
-        		new Course(), new Homework(), 0, "HashMap");
-        List<UsageStatistics> testList=new ArrayList<>();
+        UsageStatistics u = new UsageStatistics(null, new User(), new User(),
+                new Course(), new Homework(), 0, "HashMap");
+        List<UsageStatistics> testList = new ArrayList<>();
         testList.add(u);
         when(usageStatisticsRepository.findAllByProfessor_Id(2)).thenReturn(testList);
         given(this.usageStatisticsService.findAllUsageStatisticsByProfessor(2)).willReturn(testList);
-        assertEquals(testList,this.usageStatisticsService.findAllUsageStatisticsByProfessor(2));
+        assertEquals(testList, this.usageStatisticsService.findAllUsageStatisticsByProfessor(2));
     }
-    
+
+    /**
+     * This test verifies functionality of finding Usage Statistics summary for all professors
+     * @throws Exception
+     */
     @Test
     public void findAllUsageStatistics() throws Exception {
         UsageStatistics u = new UsageStatistics(null, new User(), new User(),
                 new Course(), new Homework(), 0, "HashMap");
-        List<UsageStatistics> testList=new ArrayList<>();
+        List<UsageStatistics> testList = new ArrayList<>();
         testList.add(u);
         when(usageStatisticsRepository.findAll()).thenReturn(testList);
         given(this.usageStatisticsService.findAllUsageStatistics()).willReturn(testList);
-        assertEquals(testList,this.usageStatisticsService.findAllUsageStatistics());
+        assertEquals(testList, this.usageStatisticsService.findAllUsageStatistics());
     }
 }

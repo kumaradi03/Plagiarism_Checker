@@ -39,6 +39,10 @@ public class HomeworkServiceTest {
     @MockBean
     private CourseService courseService;
 
+    /**
+     * This test verifies functionality of creating HomeWork for given User Id and Course Id
+     * @throws Exception
+     */
     @Test
     public void createHomework() throws Exception {
         Homework testHomeWork = new Homework();
@@ -48,6 +52,10 @@ public class HomeworkServiceTest {
 
     }
 
+    /**
+     * This test verifies functionality of retrieving all HomeWorks submitted for given Course
+     * @throws Exception
+     */
     @Test
     public void findAllByCourseId() throws Exception {
         Homework testHomeWork = new Homework();
@@ -58,6 +66,10 @@ public class HomeworkServiceTest {
         assertEquals(homeworkList,this.homeworkService.findAllByCourseId(3));
     }
 
+    /**
+     * This test verifies functionality of retrieving specific HomeWork by HomeWork Id
+     * @throws Exception
+     */
     @Test
     public void findById() throws Exception {
         Homework testHomeWork = new Homework();
