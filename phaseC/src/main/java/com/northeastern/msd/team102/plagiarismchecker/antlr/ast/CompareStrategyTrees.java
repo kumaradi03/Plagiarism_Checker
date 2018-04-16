@@ -27,7 +27,7 @@ public class CompareStrategyTrees implements CompareStrategy {
 		ASTGenerator ast1 = new ASTGenerator(file1);
 		int total = ast1.getTotalCountOfNodes();
 		if (total <= 1) {
-			logger.log(Level.INFO,"WARNING: Empty base file submitted for AST Tree comparison.");
+			logger.log(Level.WARN,"WARNING: Empty base file submitted for AST Tree comparison.");
 			return 0;
 			
 		}

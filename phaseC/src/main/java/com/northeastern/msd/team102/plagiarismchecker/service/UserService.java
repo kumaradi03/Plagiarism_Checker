@@ -1,15 +1,15 @@
 package com.northeastern.msd.team102.plagiarismchecker.service;
 
-import com.northeastern.msd.team102.plagiarismchecker.entity.User;
-import com.northeastern.msd.team102.plagiarismchecker.repository.UserRepository;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.northeastern.msd.team102.plagiarismchecker.entity.User;
+import com.northeastern.msd.team102.plagiarismchecker.repository.UserRepository;
 
 /**
  * Service class for User entity.

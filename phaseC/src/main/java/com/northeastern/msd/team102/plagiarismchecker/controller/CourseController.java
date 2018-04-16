@@ -32,6 +32,10 @@ public class CourseController {
         return courseService.findAllByUserId(userID);
     }
 
+    /**
+     * @param user
+     * @return returns list of all courses not enrolled by the user
+     */
     @PostMapping("/findAllCoursesNotEnrolledByUser")
     public List<Course> findAllCoursesNotEnrolledByUser (@RequestBody User user) {
         return courseService.findAllCoursesNotEnrolledByUser(user);

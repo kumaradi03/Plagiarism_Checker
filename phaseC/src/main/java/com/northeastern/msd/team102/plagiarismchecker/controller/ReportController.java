@@ -1,15 +1,18 @@
 package com.northeastern.msd.team102.plagiarismchecker.controller;
 
-import com.northeastern.msd.team102.plagiarismchecker.entity.Report;
-import com.northeastern.msd.team102.plagiarismchecker.service.ReportService;
+import java.io.IOException;
+import java.util.List;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import com.northeastern.msd.team102.plagiarismchecker.entity.Report;
+import com.northeastern.msd.team102.plagiarismchecker.service.ReportService;
 
 /**
  * Controller class for Report entity.

@@ -1,6 +1,5 @@
 package com.northeastern.msd.team102.plagiarismchecker.antlr.ast;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -31,7 +30,7 @@ public class CompareStrategyHashMap implements CompareStrategy {
 		ASTGenerator astPrinter1 = new ASTGenerator(file1);
 		int total = astPrinter1.getTotalCountOfNodes();
 		if (total <= 1) {
-			logger.log(Level.INFO,"WARNING: Empty base file submitted for HashMap comparison.");
+			logger.log(Level.WARN,"WARNING: Empty base file submitted for HashMap comparison.");
 			return 0;
 		}
 		ASTGenerator astPrinter2 = new ASTGenerator(file2);	    
@@ -52,8 +51,6 @@ public class CompareStrategyHashMap implements CompareStrategy {
     		if (nodes2.containsKey(s)) {
     			List<Integer> level1 = new ArrayList<>(nodes1.get(s));
         		List<Integer> level2 = new ArrayList<>(nodes2.get(s));
-        		Collections.sort(level1);
-        		Collections.sort(level2);
         		for (int i : level1) {
         			if (level2.contains(i)) {
         				int idx = level2.lastIndexOf(i);
