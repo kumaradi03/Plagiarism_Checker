@@ -11,11 +11,12 @@ Run :
 2.	Run Application as Java Application.
 3.	Run on LocalHost as : http://localhost:8080/#/login
 
-AWS Instance : [AWS Link](http://codex.us-east-1.elasticbeanstalk.com/#/)
-Admin login: username: admin, password: admin
+AWS Instance : [AWS Link](http://codex.us-east-1.elasticbeanstalk.com/#/)  
+Admin login:  
+username: admin, password: admin
 
-YouTube Links:
-[System Demo](https://youtu.be/eq6ZC2DUK5A)
-[System Setup](https://youtu.be/p7xvuYc9SDE)
-[Final Presentation](https://youtu.be/fvtpaiv4crE)
+YouTube Links:  
+[System Demo](https://youtu.be/eq6ZC2DUK5A)  
+[System Setup](https://youtu.be/p7xvuYc9SDE)  
+[Final Presentation](https://youtu.be/fvtpaiv4crE)  
 
