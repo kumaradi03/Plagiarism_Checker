@@ -1,6 +1,6 @@
 codeX – Plagiarism Checker
 
-Team 102 Members
+Team Members:
 1.	Aditya Kumar
 2.	Mrunal Ghanwat
 3.	Mayuri Kadam
