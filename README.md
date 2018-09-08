@@ -10,8 +10,7 @@ Run :
 1.	Run 'mvn clean install'.
 2.	Run Application as Java Application.
 3.	Run on LocalHost as : http://localhost:8080/#/login
-
-AWS Instance : [AWS Link](http://codex.us-east-1.elasticbeanstalk.com/#/)  
+ 
 Admin login:  
 username: admin, password: admin
 
